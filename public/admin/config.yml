@@ -6,6 +6,15 @@ media_folder: "public/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
+  - name: "categories"
+    label: "Categories"
+    folder: "src/utility/data/categories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Category Name", name: "name", widget: "string" }
+      - { label: "Subcategories", name: "subcategories", widget: "list", field: { label: "Subcategory", name: "subcategory", widget: "string" } }
+
   - name: "products"
     label: "Products"
     folder: "src/utility/data/products"
@@ -14,11 +23,12 @@ collections:
     fields:
       - { label: "ID", name: "id", widget: "uuid" }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "string" }
-      - { label: "Subcategory", name: "subcategory", widget: "string" }
+      - { label: "Category", name: "category", widget: "relation", collection: "categories", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
+      - { label: "Subcategory", name: "subcategory", widget: "relation", collection: "categories", search_fields: ["subcategories.subcategory"], value_field: "subcategories.subcategory", display_fields: ["subcategories.subcategory"], required: false }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
-      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Old Price", name: "oldPrice", widget: "number" }
+      - { label: "New Price", name: "newPrice", widget: "number" }
       - { label: "Brand", name: "brand", widget: "string" }
       - { label: "Status", name: "status", widget: "select", options: ["Available", "Sold"] }

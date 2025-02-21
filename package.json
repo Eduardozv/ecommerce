@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^5.5.1",
+    "@netlify/plugin-nextjs": "^5.9.4",
     "@reduxjs/toolkit": "^2.2.5",
     "apexcharts": "^3.54.1",
     "bootstrap": "^5.3.3",
