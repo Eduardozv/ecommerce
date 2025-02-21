@@ -16,6 +16,10 @@ interface Home {
     {
       name: "Fashion 2",
       href: "/fashiontwo"
-    },    
+    },
+    {
+      name: "GA",
+      href: "/ga"
+    },      
   ];
   export default home

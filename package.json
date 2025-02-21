@@ -7,7 +7,8 @@
     "build:netlify": "next build",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=14096' next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-css": "sass public/assets/scss/demo-4.scss public/assets/css/demo-4.css"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.9.4",
