@@ -13,7 +13,15 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Category Name", name: "name", widget: "string" }
-      - { label: "Subcategories", name: "subcategories", widget: "list", field: { label: "Subcategory", name: "subcategory", widget: "string" } }
+
+  - name: "subcategories"
+    label: "Subcategories"
+    folder: "src/data/subcategories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Subcategory Name", name: "name", widget: "string" }
+      - { label: "Category", name: "category", widget: "relation", collection: "categories", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
 
   - name: "products"
     label: "Products"
@@ -24,7 +32,7 @@ collections:
       - { label: "ID", name: "id", widget: "uuid" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Category", name: "category", widget: "relation", collection: "categories", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
-      - { label: "Subcategory", name: "subcategory", widget: "relation", collection: "categories", search_fields: ["subcategories"], value_field: "subcategory", display_fields: ["subcategories.subcategory"], required: false }
+      - { label: "Subcategory", name: "subcategory", widget: "relation", collection: "subcategories", search_fields: ["name"], value_field: "name", display_fields: ["name"], required: false }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
