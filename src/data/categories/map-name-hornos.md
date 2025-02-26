@@ -1,3 +1,3 @@
 ---
-name: Carniceria
+name: Cocción
 ---
