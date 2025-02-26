@@ -1,0 +1,4 @@
+---
+name: Dispensadores
+category: Cafetería
+---
