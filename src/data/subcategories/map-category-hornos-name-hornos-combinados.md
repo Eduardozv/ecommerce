@@ -1,4 +1,4 @@
 ---
-name: Hornos Combinados
+name: Hornos Speed
 category: Hornos
 ---
