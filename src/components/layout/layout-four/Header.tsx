@@ -15,7 +15,6 @@ function Header() {
       {/* <Loader /> */}
 
       <header className="gi-header">
-        <HeaderOne wishlistItems={wishlistItems} cartItems={cartItems} />
         <HeaderTwo cartItems={cartItems} wishlistItems={wishlistItems} />
         <HeaderManu />
       </header>

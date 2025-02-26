@@ -1889,7 +1889,7 @@ Tools sidebar
 }
 
 .gi-header {
-  background-color: #fff;
+  background-color: #e91e63;
   z-index: 14;
   position: relative;
 }
@@ -3302,13 +3302,17 @@ body.gi-menu-open:before {
   .gi-header-bottons .gi-header-btn:nth-last-child(-n+2) {
     margin-right: 0;
   }
+  .gi-header-btn.gi-site-menu-icon {
+    color: #fff;
+    font-size: 28px;
+  }
 }
 @media (max-width: 575px) {
   .gi-header-bottom .gi-flex {
-    flex-direction: column;
+    flex-direction: row;
   }
   .gi-header-bottom .gi-flex .gi-header-logo {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
   }
 }
 @media (max-width: 480px) {
