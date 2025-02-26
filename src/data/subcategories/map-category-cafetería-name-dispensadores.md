@@ -1,4 +1,4 @@
 ---
-name: Dispensadores
+name: Cafeteras
 category: Cafetería
 ---
