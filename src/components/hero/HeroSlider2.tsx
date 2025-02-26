@@ -31,10 +31,10 @@ function HeroSlider() {
                     <SwiperSlide className="gi-slide-item swiper-slide d-flex slide-1">
                       <div className="gi-slide-content slider-animation">
                         <p>
-                          Starting at $ <b>20.00</b>
+                          Explora nuestros productos
                         </p>
                         <h1 className="gi-slide-title">
-                          Organic & healthy vegetables
+                          Renueva tu equipo, impulsa tu negocio
                         </h1>
                         <div className="gi-slide-btn">
                           <a href="#" className="gi-btn-1">
@@ -50,14 +50,14 @@ function HeroSlider() {
                     <SwiperSlide className="gi-slide-item swiper-slide d-flex slide-2">
                       <div className="gi-slide-content slider-animation">
                         <p>
-                          Starting at $ <b>29.99</b>
+                          Explora nuestros productos
                         </p>
                         <h1 className="gi-slide-title">
-                          Explore fresh & juicy fruits
+                          Descubre las mejores soluciones comerciales
                         </h1>
                         <div className="gi-slide-btn">
                           <a href="/" className="gi-btn-1">
-                            Ver Proyectos{" "}
+                            Ver Productos{" "}
                             <i
                               className="fi-rr-angle-double-small-right"
                               aria-hidden="true"
@@ -69,14 +69,14 @@ function HeroSlider() {
                     <SwiperSlide className="gi-slide-item swiper-slide d-flex slide-3">
                       <div className="gi-slide-content slider-animation">
                         <p>
-                          Starting at $ <b>29.99</b>
+                          Explora nuestros productos
                         </p>
                         <h1 className="gi-slide-title">
-                          Explore fresh & juicy fruits
+                          Transforma tu comercio con lo mejor
                         </h1>
                         <div className="gi-slide-btn">
                           <a href="/" className="gi-btn-1">
-                            Shop Now{" "}
+                            Ver Productos{" "}
                             <i
                               className="fi-rr-angle-double-small-right"
                               aria-hidden="true"

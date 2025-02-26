@@ -4801,7 +4801,7 @@ i.gicon.gi-star.fill {
 }
 
 /*-------------------------------------------------
-   Demo 1 Page CSS
+   Demo 4 Page CSS
 ---------------------------------------------------*/
 /*===== Hero section css =====*/
 .gi-hero {
@@ -4828,7 +4828,7 @@ i.gicon.gi-star.fill {
   margin-bottom: 30px;
   font-size: 55px;
   line-height: 68px;
-  color: #4b5966;
+  color: #fff;
   letter-spacing: 0.05rem;
   font-weight: 700;
   position: relative;
@@ -4861,15 +4861,15 @@ i.gicon.gi-star.fill {
   background-size: cover;
 }
 .gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-1 {
-  background-image: url(../img/hero-bg/1.jpg);
+  background-image: url(../img/hero-bg-4/1.jpeg);
   background-position: center;
 }
 .gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-2 {
-  background-image: url(../img/hero-bg/2.jpg);
+  background-image: url(../img/hero-bg-4/2.png);
   background-position: center;
 }
 .gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-3 {
-  background-image: url(../img/hero-bg/6.jpg);
+  background-image: url(../img/hero-bg-4/3.png);
   background-position: center;
 }
 .gi-hero .swiper-buttons {
@@ -4902,6 +4902,7 @@ i.gicon.gi-star.fill {
 .gi-hero .gi-slide-item {
   overflow: hidden;
   position: relative;
+  background: rgba(0, 0, 0, 0.5);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .gi-hero .swiper-slide-active .slider-animation > * {
