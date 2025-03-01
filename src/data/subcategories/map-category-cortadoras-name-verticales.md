@@ -1,0 +1,4 @@
+---
+name: Verticales
+category: Cortadoras
+---
