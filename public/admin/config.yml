@@ -64,14 +64,15 @@ collections:
         display_fields: ["name"]
         required: false
         options_function: |
-          async ({ entry, collections }) => {
+          async ({ entry }) => {
             const selectedCategory = entry.get("category");
             if (!selectedCategory) return [];
-            
-            // Retrieve all subcategories
-            const subcategories = collections.get("subcategories").toJS();
 
-            // Filter subcategories based on the selected category
+            // Fetch subcategories dynamically
+            const response = await fetch("/api/subcategories.json");
+            const subcategories = await response.json();
+
+            // Filter based on the selected category
             return subcategories
               .filter(sub => sub.category === selectedCategory)
               .map(sub => ({ label: sub.name, value: sub.name }));
