@@ -11,7 +11,7 @@ collections:
     folder: "src/data/categories"
     create: true
     slug: "{{slug}}"
-    format: "json" # Specify JSON format
+    format: "json"
     extension: "json"
     fields:
       - { label: "Category Name", name: "name", widget: "string" }
@@ -21,27 +21,68 @@ collections:
     folder: "src/data/subcategories"
     create: true
     slug: "{{slug}}"
-    format: "json" # Specify JSON format
+    format: "json"
     extension: "json"
     fields:
       - { label: "Subcategory Name", name: "name", widget: "string" }
-      - { label: "Category", name: "category", widget: "relation", collection: "categories", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
+      - { 
+          label: "Category", 
+          name: "category", 
+          widget: "relation", 
+          collection: "categories", 
+          search_fields: ["name"], 
+          value_field: "name", 
+          display_fields: ["name"] 
+        }
 
   - name: "products"
     label: "Products"
     folder: "src/data/products"
     create: true
     slug: "{{slug}}"
-    format: "json" # Specify JSON format
+    format: "json"
     extension: "json"
     fields:
       - { label: "ID", name: "id", widget: "uuid" }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "relation", collection: "categories", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
-      - { label: "Subcategory", name: "subcategory", widget: "relation", collection: "subcategories", search_fields: ["name"], value_field: "name", display_fields: ["name"], required: false }
-      - { label: "Description", name: "description", widget: "markdown" } # Use richtext widget for rich text content
-      - { label: "Body", name: "body", widget: "markdown" } # Use richtext widget for rich text content
-      - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
+      - { 
+          label: "Category", 
+          name: "category", 
+          widget: "relation", 
+          collection: "categories", 
+          search_fields: ["name"], 
+          value_field: "name", 
+          display_fields: ["name"] 
+        }
+      - label: "Subcategory"
+        name: "subcategory"
+        widget: "relation"
+        collection: "subcategories"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
+        required: false
+        options_function: |
+          async ({ entry, collections }) => {
+            const selectedCategory = entry.get("category");
+            if (!selectedCategory) return [];
+            
+            // Retrieve all subcategories
+            const subcategories = collections.get("subcategories").toJS();
+
+            // Filter subcategories based on the selected category
+            return subcategories
+              .filter(sub => sub.category === selectedCategory)
+              .map(sub => ({ label: sub.name, value: sub.name }));
+          }
+      - { label: "Description", name: "description", widget: "markdown" } # Rich text content
+      - { label: "Body", name: "body", widget: "markdown" } # Rich text content
+      - { 
+          label: "Images", 
+          name: "images", 
+          widget: "list", 
+          field: { label: "Image", name: "image", widget: "image" } 
+        }
       - { label: "Old Price", name: "oldPrice", widget: "number" }
       - { label: "New Price", name: "newPrice", widget: "number" }
       - { label: "Brand", name: "brand", widget: "string" }
