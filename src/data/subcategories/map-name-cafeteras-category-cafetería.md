@@ -1,4 +1,0 @@
----
-name: Cafeteras
-category: Cafetería
----

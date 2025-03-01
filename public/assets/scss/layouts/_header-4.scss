@@ -1427,6 +1427,10 @@ body.gi-menu-open {
   .gi-header {
     z-index: 16;
   }
+  .gi-header-btn.gi-site-menu-icon {
+    color: #fff;
+    font-size: 28px;
+  }
   .gi-header-bottons {
     display: flex;
     align-items: center;
@@ -1513,10 +1517,7 @@ body.gi-menu-open {
       }
     }
   }
-  .gi-header-btn.gi-site-menu-icon {
-    color: #fff; // Change the color to white
-    font-size: 28px; // Increase the font size
-  }
+  
 }
 @media (max-width: 575px) {
   .gi-header-bottom {

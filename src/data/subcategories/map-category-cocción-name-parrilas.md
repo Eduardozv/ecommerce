@@ -1,4 +1,0 @@
----
-name: Parrilas
-category: Cocción
----

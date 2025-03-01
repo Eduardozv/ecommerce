@@ -1,4 +1,0 @@
----
-name: Plano Vertical
-category: Cortadoras
----

@@ -3296,6 +3296,10 @@ body.gi-menu-open:before {
   .gi-header {
     z-index: 16;
   }
+  .gi-header-btn.gi-site-menu-icon {
+    color: #fff;
+    font-size: 28px;
+  }
   .gi-header-bottons {
     display: flex;
     align-items: center;
@@ -3360,10 +3364,6 @@ body.gi-menu-open:before {
   }
   .gi-header-bottons .gi-header-btn:nth-last-child(-n+2) {
     margin-right: 0;
-  }
-  .gi-header-btn.gi-site-menu-icon {
-    color: #fff;
-    font-size: 28px;
   }
 }
 @media (max-width: 575px) {

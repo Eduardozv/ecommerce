@@ -1,4 +1,0 @@
----
-name: Cortadoras
-category: Cortadoras
----

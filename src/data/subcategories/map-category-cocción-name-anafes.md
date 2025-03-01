@@ -1,4 +1,0 @@
----
-name: Anafes
-category: Cocción
----
