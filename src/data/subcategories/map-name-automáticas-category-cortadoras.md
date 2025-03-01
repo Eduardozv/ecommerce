@@ -1,0 +1,4 @@
+---
+name: Automáticas
+category: Cortadoras
+---
