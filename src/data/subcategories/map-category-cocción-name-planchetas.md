@@ -1,4 +1,0 @@
----
-name: Planchetas
-category: Cocción
----
