@@ -54,7 +54,8 @@ collections:
           value_field: "name", 
           display_fields: ["name"] 
         }
-      - label: "Subcategory"
+      - 
+        label: "Subcategory"
         name: "subcategory"
         widget: "relation"
         collection: "subcategories"
@@ -77,12 +78,14 @@ collections:
           }
       - { label: "Description", name: "description", widget: "markdown" } # Rich text content
       - { label: "Body", name: "body", widget: "markdown" } # Rich text content
-      - { 
-          label: "Images", 
-          name: "images", 
-          widget: "list", 
-          field: { label: "Image", name: "image", widget: "image" } 
-        }
+      - 
+        label: "Images"
+        name: "images"
+        widget: "list"
+        field: 
+          label: "Image"
+          name: "image"
+          widget: "image"
       - { label: "Old Price", name: "oldPrice", widget: "number" }
       - { label: "New Price", name: "newPrice", widget: "number" }
       - { label: "Brand", name: "brand", widget: "string" }
