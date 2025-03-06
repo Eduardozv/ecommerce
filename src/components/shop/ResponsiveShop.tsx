@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import Category from '@/components/shop-sidebar/SidebarCategory';
-import Shop from '@/components/shop-sidebar/Shop';
+import Shop from '@/components/shop-sidebar/Shop2';
 import FullWidth from '@/components/full-width/FullWidth'; // Import the component for mobile view
 
 const ResponsiveShop = () => {
