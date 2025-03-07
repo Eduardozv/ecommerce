@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import ShopProductItem from "../product-item/ShopProductItem";
+import ShopProductItem from "../product-item/ShopProductItem2";
 import { Col, Row } from "react-bootstrap";
 import SidebarArea from "./sidebar-area/SidebarArea2";
 import useSWR from "swr";
@@ -32,14 +32,11 @@ const Shop = ({
   const dispatch = useDispatch();
   const {
     selectedCategory,
-    selectedWeight,
     sortOption,
     minPrice,
     maxPrice,
     range,
     searchTerm,
-    selectedColor,
-    selectedTags,
   } = useSelector((state: RootState) => state.filter);
   const itemsPerPage = 12;
 
@@ -53,9 +50,6 @@ const Shop = ({
       minPrice,
       maxPrice,
       range,
-      selectedWeight,
-      selectedColor,
-      selectedTags,
     }),
     [
       searchTerm,
@@ -66,14 +60,11 @@ const Shop = ({
       minPrice,
       maxPrice,
       range,
-      selectedWeight,
-      selectedColor,
-      selectedTags,
     ]
   );
 
   const { data, error } = useSWR(
-    ["/api/shopitem", postData],
+    ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
   );
 
@@ -85,14 +76,6 @@ const Shop = ({
     dispatch(setSearchTerm(""));
     setCurrentPage(1);
   }, [dispatch]);
-
-  const handlePriceChange = useCallback(
-    (min: number, max: number) => {
-      dispatch(setRange({ min, max }));
-      setCurrentPage(1);
-    },
-    [dispatch]
-  );
 
   const handleSortChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -110,36 +93,13 @@ const Shop = ({
     setCurrentPage(1);
   };
 
-  const handleWeightChange = (weight) => {
-    const updatedweight = selectedWeight.includes(weight)
-      ? selectedWeight.filter((wet) => wet !== weight)
-      : [weight];
-    dispatch(setSelectedWeight(updatedweight));
-    setCurrentPage(1);
-  };
-
-  const handleColorChange = (color) => {
-    const updatedcolor = selectedColor.includes(color)
-      ? selectedColor.filter((clr) => clr !== color)
-      : [...selectedColor, color];
-    dispatch(setSelectedColor(updatedcolor));
-    setCurrentPage(1);
-  };
-
-  const handleTagsChange = (tag) => {
-    const updatedtag = selectedTags.includes(tag)
-      ? selectedTags.filter((tg) => tg !== tag)
-      : [...selectedTags, tag];
-    dispatch(setSelectedTags(updatedtag));
-    setCurrentPage(1);
-  };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   if (error) return <div>Failed to load products</div>;
 
+  console.log("data", data);
   return (
     <>
       <Row className={className}>
@@ -249,16 +209,7 @@ const Shop = ({
 
         <SidebarArea
           handleCategoryChange={handleCategoryChange}
-          handleWeightChange={handleWeightChange}
-          handleColorChange={handleColorChange}
-          handleTagsChange={handleTagsChange}
-          min={minPrice}
-          max={maxPrice}
-          handlePriceChange={handlePriceChange}
-          selectedWeight={selectedWeight}
           selectedCategory={selectedCategory}
-          selectedColor={selectedColor}
-          selectedTags={selectedTags}
           order={order}
         />
       </Row>

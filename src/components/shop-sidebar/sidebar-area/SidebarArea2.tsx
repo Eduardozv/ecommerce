@@ -45,21 +45,6 @@ const SidebarArea = ({
     onError,
   });
 
-  const { data: waightData } = useSWR(`/api/sidebarweight`, fetcher, {
-    onSuccess,
-    onError,
-  });
-
-  const { data: colorData } = useSWR(`/api/shopcolor`, fetcher, {
-    onSuccess,
-    onError,
-  });
-
-  const { data: tagData } = useSWR(`/api/shoptags`, fetcher, {
-    onSuccess,
-    onError,
-  });
-
   useEffect(() => {
     const hiddenPaths = [
       "/product-left-sidebar/",
@@ -78,31 +63,8 @@ const SidebarArea = ({
     else return data;
   };
 
-  if (!waightData) return <div></div>;
-
-  const getWaightData = () => {
-    if (hasPaginate) return waightData.data;
-    else return waightData;
-  };
-
-  if (!colorData) return <div></div>;
-
-  const getColorData = () => {
-    if (hasPaginate) return colorData.data;
-    else return colorData;
-  };
-
-  if (!tagData) return <div></div>;
-
-  const getTagData = () => {
-    if (hasPaginate) return tagData.data;
-    else return tagData;
-  };
-
   const categoryData = getData();
-  const weightData = getWaightData();
-  const colorValue = getColorData();
-  const tagsData = getTagData();
+  console.log('Category Data:', categoryData);
 
   const renderIcon = (category: string) => {
     switch (category) {
@@ -184,19 +146,19 @@ const SidebarArea = ({
                         <div className="gi-sidebar-block-item">
                           <input
                             checked={selectedCategory?.includes(
-                              category.category
+                              category.name
                             )}
                             onChange={() =>
-                              handleCategoryChange(category.category)
+                              handleCategoryChange(category.name)
                             }
                             type="checkbox"
                           />
                           <Link href="/">
                             <span>
                               <i
-                                className={`${renderIcon(category.category)}`}
+                                className={`${renderIcon(category.name)}`}
                               ></i>
-                              {category.category}
+                              {category.name}
                             </span>
                           </Link>
                           <span className="checked"></span>
@@ -207,169 +169,7 @@ const SidebarArea = ({
                 </div>
               </SmoothCollapse>
             </div>
-            {/* <!-- Sidebar Weight Block --> */}
-            <div className="gi-sidebar-block">
-              <div className="gi-sb-title">
-                <div
-                  style={{ display: "flex", justifyContent: "space-evenly" }}
-                >
-                  <h3 className="gi-sidebar-title">Weight</h3>
-                  <div
-                    style={{ cursor: "pointer" }}
-                    onClick={() => toggleDropdown("weight")}
-                  >
-                    <GoChevronDown />
-                  </div>
-                </div>
-              </div>
-              <SmoothCollapse
-                expanded={isOpen.weight}
-                heightTransition="1s ease"
-              >
-                <div
-                  style={{ display: isOpen.weight ? "block" : "none" }}
-                  className="gi-sb-block-content"
-                >
-                  <ul>
-                    {weightData.map((data: any, index: number) => (
-                      <li key={index}>
-                        <div className="gi-sidebar-block-item">
-                          <input
-                            checked={selectedWeight?.includes(data.weight)}
-                            onChange={() => handleWeightChange(data.weight)}
-                            type="checkbox"
-                          />
-                          <Link href="/">{data.weight}</Link>
-                          <span className="checked"></span>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </SmoothCollapse>
-            </div>
-            {/* <!-- Sidebar Color item --> */}
-            <div className="gi-sidebar-block color-block gi-sidebar-block-clr">
-              <div
-                style={{ display: "flex", justifyContent: "space-evenly" }}
-                className="gi-sb-title"
-              >
-                <h3 className="gi-sidebar-title">Color</h3>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => toggleDropdown("color")}
-                >
-                  <GoChevronDown />
-                </div>
-              </div>
-              <SmoothCollapse
-                expanded={isOpen.color}
-                heightTransition="1s ease"
-              >
-                <div
-                  style={{ display: isOpen.color ? "block" : "none" }}
-                  className="gi-sb-block-content gi-sidebar-dropdown"
-                >
-                  <ul>
-                    {colorValue.map((data: any, index: number) => (
-                      <li key={index}>
-                        <div className="gi-sidebar-block-item">
-                          <input
-                            checked={selectedColor?.includes(data.color)}
-                            onChange={() => handleColorChange(data.color)}
-                            type="checkbox"
-                            value=""
-                          />
-                          <span
-                            className={`gi-clr-block`}
-                            style={{ backgroundColor: data.color }}
-                          ></span>
-                          <span
-                            style={{
-                              display: selectedColor.includes(data.color)
-                                ? "block"
-                                : "none",
-                            }}
-                            className={`${
-                              selectedColor.includes(data.color)
-                                ? "checked"
-                                : ""
-                            }`}
-                          ></span>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </SmoothCollapse>
-            </div>
-            {/* <!-- Sidebar Price Block --> */}
-            <div className="gi-sidebar-block">
-              <div
-                style={{ display: "flex", justifyContent: "space-evenly" }}
-                className="gi-sb-title"
-              >
-                <h3 className="gi-sidebar-title">Price</h3>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => toggleDropdown("price")}
-                >
-                  <GoChevronDown />
-                </div>
-              </div>
-              <SmoothCollapse
-                expanded={isOpen.price}
-                heightTransition="1s ease"
-              >
-                <div
-                  style={{ display: isOpen.price ? "block" : "none" }}
-                  className="gi-sb-block-content gi-price-range-slider es-price-slider"
-                >
-                  <PriceRangeSlider
-                    min={min}
-                    max={max}
-                    onPriceChange={handlePriceChange}
-                  />
-                </div>
-              </SmoothCollapse>
-            </div>
-            {/* <-- Sidebar tags --> */}
-            <div className="gi-sidebar-block">
-              <div
-                style={{ display: "flex", justifyContent: "space-evenly" }}
-                className="gi-sb-title"
-              >
-                <h3 className="gi-sidebar-title">Tags</h3>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => toggleDropdown("tags")}
-                >
-                  <GoChevronDown />
-                </div>
-              </div>
-              <SmoothCollapse expanded={isOpen.tags} heightTransition="1s ease">
-                <div
-                  style={{ display: isOpen.tags ? "block" : "none" }}
-                  className="gi-tag-block gi-sb-block-content gi-sidebar-dropdown"
-                >
-                  {tagsData.map((data, index) => (
-                    <a
-                      key={index}
-                      onClick={() => handleTagsChange(data.tags)}
-                      className="gi-btn-2"
-                      style={{
-                        marginRight: "5px",
-                        backgroundColor: selectedTags.includes(data.tags)
-                          ? "#343a40"
-                          : "#5caf90",
-                      }}
-                      color="#fff"
-                    >
-                      {data.tags}
-                    </a>
-                  ))}
-                </div>
-              </SmoothCollapse>
+            {/* <!-- Sidebar Category Block End --> */}
               {showButton && (
                 <div
                   style={{
@@ -383,7 +183,6 @@ const SidebarArea = ({
                   </button>
                 </div>
               )}
-            </div>
           </div>
         </div>
       </div>
