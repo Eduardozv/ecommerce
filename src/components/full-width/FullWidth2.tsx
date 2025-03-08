@@ -1,8 +1,8 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import ShopProductItem from "../product-item/ShopProductItem";
+import ShopProductItem from "../product-item/ShopProductItem2";
 import { Col, Row } from "react-bootstrap";
-import SidebarFilter from "../model/SidebarFilter";
+import SidebarFilter from "../model/SidebarFilter2";
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
 import Spinner from "../button/Spinner";
@@ -13,6 +13,8 @@ import {
   setRange,
   setSearchTerm,
   setSortOption,
+  setSelectedCategory,
+  setSelectedSubCategory,
 } from "@/store/reducers/filterReducer";
 
 const FullWidth = ({
@@ -29,6 +31,7 @@ const FullWidth = ({
   const dispatch = useDispatch();
   const {
     selectedCategory,
+    selectedSubCategory,
     selectedWeight,
     sortOption,
     minPrice,
@@ -46,6 +49,7 @@ const FullWidth = ({
       limit: itemsPerPage,
       sortOption,
       selectedCategory,
+      selectedSubCategory,
       selectedWeight,
       selectedColor,
       selectedTags,
@@ -59,6 +63,7 @@ const FullWidth = ({
       itemsPerPage,
       sortOption,
       selectedCategory,
+      selectedSubCategory,
       selectedWeight,
       selectedColor,
       selectedTags,
@@ -102,13 +107,29 @@ const FullWidth = ({
   };
 
   const { data, error } = useSWR(
-    ["/api/shopitem", postData],
+    ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
   );
   if (error) return <div>Failed to load products</div>;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleCategoryChange = (category) => {
+    const updatedCategory = selectedCategory.includes(category)
+      ? selectedCategory.filter((cat) => cat !== category)
+      : [...selectedCategory, category];
+    dispatch(setSelectedCategory(updatedCategory));
+    setCurrentPage(1);
+  };
+
+  const handleSubCategoryChange = (subcategory) => {
+    const updatedSubCategory = selectedSubCategory.includes(subcategory)
+      ? selectedSubCategory.filter((cat) => cat !== subcategory)
+      : [...selectedSubCategory, subcategory];
+    dispatch(setSelectedSubCategory(updatedSubCategory));
+    setCurrentPage(1);
   };
 
   const LoadRowOrContainer = ({ children, onlyRow, className }: any) => {
@@ -170,10 +191,10 @@ const FullWidth = ({
                   onChange={handleSortChange}
                 >
                   <option defaultValue="" disabled>
-                    Sort by
+                    Ordenar
                   </option>
-                  <option value="1">Position</option>
-                  <option value="2">Relevance</option>
+                  <option value="1">Posición</option>
+                  <option value="2">Relevancia</option>
                   <option value="3">Name, A to Z</option>
                   <option value="4">Name, Z to A</option>
                   <option value="5">Price, low to high</option>
@@ -243,8 +264,11 @@ const FullWidth = ({
           min={minPrice}
           max={maxPrice}
           handlePriceChange={handlePriceChange}
+          handleCategoryChange={handleCategoryChange}
+          handleSubCategoryChange={handleSubCategoryChange}
           selectedWeight={selectedWeight}
           selectedCategory={selectedCategory}
+          selectedSubCategory={selectedSubCategory}
           selectedColor={selectedColor}
           selectedTags={selectedTags}
           isFilterOpen={isFilterOpen}
