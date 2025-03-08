@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CounterState {
   selectedCategory: string[];
+  selectedSubCategory: string[];
   selectedWeight: string[];
   minPrice: number;
   maxPrice: number;
@@ -18,6 +19,7 @@ export interface CounterState {
 
 const initialState: CounterState = {
   selectedCategory: [],
+  selectedSubCategory: [],
   selectedWeight: [],
   minPrice: 0,
   maxPrice: 250,
@@ -37,6 +39,9 @@ export const filterReducer = createSlice({
   reducers: {
     setSelectedCategory: (state, action: PayloadAction<string[]>) => {
       state.selectedCategory = action.payload;
+    },
+    setSelectedSubCategory: (state, action: PayloadAction<string[]>) => {
+      state.selectedSubCategory = action.payload;
     },
     setSelectedWeight: (state, action: PayloadAction<string[]>) => {
       state.selectedWeight = action.payload;
@@ -77,6 +82,7 @@ export const filterReducer = createSlice({
 
 export const {
   setSelectedCategory,
+  setSelectedSubCategory,
   setSelectedBrands,
   setSearchTerm,
   setSelectedColor,

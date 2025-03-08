@@ -124,99 +124,28 @@ const ItemCard = ({ data }: any) => {
                 <span className="label veg">
                   <span className="dot"></span>
                 </span>
-                <img className="main-image" src={data.images} alt="Product" />
-                <img
+                <img className="main-image" src={data?.images[0]} alt="Product" />
+                {data?.images[1] && <img
                   className="hover-image"
-                  src={data.imageTwo}
+                  src={data.images[1]}
                   alt="Product"
-                />
+                />}
               </Link>
               <span className="flags">
-                {data.sale && (
-                  <span className={data.sale === "Sale" ? "sale" : "new"}>
-                    {data.sale}
+                {data.status && (
+                  <span className={data.status === "Available" ? "sale" : "new"}>
+                    {data.status}
                   </span>
                 )}
               </span>
-              <div className="gi-pro-actions">
-                <button
-                  onClick={() => handleWishlist(data)}
-                  className={
-                    "gi-btn-group wishlist " +
-                    (isInWishlist(data) ? "active" : "")
-                  }
-                  title="Wishlist"
-                >
-                  <i className="fi-rr-heart"></i>
-                </button>
-                <button
-                  className="gi-btn-group quickview gi-cart-toggle"
-                  data-link-action="quickview"
-                  title="Quick view"
-                  data-bs-toggle="modal"
-                  data-bs-target="#gi_quickview_modal"
-                  onClick={handleShow}
-                >
-                  <i className="fi-rr-eye"></i>
-                </button>
-                <button
-                  onClick={() => handleCompareItem(data)}
-                  className={
-                    "gi-btn-group compare " +
-                    (isInCompare(data) ? "active" : "")
-                  }
-                  title="Compare"
-                >
-                  <i className="fi fi-rr-arrows-repeat"></i>
-                </button>
-                <button
-                  title="Add To Cart"
-                  className="gi-btn-group add-to-cart"
-                  onClick={() => handleCart(data)}
-                >
-                  <i className="fi-rr-shopping-basket"></i>
-                </button>
-              </div>
-              <div className="gi-pro-option">
-                {data.color1 && data.color2 && data.color3 && (
-                  <ul className="colors">
-                    {data.color1 && (
-                      <li className={`color-${data.color1}`}>
-                        <a href=""></a>
-                      </li>
-                    )}
-                    {data.color2 && (
-                      <li className={`color-${data.color2}`}>
-                        <a href=""></a>
-                      </li>
-                    )}
-                    {data.color3 && (
-                      <li className={`color-${data.color3}`}>
-                        <a href=""></a>
-                      </li>
-                    )}
-                  </ul>
-                )}
-                {data.size1 && data.size2 && (
-                  <ul className="sizes">
-                    {data.size1 && (
-                      <li>
-                        <a href="">{data.size1}</a>
-                      </li>
-                    )}
-                    {data.size2 && (
-                      <li>
-                        <a href="">{data.size2}</a>
-                      </li>
-                    )}
-                  </ul>
-                )}
-              </div>
             </div>
           </div>
           <div className="gi-pro-content">
             <Link href="/shop-left-sidebar-col-3">
               <h6 className="gi-pro-stitle">{data.category}</h6>
+            </Link>
+            <Link href="/shop-left-sidebar-col-3">
+              <h6 className="gi-pro-stitle">{data.subcategory}</h6>
             </Link>
             <h5 className="gi-pro-title">
               <Link href="/product-left-sidebar">{data.title}</Link>
@@ -227,13 +156,9 @@ const ItemCard = ({ data }: any) => {
               making it over 2000 years old.
             </p>
             <div className="gi-pro-rat-price">
-              <span className="gi-pro-rating">
-                <StarRating rating={data.rating} />
-                <span className="qty">{data.weight}</span>
-              </span>
               <span className="gi-price">
                 <span className="new-price">${data.newPrice}.00</span>
-                <span className="old-price">${data.oldPrice}.00</span>
+                {data.oldPrice !== data.newPrice && <span className="old-price">${data.oldPrice}.00</span> }
               </span>
             </div>
           </div>

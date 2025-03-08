@@ -12,6 +12,7 @@ import {
   setRange,
   setSearchTerm,
   setSelectedCategory,
+  setSelectedSubCategory,
   setSelectedColor,
   setSelectedTags,
   setSelectedWeight,
@@ -32,6 +33,7 @@ const Shop = ({
   const dispatch = useDispatch();
   const {
     selectedCategory,
+    selectedSubCategory,
     sortOption,
     minPrice,
     maxPrice,
@@ -47,6 +49,7 @@ const Shop = ({
       limit: itemsPerPage,
       sortOption,
       selectedCategory,
+      selectedSubCategory,
       minPrice,
       maxPrice,
       range,
@@ -57,6 +60,7 @@ const Shop = ({
       itemsPerPage,
       sortOption,
       selectedCategory,
+      selectedSubCategory,
       minPrice,
       maxPrice,
       range,
@@ -90,6 +94,14 @@ const Shop = ({
       ? selectedCategory.filter((cat) => cat !== category)
       : [...selectedCategory, category];
     dispatch(setSelectedCategory(updatedCategory));
+    setCurrentPage(1);
+  };
+
+  const handleSubCategoryChange = (subcategory) => {
+    const updatedSubCategory = selectedSubCategory.includes(subcategory)
+      ? selectedSubCategory.filter((cat) => cat !== subcategory)
+      : [...selectedSubCategory, subcategory];
+    dispatch(setSelectedSubCategory(updatedSubCategory));
     setCurrentPage(1);
   };
 
@@ -139,7 +151,7 @@ const Shop = ({
                   defaultValue=""
                 >
                   <option value="" disabled>
-                    Sort by
+                    Ordenar por
                   </option>
                   <option value="1">Position</option>
                   <option value="2">Relevance</option>
@@ -209,7 +221,9 @@ const Shop = ({
 
         <SidebarArea
           handleCategoryChange={handleCategoryChange}
+          handleSubCategoryChange={handleSubCategoryChange}
           selectedCategory={selectedCategory}
+          selectedSubCategory={selectedSubCategory}
           order={order}
         />
       </Row>

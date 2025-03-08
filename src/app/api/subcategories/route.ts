@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from 'fs';
 import path from 'path';
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const subcategoriesDir = path.join(process.cwd(), 'src/data/subcategories');
     const files = fs.readdirSync(subcategoriesDir).filter(file => file.endsWith('.json'));

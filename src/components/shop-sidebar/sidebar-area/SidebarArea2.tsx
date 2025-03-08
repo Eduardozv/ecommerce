@@ -10,12 +10,14 @@ import SmoothCollapse from "react-smooth-collapse";
 
 const SidebarArea = ({
   handleCategoryChange,
+  handleSubCategoryChange,
   handleWeightChange,
   handleColorChange,
   handleTagsChange,
   selectedColor,
   selectedTags,
   selectedCategory,
+  selectedSubCategory,
   selectedWeight,
   closeFilter,
   handlePriceChange,
@@ -40,7 +42,12 @@ const SidebarArea = ({
     tags: true,
   });
 
-  const { data, error } = useSWR(`/api/categories`, fetcher, {
+  const { data: categories, error: categoriesError } = useSWR(`/api/categories`, fetcher, {
+    onSuccess,
+    onError,
+  });
+
+  const { data: subcategories, error: subcategoriesError } = useSWR(`/api/subcategories`, fetcher, {
     onSuccess,
     onError,
   });
@@ -55,12 +62,12 @@ const SidebarArea = ({
     setShowButton(hiddenPaths.includes(pathname));
   }, [pathname]);
 
-  if (error) return <div>Failed to load products</div>;
-  if (!data) return <div></div>;
+  if (categoriesError || subcategoriesError) return <div>Failed to load data</div>;
+  if (!categories || !subcategories) return <div></div>;
 
   const getData = () => {
-    if (hasPaginate) return data.data;
-    else return data;
+    if (hasPaginate) return categories.data;
+    else return categories;
   };
 
   const categoryData = getData();
@@ -101,6 +108,17 @@ const SidebarArea = ({
     setIsOpen((prevState) => ({
       ...prevState,
       [section]: !prevState[section],
+    }));
+  };
+
+  const getSubcategories = (categoryName: string) => {
+    return subcategories.filter((sub: any) => sub.category === categoryName);
+  };
+
+  const toggleSubcategoryDropdown = (categoryName: string) => {
+    setIsOpen((prevState) => ({
+      ...prevState,
+      [categoryName]: !prevState[categoryName],
     }));
   };
 
@@ -163,6 +181,46 @@ const SidebarArea = ({
                           </Link>
                           <span className="checked"></span>
                         </div>
+                        {/* Render subcategories */}
+                        <div
+                          style={{ cursor: "pointer" }}
+                          onClick={() => toggleSubcategoryDropdown(category.name)}
+                        >
+                          <GoChevronDown />
+                        </div>
+                        <SmoothCollapse
+                          expanded={isOpen[category.name]}
+                          heightTransition="1s ease"
+                        >
+                          <div
+                            style={{ display: isOpen[category.name] ? "block" : "none" }}
+                            className={`gi-cat-sub-dropdown gi-sb-block-content`}
+                          >
+                            <ul>
+                              {getSubcategories(category.name).map((subcategory: any, subIndex: number) => (
+                                <li key={subIndex}>
+                                  <div className="gi-sidebar-block-item">
+                                    <input
+                                      checked={selectedSubCategory?.includes(
+                                        subcategory.name
+                                      )}
+                                      onChange={() =>
+                                        handleSubCategoryChange(subcategory.name)
+                                      }
+                                      type="checkbox"
+                                    />
+                                    <Link href="/">
+                                      <span>
+                                        {subcategory.name}
+                                      </span>
+                                    </Link>
+                                    <span className="checked"></span>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </SmoothCollapse>
                       </li>
                     ))}
                   </ul>
