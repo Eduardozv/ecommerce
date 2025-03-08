@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Shop from '@/components/shop-sidebar/Shop2';
-import FullWidth from '@/components/full-width/FullWidth'; // Import the component for mobile view
+import FullWidth from '@/components/full-width/FullWidth2'; // Import the component for mobile view
 
 const ResponsiveShop = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -33,7 +33,7 @@ const ResponsiveShop = () => {
           <Shop
             order={"order-lg-last order-md-first"}
             lg={9}
-            xl={3}
+            xl={4}
           />
         </>
       )}

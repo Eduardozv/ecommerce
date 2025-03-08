@@ -77,6 +77,31 @@
 					line-height: 0;
 				}
 			}
+			.gi-filter-btn {
+				align-items: center;
+				padding: 10px 15px; // Adjust padding for better click area
+				background: $main-primary-color;
+				border: 1px solid $main-primary-color;
+				border-radius: $main-border-radius;
+				margin-right: 4px;
+				width: 84px;
+				transition: background 0.3s ease;
+			
+				i {
+				  color: $white;
+				  font-size: 14px;
+				}
+
+				span {
+					color: $white;
+					font-size: 14px;
+				}
+			
+				&:hover {
+				  background: darken($main-primary-color, 10%);
+				  border-color: darken($main-primary-color, 10%);
+				}
+			  }
 		}
 		.grid-btn.active {
 			background: $main-primary-color;
@@ -96,9 +121,15 @@
 				padding-right: 22px;
 			}
 			.gi-select-inner {
+				@media (max-width: 767px) {
+                    width: 120px;
+                }
+
+                @media (min-width: 768px) {
+                    width: 180px;
+                }
 				position: relative;
 				display: flex;
-				width: 160px;
 				height: 50px;
 				line-height: 1.5;
 				background: $white;

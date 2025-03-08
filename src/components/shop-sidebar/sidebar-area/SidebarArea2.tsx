@@ -138,7 +138,7 @@ const SidebarArea = ({
                 style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 className="gi-sb-title"
               >
-                <h3 className="gi-sidebar-title">Category</h3>
+                <h3 className="gi-sidebar-title">Categorías</h3>
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleDropdown("category")}
@@ -190,7 +190,7 @@ const SidebarArea = ({
                           heightTransition="1s ease"
                         >
                           <div
-                            style={{ display: isOpen[category.name] ? "block" : "none" }}
+                            style={{ display: isOpen[category.name] ? "block" : "none", paddingLeft: "28px" }}
                             className={`gi-cat-sub-dropdown gi-sb-block-content`}
                           >
                             <ul>
