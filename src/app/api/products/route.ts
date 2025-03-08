@@ -33,9 +33,8 @@ function sortData(filteredData: any[], sortOption: string) {
 }
 
 export async function POST(req: NextRequest) {
-  console.log('START fetch products');
 
-  const { searchTerm = '', sortOption = '1', page = 1, limit = 10, selectedCategory = [] } = await req.json();
+  const { searchTerm = '', sortOption = '1', page = 1, limit = 10, selectedCategory = [], selectedSubCategory = [] } = await req.json();
 
   const currentPage = parseInt(page as string, 10);
   const itemsPerPage = parseInt(limit as string, 10);
@@ -43,8 +42,6 @@ export async function POST(req: NextRequest) {
   // Read and parse the JSON files from the products directory
   const productsDir = path.join(process.cwd(), 'src/data/products');
   const files = fs.readdirSync(productsDir).filter(file => file.endsWith('.json'));
-
-  console.log('productsDir', productsDir);
 
   const products = files.map((file) => {
     const filePath = path.join(productsDir, file);
@@ -59,6 +56,12 @@ export async function POST(req: NextRequest) {
   if (selectedCategory.length > 0) {
     filteredData = filteredData.filter((item) =>
       selectedCategory.includes(item.category)
+    );
+  }
+
+  if (selectedSubCategory.length > 0) {
+    filteredData = filteredData.filter((item) =>
+      selectedSubCategory.includes(item.subcategory)
     );
   }
 

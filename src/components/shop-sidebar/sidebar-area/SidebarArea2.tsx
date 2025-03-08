@@ -115,11 +115,9 @@ const SidebarArea = ({
     return subcategories.filter((sub: any) => sub.category === categoryName);
   };
 
-  const toggleSubcategoryDropdown = (categoryName: string) => {
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [categoryName]: !prevState[categoryName],
-    }));
+  const handleCategoryClick = (categoryName: string) => {
+    handleCategoryChange(categoryName);
+    toggleDropdown(categoryName);
   };
 
   return (
@@ -137,7 +135,7 @@ const SidebarArea = ({
             {/* <!-- Sidebar Category Block --> */}
             <div className="gi-sidebar-block">
               <div
-                style={{ display: "flex", justifyContent: "space-evenly" }}
+                style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                 className="gi-sb-title"
               >
                 <h3 className="gi-sidebar-title">Category</h3>
@@ -160,34 +158,33 @@ const SidebarArea = ({
                     {/* Check if data is an array before mapping */}
                     {categoryData.map((category: any, index: number) => (
                       <li key={index}>
-                        {/* Assuming ShopCategoryBlock accepts a 'data' prop */}
-                        <div className="gi-sidebar-block-item">
-                          <input
-                            checked={selectedCategory?.includes(
-                              category.name
-                            )}
-                            onChange={() =>
-                              handleCategoryChange(category.name)
-                            }
-                            type="checkbox"
-                          />
-                          <Link href="/">
-                            <span>
-                              <i
-                                className={`${renderIcon(category.name)}`}
-                              ></i>
-                              {category.name}
-                            </span>
-                          </Link>
-                          <span className="checked"></span>
+                        <div className="gi-sidebar-block-item" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <input
+                              checked={selectedCategory?.includes(
+                                category.name
+                              )}
+                              onChange={() => handleCategoryClick(category.name)}
+                              type="checkbox"
+                            />
+                            <Link href="/">
+                              <span onClick={() => handleCategoryClick(category.name)}>
+                                <i
+                                  className={`${renderIcon(category.name)}`}
+                                ></i>
+                                {category.name}
+                              </span>
+                            </Link>
+                            <span className="checked"></span>
+                          </div>
+                          <div
+                            style={{ cursor: "pointer" }}
+                            onClick={() => toggleDropdown(category.name)}
+                          >
+                            <GoChevronDown />
+                          </div>
                         </div>
                         {/* Render subcategories */}
-                        <div
-                          style={{ cursor: "pointer" }}
-                          onClick={() => toggleSubcategoryDropdown(category.name)}
-                        >
-                          <GoChevronDown />
-                        </div>
                         <SmoothCollapse
                           expanded={isOpen[category.name]}
                           heightTransition="1s ease"
@@ -199,22 +196,25 @@ const SidebarArea = ({
                             <ul>
                               {getSubcategories(category.name).map((subcategory: any, subIndex: number) => (
                                 <li key={subIndex}>
-                                  <div className="gi-sidebar-block-item">
-                                    <input
-                                      checked={selectedSubCategory?.includes(
-                                        subcategory.name
-                                      )}
-                                      onChange={() =>
-                                        handleSubCategoryChange(subcategory.name)
-                                      }
-                                      type="checkbox"
-                                    />
-                                    <Link href="/">
-                                      <span>
-                                        {subcategory.name}
-                                      </span>
-                                    </Link>
-                                    <span className="checked"></span>
+                                  <div className="gi-sidebar-block-item" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                                    <div style={{ display: "flex", alignItems: "center" }}>
+                                      <input
+                                        checked={selectedSubCategory?.includes(
+                                          subcategory.name
+                                        )}
+                                        onChange={() =>
+                                          handleSubCategoryChange(subcategory.name)
+                                        }
+                                        type="checkbox"
+                                      />
+                                      <Link href="/">
+                                        <span>
+                                          {subcategory.name}
+                                        </span>
+                                      </Link>
+                                      <span className="checked"></span>
+
+                                    </div>
                                   </div>
                                 </li>
                               ))}

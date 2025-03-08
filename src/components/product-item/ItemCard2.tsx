@@ -28,6 +28,7 @@ interface Item {
   brand: string;
   sku: number;
   category: string;
+  subcategory: string;
   quantity: number;
 }
 const ItemCard = ({ data }: any) => {
