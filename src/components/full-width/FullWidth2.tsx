@@ -260,17 +260,10 @@ const FullWidth = ({
         </Col>
         {/* <!-- Sidebar Area Start --> */}
         <SidebarFilter
-          setCurrentPage={setCurrentPage}
-          min={minPrice}
-          max={maxPrice}
-          handlePriceChange={handlePriceChange}
           handleCategoryChange={handleCategoryChange}
           handleSubCategoryChange={handleSubCategoryChange}
-          selectedWeight={selectedWeight}
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
-          selectedColor={selectedColor}
-          selectedTags={selectedTags}
           isFilterOpen={isFilterOpen}
           closeFilter={closeFilter}
         />

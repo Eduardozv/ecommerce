@@ -7,6 +7,8 @@ import fetcher from "@/components/fetcher-api/Fetcher";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import SmoothCollapse from "react-smooth-collapse";
+import { useDispatch } from "react-redux";
+import { setSelectedCategory } from "@/store/reducers/filterReducer";
 
 const SidebarArea = ({
   handleCategoryChange,
@@ -96,6 +98,7 @@ const SidebarArea = ({
   };
 
   const toggleDropdown = (section: any) => {
+    console.log("Toggling:", section);
     setIsOpen((prevState) => ({
       ...prevState,
       [section]: !prevState[section],
@@ -117,7 +120,7 @@ const SidebarArea = ({
         <div className="filter-sidebar-overlay" onClick={closeFilter}></div>
       )}
       <div
-        className={`gi-shop-sidebar col-lg-3 col-md-12 m-t-991 ${
+        className={`gi-shop-sidebar col-lg-3 col-md-12 ${
           ((order = -1), none)
         }`}
       >
@@ -159,7 +162,7 @@ const SidebarArea = ({
                               type="checkbox"
                             />
                             <Link href="/">
-                              <span onClick={() => handleCategoryClick(category.name)}>
+                              <span>
                                 <i
                                   className={`${renderIcon(category.name)}`}
                                 ></i>
@@ -170,7 +173,6 @@ const SidebarArea = ({
                           </div>
                           <div
                             style={{ cursor: "pointer" }}
-                            onClick={() => toggleDropdown(category.name)}
                           >
                             <GoChevronDown />
                           </div>
@@ -181,8 +183,8 @@ const SidebarArea = ({
                           heightTransition="1s ease"
                         >
                           <div
-                            style={{ display: isOpen[category.name] ? "block" : "none", paddingLeft: "28px" }}
                             className={`gi-cat-sub-dropdown gi-sb-block-content`}
+                            style={{ display: isOpen[category.name] ? "block" : "none", paddingLeft: "28px" }}  
                           >
                             <ul>
                               {getSubcategories(category.name).map((subcategory: any, subIndex: number) => (
