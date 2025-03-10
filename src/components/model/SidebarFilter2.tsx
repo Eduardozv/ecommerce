@@ -13,11 +13,6 @@ const SidebarFilter = ({
   toggleDropdown,
 }) => {
 
-  useEffect(() => {
-    console.log("SidebarFilter mounted!");
-    return () => console.log("SidebarFilter unmounted!");
-  }, []);
-
   return (
     <>
       {isFilterOpen && (

@@ -25,7 +25,6 @@ const SidebarArea = ({
 }: any) => {
   const router = useRouter();
   const pathname = usePathname();
-  const [showButton, setShowButton] = useState(true);
 
   const { data: categories, error: categoriesError } = useSWR(`/api/categories`, fetcher, {
     onSuccess,
@@ -36,20 +35,6 @@ const SidebarArea = ({
     onSuccess,
     onError,
   });
-
-  useEffect(() => {
-    const hiddenPaths = [
-      "/product-left-sidebar/",
-      "/product-right-sidebar/",
-      "/product-according-left-sidebar/",
-      "/product-according-right-sidebar/",
-    ];
-    setShowButton(hiddenPaths.includes(pathname));
-  }, [pathname]);
-
-  useEffect(() => {
-    console.log("isOpen state updated:", isOpen);
-  }, [isOpen]);
 
   if (categoriesError || subcategoriesError) return <div>Failed to load data</div>;
   if (!categories || !subcategories) return <div></div>;
@@ -91,14 +76,6 @@ const SidebarArea = ({
   const handleFilterBtn = () => {
     router.push("/shop-left-sidebar-col-3");
   };
-
-  // const toggleDropdown = (section: any) => {
-  //   console.log("Toggling:", section);
-  //   setIsOpen((prevState) => ({
-  //     ...prevState,
-  //     [section]: !prevState[section],
-  //   }));
-  // };
 
   const getSubcategories = (categoryName: string) => {
     return subcategories.filter((sub: any) => sub.category === categoryName);
@@ -207,20 +184,6 @@ const SidebarArea = ({
                 </div>
               </div>
             </div>
-            {/* <!-- Sidebar Category Block End --> */}
-              {showButton && (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    paddingTop: "20px",
-                  }}
-                >
-                  <button onClick={handleFilterBtn} className="gi-btn-2">
-                    Filter
-                  </button>
-                </div>
-              )}
           </div>
         </div>
       </div>

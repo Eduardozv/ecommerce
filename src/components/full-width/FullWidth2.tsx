@@ -133,10 +133,6 @@ const toggleDropdown = (section) => {
     setCurrentPage(1);
   };
 
-  useEffect(() => {
-    console.log("FullWidth re-rendered!");
-  });
-
   const LoadRowOrContainer = ({ children, onlyRow, className }: any) => {
     return (
       <>
@@ -194,16 +190,18 @@ const toggleDropdown = (section) => {
                   name="gi-select"
                   id="gi-select"
                   onChange={handleSortChange}
+                  value={sortOption}
+                  defaultValue=""
                 >
-                  <option defaultValue="" disabled>
+                  <option value="" disabled>
                     Ordenar
                   </option>
                   <option value="1">Posición</option>
                   <option value="2">Relevancia</option>
-                  <option value="3">Name, A to Z</option>
-                  <option value="4">Name, Z to A</option>
-                  <option value="5">Price, low to high</option>
-                  <option value="6">Price, high to low</option>
+                  <option value="3">A to Z</option>
+                  <option value="4">Z to A</option>
+                  <option value="5">Precio ⬇</option>
+                  <option value="6">Precio ⬆</option>
                 </select>
               </div>
             </div>

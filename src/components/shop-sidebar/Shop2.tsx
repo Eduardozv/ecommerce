@@ -159,14 +159,14 @@ const Shop = ({
                   defaultValue=""
                 >
                   <option value="" disabled>
-                    Ordenar por
+                    Ordenar
                   </option>
-                  <option value="1">Position</option>
-                  <option value="2">Relevance</option>
-                  <option value="3">Name, A to Z</option>
-                  <option value="4">Name, Z to A</option>
-                  <option value="5">Price, low to high</option>
-                  <option value="6">Price, high to low</option>
+                  <option value="1">Posición</option>
+                  <option value="2">Relevancia</option>
+                  <option value="3">A to Z</option>
+                  <option value="4">Z to A</option>
+                  <option value="5">Precio ⬇</option>
+                  <option value="6">Precio ⬆</option>
                 </select>
               </div>
             </div>
