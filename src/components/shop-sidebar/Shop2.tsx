@@ -67,6 +67,15 @@ const Shop = ({
     ]
   );
 
+  const [isOpen, setIsOpen] = useState({});
+
+  const toggleDropdown = (section) => {
+    setIsOpen((prevState) => ({
+      ...prevState,
+      [section]: !prevState[section],
+    }));
+  };
+
   const { data, error } = useSWR(
     ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
@@ -111,7 +120,6 @@ const Shop = ({
 
   if (error) return <div>Failed to load products</div>;
 
-  console.log("data", data);
   return (
     <>
       <Row className={className}>
@@ -225,6 +233,8 @@ const Shop = ({
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
           order={order}
+          isOpen={isOpen}
+          toggleDropdown={toggleDropdown}
         />
       </Row>
     </>

@@ -7,8 +7,6 @@ import fetcher from "@/components/fetcher-api/Fetcher";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import SmoothCollapse from "react-smooth-collapse";
-import { useDispatch } from "react-redux";
-import { setSelectedCategory } from "@/store/reducers/filterReducer";
 
 const SidebarArea = ({
   handleCategoryChange,
@@ -22,18 +20,12 @@ const SidebarArea = ({
   hasPaginate = false,
   order = "order-md-last order-lg-first",
   none = "",
+  isOpen,
+  toggleDropdown,
 }: any) => {
   const router = useRouter();
   const pathname = usePathname();
   const [showButton, setShowButton] = useState(true);
-
-  const [isOpen, setIsOpen] = useState({
-    category: true,
-    weight: true,
-    color: true,
-    price: true,
-    tags: true,
-  });
 
   const { data: categories, error: categoriesError } = useSWR(`/api/categories`, fetcher, {
     onSuccess,
@@ -55,6 +47,10 @@ const SidebarArea = ({
     setShowButton(hiddenPaths.includes(pathname));
   }, [pathname]);
 
+  useEffect(() => {
+    console.log("isOpen state updated:", isOpen);
+  }, [isOpen]);
+
   if (categoriesError || subcategoriesError) return <div>Failed to load data</div>;
   if (!categories || !subcategories) return <div></div>;
 
@@ -64,7 +60,6 @@ const SidebarArea = ({
   };
 
   const categoryData = getData();
-  console.log('Category Data:', categoryData);
 
   const renderIcon = (category: string) => {
     switch (category) {
@@ -97,13 +92,13 @@ const SidebarArea = ({
     router.push("/shop-left-sidebar-col-3");
   };
 
-  const toggleDropdown = (section: any) => {
-    console.log("Toggling:", section);
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
-  };
+  // const toggleDropdown = (section: any) => {
+  //   console.log("Toggling:", section);
+  //   setIsOpen((prevState) => ({
+  //     ...prevState,
+  //     [section]: !prevState[section],
+  //   }));
+  // };
 
   const getSubcategories = (categoryName: string) => {
     return subcategories.filter((sub: any) => sub.category === categoryName);
@@ -113,6 +108,8 @@ const SidebarArea = ({
     handleCategoryChange(categoryName);
     toggleDropdown(categoryName);
   };
+
+
 
   return (
     <>
@@ -133,19 +130,9 @@ const SidebarArea = ({
                 className="gi-sb-title"
               >
                 <h3 className="gi-sidebar-title">Categorías</h3>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => toggleDropdown("category")}
-                >
-                  <GoChevronDown />
-                </div>
               </div>
-              <SmoothCollapse
-                expanded={isOpen.category}
-                heightTransition="1s ease"
-              >
+              <div>
                 <div
-                  style={{ display: isOpen.category ? "block" : "none" }}
                   className={`gi-cat-sub-dropdown gi-sb-block-content`}
                 >
                   <ul>
@@ -218,7 +205,7 @@ const SidebarArea = ({
                     ))}
                   </ul>
                 </div>
-              </SmoothCollapse>
+              </div>
             </div>
             {/* <!-- Sidebar Category Block End --> */}
               {showButton && (

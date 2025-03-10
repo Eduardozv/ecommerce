@@ -73,13 +73,14 @@ const FullWidth = ({
     ]
   );
 
-  const handlePriceChange = useCallback(
-    (min: number, max: number) => {
-      dispatch(setRange({ min, max }));
-      setCurrentPage(1);
-    },
-    [dispatch]
-  );
+  const [isOpen, setIsOpen] = useState({});
+
+const toggleDropdown = (section) => {
+  setIsOpen((prevState) => ({
+    ...prevState,
+    [section]: !prevState[section],
+  }));
+};
 
   const handleSortChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -131,6 +132,10 @@ const FullWidth = ({
     dispatch(setSelectedSubCategory(updatedSubCategory));
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    console.log("FullWidth re-rendered!");
+  });
 
   const LoadRowOrContainer = ({ children, onlyRow, className }: any) => {
     return (
@@ -266,6 +271,8 @@ const FullWidth = ({
           selectedSubCategory={selectedSubCategory}
           isFilterOpen={isFilterOpen}
           closeFilter={closeFilter}
+          isOpen={isOpen}
+          toggleDropdown={toggleDropdown}
         />
       </Row>
     </LoadRowOrContainer>

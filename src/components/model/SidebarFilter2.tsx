@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import SidebarArea from "../shop-sidebar/sidebar-area/SidebarArea2";
 
 const SidebarFilter = ({
@@ -8,7 +9,14 @@ const SidebarFilter = ({
   isFilterOpen,
   selectedCategory,
   selectedSubCategory,
+  isOpen,
+  toggleDropdown,
 }) => {
+
+  useEffect(() => {
+    console.log("SidebarFilter mounted!");
+    return () => console.log("SidebarFilter unmounted!");
+  }, []);
 
   return (
     <>
@@ -35,6 +43,8 @@ const SidebarFilter = ({
           handleSubCategoryChange={handleSubCategoryChange}
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
+          isOpen={isOpen}
+          toggleDropdown={toggleDropdown}
         />
       </div>
     </>

@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 
 export async function POST(req: NextRequest) {
-  console.log('POST /api/categories');
   try {
     const categoriesDir = path.join(process.cwd(), 'src/data/categories');
     const files = fs.readdirSync(categoriesDir).filter(file => file.endsWith('.json'));
@@ -14,7 +13,6 @@ export async function POST(req: NextRequest) {
       return JSON.parse(fileContent);
     });
 
-    console.log('Categories:', categories);
     return NextResponse.json(categories);
   } catch (error) {
     console.error('Error reading categories files:', error);
