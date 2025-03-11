@@ -12,6 +12,7 @@ import { showSuccessToast } from "../toast-popup/Toastify";
 import { RootState } from "@/store";
 import { addWishlist, removeWishlist } from "@/store/reducers/wishlistSlice";
 import { addCompare, removeCompareItem } from "@/store/reducers/compareSlice";
+import { useRouter } from "next/navigation";
 
 interface Item {
   id: number;
@@ -39,6 +40,7 @@ const ItemCard = ({ data }: any) => {
     (state: RootState) => state.wishlist.wishlist
   );
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const router = useRouter();
 
   useEffect(() => {
     const itemsFromLocalStorage =
@@ -115,6 +117,14 @@ const ItemCard = ({ data }: any) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleProductClick = () => {
+    router.push({
+      pathname: '/producto',
+      query: { data: JSON.stringify(data) },
+    });
+  };
+
   return (
     <>
       <div className="gi-product-content">
@@ -149,12 +159,10 @@ const ItemCard = ({ data }: any) => {
               <h6 className="gi-pro-stitle">{data.subcategory}</h6>
             </Link>
             <h5 className="gi-pro-title">
-              <Link href="/product-left-sidebar">{data.title}</Link>
+              <a onClick={handleProductClick}>{data.title}</a>
             </h5>
             <p className="gi-info">
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old.
+              {data.description}
             </p>
             <div className="gi-pro-rat-price">
               <span className="gi-price">
