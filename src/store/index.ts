@@ -10,6 +10,7 @@ import wishlistSlice from "./reducers/wishlistSlice";
 import compareSlice from "./reducers/compareSlice";
 import stepSlice from "./reducers/stepSlice";
 import filterReducer from "./reducers/filterReducer";
+import productSlice from "./reducers/productSlice";
 
 // Configure persist for each slice separately
 const persistConfigCart = { key: "cart", storage };
@@ -18,6 +19,7 @@ const persistConfigWishlist = { key: "wishlist", storage };
 const persistConfigCompare = { key: "compare", storage };
 const persistConfigStep = { key: "step", storage };
 const persistConfigFilter = { key: "filter", storage };
+const persistConfigProduct = { key: "product", storage };
 
 // Wrap each reducer with persistReducer
 const persistedCartReducer = persistReducer(persistConfigCart, cartSlice);
@@ -39,6 +41,8 @@ const persistedFilterReducer = persistReducer(
   filterReducer
 );
 
+const persistedProductReducer = persistReducer(persistConfigProduct, productSlice);
+
 // Combine reducers
 const rootReducer = combineReducers({
   cart: persistedCartReducer,
@@ -47,6 +51,7 @@ const rootReducer = combineReducers({
   compare: persistedCompareReducer,
   step: persistedStepReducer,
   filter: persistedFilterReducer,
+  product: persistedProductReducer,
 });
 
 // Configure store

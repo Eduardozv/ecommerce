@@ -13,6 +13,7 @@ import { RootState } from "@/store";
 import { addWishlist, removeWishlist } from "@/store/reducers/wishlistSlice";
 import { addCompare, removeCompareItem } from "@/store/reducers/compareSlice";
 import { useRouter } from "next/navigation";
+import { setSelectedProduct } from "@/store/reducers/productSlice";
 
 interface Item {
   id: number;
@@ -31,6 +32,7 @@ interface Item {
   category: string;
   subcategory: string;
   quantity: number;
+  titleSlug: string;
 }
 const ItemCard = ({ data }: any) => {
   const [show, setShow] = useState(false);
@@ -119,10 +121,9 @@ const ItemCard = ({ data }: any) => {
   const handleShow = () => setShow(true);
 
   const handleProductClick = () => {
-    router.push({
-      pathname: '/producto',
-      query: { data: JSON.stringify(data) },
-    });
+    const titleSlug = data.title.toLowerCase().replace(/ /g, '-');
+    dispatch(setSelectedProduct(data)); // Save product data in Redux
+    router.push(`/producto?titleSlug=${titleSlug}`);
   };
 
   return (

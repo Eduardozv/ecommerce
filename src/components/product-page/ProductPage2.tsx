@@ -1,11 +1,11 @@
 "use client";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import SidebarArea from "../shop-sidebar/sidebar-area/SidebarArea";
 import { Swiper, SwiperSlide } from "swiper/react";
 import StarRating from "../stars/StarRating";
-import ProductTeb from "./product-teb/ProductTeb";
+import ProductTeb from "./product-teb/ProductTeb2";
 import { Col } from "react-bootstrap";
-import SingleProductContent from "./single-product-content/SingleProductContent";
+import SingleProductContent from "./single-product-content/SingleProductContent2";
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
 import Spinner from "../button/Spinner";
@@ -18,6 +18,8 @@ import {
   setSelectedTags,
   setSelectedWeight,
 } from "@/store/reducers/filterReducer";
+import { setSelectedProduct } from "@/store/reducers/productSlice"; // Import setSelectedProduct from productSlice
+import { useRouter, useSearchParams } from "next/navigation"; // Import useRouter and useSearchParams
 
 const ProductPage = ({
   order = "",
@@ -28,6 +30,10 @@ const ProductPage = ({
   onError = () => {},
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const titleSlug = searchParams.get('titleSlug');
+
   const {
     selectedCategory,
     selectedWeight,
@@ -37,10 +43,33 @@ const ProductPage = ({
     selectedTags,
   } = useSelector((state: RootState) => state.filter);
 
-  const { data, error } = useSWR("/api/moreitem", fetcher, {
-    onSuccess,
-    onError,
-  });
+  const { selectedProduct } = useSelector((state: RootState) => state.product); // Get selectedProduct from productReducer
+
+  useEffect(() => {
+    if (!selectedProduct && titleSlug) {
+      // Fetch product data from API if not available in Redux
+      fetch(`/api/product?titleSlug=${titleSlug}`, {
+        method: 'POST',
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error(data.error);
+          } else {
+            dispatch(setSelectedProduct(data));
+          }
+        })
+        .catch(error => console.error('Error fetching product:', error));
+    }
+  }, [selectedProduct, titleSlug, dispatch]);
+
+  if (!selectedProduct) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
 
   const handlePriceChange = useCallback(
     (min: number, max: number) => {
@@ -48,14 +77,6 @@ const ProductPage = ({
     },
     [dispatch]
   );
-
-  if (error) return <div>Failed to load products</div>;
-  if (!data)
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
 
   const handleCategoryChange = (category) => {
     const updatedCategory = selectedCategory.includes(category)
@@ -85,37 +106,6 @@ const ProductPage = ({
     dispatch(setSelectedTags(updatedtag));
   };
 
-  const getData = () => {
-    if (hasPaginate) return data.data;
-    else return data;
-  };
-
-  let filteredData = [...data];
-
-  if (selectedCategory.length > 0) {
-    filteredData = filteredData.filter((item) =>
-      selectedCategory.includes(item.category)
-    );
-  }
-
-  if (selectedWeight.length > 0) {
-    filteredData = filteredData.filter((item) =>
-      selectedWeight.includes(item.weight)
-    );
-  }
-
-  if (selectedColor.length > 0) {
-    filteredData = filteredData.filter((item) =>
-      selectedColor.includes(item.Color)
-    );
-  }
-
-  if (selectedTags.length > 0) {
-    filteredData = filteredData.filter((item) =>
-      selectedTags.includes(item.tags)
-    );
-  }
-
   return (
     <>
       <Col
@@ -125,13 +115,8 @@ const ProductPage = ({
       >
         {/* <!-- Single product content Start --> */}
         <div className="single-pro-block">
-          <SingleProductContent />
-        </div>
-        {/* <!--Single product content End  --> */}
-
-        {/* <!-- Single product tab start --> */}
-        <ProductTeb />
-        {/* <!-- product details description area end --> */}
+          <SingleProductContent product={selectedProduct} />
+        </div>       
       </Col>
       {/* <!-- Sidebar Area Start --> */}
 
