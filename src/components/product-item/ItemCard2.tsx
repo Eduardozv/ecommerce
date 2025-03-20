@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
-import StarRating from "../stars/StarRating";
 import QuickViewModal from "../model/QuickViewModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  addItem,
   setItems,
-  updateItemQuantity,
 } from "../../store/reducers/cartSlice";
 import Link from "next/link";
-import { showSuccessToast } from "../toast-popup/Toastify";
-import { RootState } from "@/store";
-import { addWishlist, removeWishlist } from "@/store/reducers/wishlistSlice";
-import { addCompare, removeCompareItem } from "@/store/reducers/compareSlice";
 import { useRouter } from "next/navigation";
 import { setSelectedProduct } from "@/store/reducers/productSlice";
 
@@ -37,11 +30,6 @@ interface Item {
 const ItemCard = ({ data }: any) => {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  const compareItems = useSelector((state: RootState) => state.compare.compare);
-  const wishlistItems = useSelector(
-    (state: RootState) => state.wishlist.wishlist
-  );
-  const cartItems = useSelector((state: RootState) => state.cart.items);
   const router = useRouter();
 
   useEffect(() => {
@@ -54,71 +42,11 @@ const ItemCard = ({ data }: any) => {
     }
   }, [dispatch]);
 
-  const handleCart = (data: Item) => {
-    const isItemInCart = cartItems.some((item: Item) => item.id === data.id);
-
-    if (!isItemInCart) {
-      dispatch(addItem({ ...data, quantity: 1 }));
-      showSuccessToast("Add product in Cart Successfully!");
-    } else {
-      const updatedCartItems = cartItems.map((item: Item) =>
-        item.id === data.id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-              price: item.newPrice + data.newPrice,
-            } // Increment quantity and update price
-          : item
-      );
-      dispatch(updateItemQuantity(updatedCartItems));
-      showSuccessToast("Add product in Cart Successfully!");
-    }
-  };
-
-  const isInWishlist = (data: Item) => {
-    return wishlistItems.some((item: Item) => item.id === data.id);
-  };
-
-  const handleWishlist = (data: Item) => {
-    if (!isInWishlist(data)) {
-      dispatch(addWishlist(data));
-      showSuccessToast("Add product in Wishlist Successfully!", {
-        icon: false,
-      });
-    } else {
-      dispatch(removeWishlist(data.id));
-      showSuccessToast("Remove product on Wishlist Successfully!", {
-        icon: false,
-      });
-      // showErrorToast("Item already have to wishlist");
-    }
-  };
-
-  const isInCompare = (data: Item) => {
-    return compareItems.some((item: Item) => item.id === data.id);
-  };
-
-  const handleCompareItem = (data: Item) => {
-    if (!isInCompare(data)) {
-      dispatch(addCompare(data));
-      showSuccessToast(`Add product in Compare list Successfully!`, {
-        icon: false,
-      });
-    } else {
-      dispatch(removeCompareItem(data.id));
-      showSuccessToast("Remove product on Compare list Successfully!", {
-        icon: false,
-      });
-      // showErrorToast("Item already have to compare list");
-    }
-  };
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handleProductClick = () => {
     const titleSlug = data.title.toLowerCase().replace(/ /g, '-');
@@ -153,18 +81,21 @@ const ItemCard = ({ data }: any) => {
             </div>
           </div>
           <div className="gi-pro-content">
-            <Link href="/shop-left-sidebar-col-3">
-              <h6 className="gi-pro-stitle">{data.category}</h6>
-            </Link>
-            <Link href="/shop-left-sidebar-col-3">
-              <h6 className="gi-pro-stitle">{data.subcategory}</h6>
-            </Link>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Link href="/shop-left-sidebar-col-3">
+                <h6 className="gi-pro-stitle">{data.category}</h6>
+              </Link>
+              <Link href="/shop-left-sidebar-col-3">
+                <h6 className="gi-pro-stitle">{data.subcategory}</h6>
+              </Link>
+            </div>
+            
             <h5 className="gi-pro-title">
               <a onClick={handleProductClick}>{data.title}</a>
             </h5>
-            <p className="gi-info">
+            {data.description && (<p className="gi-info">
               {data.description}
-            </p>
+            </p>)}
             <div className="gi-pro-rat-price">
               <span className="gi-price">
                 <span className="new-price">${data.newPrice}.00</span>
