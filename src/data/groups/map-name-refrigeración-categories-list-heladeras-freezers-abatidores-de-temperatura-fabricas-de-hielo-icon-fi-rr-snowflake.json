@@ -1,0 +1,10 @@
+{
+  "name": "Refrigeración",
+  "categories": [
+    "Heladeras",
+    "Freezers",
+    "Abatidores de temperatura",
+    "Fabricas de hielo"
+  ],
+  "icon": "fi-rr-snowflake"
+}
