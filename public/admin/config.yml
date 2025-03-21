@@ -110,4 +110,24 @@ collections:
         value_field: "name"
         display_fields: ["name"]
         multiple: true
-        
+      - 
+        label: "Icon"
+        name: "icon"
+        widget: "select"
+        options:
+          - { label: "Pie", value: "fi-rs-pie" }
+          - { label: "Snowflake (Refrigeration)", value: "fi-rr-snowflake" }
+          - { label: "Fire (Kitchen/Cooking)", value: "fi-rr-fire" }
+          - { label: "Blender (Meal Preparation)", value: "fi-rr-blender" }
+          - { label: "Knife (Butchering)", value: "fi-rr-knife" }
+          - { label: "Box (Gondolas)", value: "fi-rr-box" }
+          - { label: "Tools (Accessories)", value: "fi-rr-tools" }
+          - { label: "Dots (Others)", value: "fi-rr-dots" }
+          - { label: "Folder", value: "fi-rr-folder" }
+          - { label: "Apps", value: "fi-rr-apps" }
+          - { label: "Star", value: "fi-rr-star" }
+          - { label: "Alarm Clock", value: "fi-rr-alarm-clock" }
+          - { label: "Bell", value: "fi-rr-bell" }
+          - { label: "Shopping Cart", value: "fi-rr-shopping-cart" }
+          - { label: "Heart", value: "fi-rr-heart" }
+          - { label: "Check", value: "fi-rr-check" }
