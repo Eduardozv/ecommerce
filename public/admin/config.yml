@@ -110,7 +110,4 @@ collections:
         value_field: "name"
         display_fields: ["name"]
         multiple: true
-      - 
-        label: "Image"
-        name: "image"
-        widget: "image"
+        
