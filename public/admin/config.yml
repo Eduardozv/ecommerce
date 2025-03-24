@@ -117,8 +117,8 @@ collections:
         options:
           - { label: "Pie", value: "fi-rs-pie" }
           - { label: "Snowflake (Refrigeration)", value: "fi-rr-snowflake" }
-          - { label: "Fire (Kitchen/Cooking)", value: "fi-rr-fire" }
-          - { label: "Blender (Meal Preparation)", value: "fi-rr-blender" }
+          - { label: "Pan (Kitchen/Cooking)", value: "fi-tr-pan" }
+          - { label: "Plate (Meal Preparation)", value: "fi-tr-plate" }
           - { label: "Knife (Butchering)", value: "fi-rr-knife" }
           - { label: "Box (Gondolas)", value: "fi-rr-box" }
           - { label: "Tools (Accessories)", value: "fi-rr-tools" }

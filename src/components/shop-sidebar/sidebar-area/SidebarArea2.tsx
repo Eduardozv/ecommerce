@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
-import PriceRangeSlider from "../../price-range/PriceRangeSlider";
+import { useEffect } from "react";
 import { GoChevronDown } from "react-icons/go";
 import useSWR from "swr";
 import fetcher from "@/components/fetcher-api/Fetcher";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import SmoothCollapse from "react-smooth-collapse";
 
@@ -24,7 +23,25 @@ const SidebarArea = ({
   toggleDropdown,
 }: any) => {
   const router = useRouter();
-  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const allCategories = searchParams.getAll("category");
+    const allSubcategories = searchParams.getAll("subcategory");
+  
+    allCategories.forEach((cat) => {
+      if (!selectedCategory.includes(cat)) {
+        handleCategoryChange(cat);
+        toggleDropdown(cat);
+      }
+    });
+  
+    allSubcategories.forEach((sub) => {
+      if (!selectedSubCategory.includes(sub)) {
+        handleSubCategoryChange(sub);
+      }
+    });
+  }, [searchParams]);
 
   const { data: categories, error: categoriesError } = useSWR(`/api/categories`, fetcher, {
     onSuccess,
@@ -73,10 +90,6 @@ const SidebarArea = ({
     }
   };
 
-  const handleFilterBtn = () => {
-    router.push("/shop-left-sidebar-col-3");
-  };
-
   const getSubcategories = (categoryName: string) => {
     return subcategories.filter((sub: any) => sub.category === categoryName);
   };
@@ -84,9 +97,42 @@ const SidebarArea = ({
   const handleCategoryClick = (categoryName: string) => {
     handleCategoryChange(categoryName);
     toggleDropdown(categoryName);
+  
+    const params = new URLSearchParams(searchParams.toString());
+    const existingCategories = params.getAll("category");
+  
+    if (selectedCategory.includes(categoryName)) {
+      // It's already selected → unselect it
+      params.delete("category");
+      existingCategories
+        .filter((cat) => cat !== categoryName)
+        .forEach((cat) => params.append("category", cat));
+    } else {
+      // Add to selected
+      params.append("category", categoryName);
+    }
+  
+    router.replace(`/categorias/?${params.toString()}`);
   };
-
-
+  
+  const handleSubCategoryClick = (subcategoryName: string) => {
+    handleSubCategoryChange(subcategoryName);
+  
+    const params = new URLSearchParams(searchParams.toString());
+    const existingSubCategories = params.getAll("subcategory");
+  
+    if (selectedSubCategory.includes(subcategoryName)) {
+      // Unselect
+      params.delete("subcategory");
+      existingSubCategories
+        .filter((sub) => sub !== subcategoryName)
+        .forEach((sub) => params.append("subcategory", sub));
+    } else {
+      params.append("subcategory", subcategoryName);
+    }
+  
+    router.replace(`/categorias/?${params.toString()}`);
+  };
 
   return (
     <>
@@ -113,7 +159,6 @@ const SidebarArea = ({
                   className={`gi-cat-sub-dropdown gi-sb-block-content`}
                 >
                   <ul>
-                    {/* Check if data is an array before mapping */}
                     {categoryData.map((category: any, index: number) => (
                       <li key={index}>
                         <div className="gi-sidebar-block-item" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -160,7 +205,7 @@ const SidebarArea = ({
                                           subcategory.name
                                         )}
                                         onChange={() =>
-                                          handleSubCategoryChange(subcategory.name)
+                                          handleSubCategoryClick(subcategory.name)
                                         }
                                         type="checkbox"
                                       />

@@ -2844,7 +2844,7 @@ div#gi-main-menu-desk {
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  width: 600px;
+  width: 100%;
   margin-top: 15px;
   padding: 15px;
   position: absolute;
@@ -2883,6 +2883,7 @@ div#gi-main-menu-desk {
   border: 1px solid #eee;
   border-radius: 5px;
   display: flex;
+  width: 100%;
   align-items: center;
 }
 .gi-cat-dropdown .gi-cat-tab button:not(:last-child) {
@@ -2920,7 +2921,7 @@ div#gi-main-menu-desk {
 .gi-cat-dropdown .gi-cat-tab .tab-content .gi-col-title {
   color: #e91e63;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 30px;
   text-transform: capitalize;
   font-family: "Poppins, sans-serif";
@@ -2930,10 +2931,15 @@ div#gi-main-menu-desk {
   padding-bottom: 5px;
   height: auto;
 }
+.gi-cat-dropdown .gi-cat-tab .tab-content .gi-col-title:hover {
+  font-weight: "bold";
+  cursor: pointer;
+  font-size: 16px;
+}
 .gi-cat-dropdown .gi-cat-tab .tab-content .tab-list {
   display: flex;
 }
-.gi-cat-dropdown .gi-cat-tab .tab-content .tab-list li a {
+.gi-cat-dropdown .gi-cat-tab .tab-content .tab-list li span {
   color: #777;
   text-transform: capitalize;
   line-height: 28px;
@@ -2944,7 +2950,7 @@ div#gi-main-menu-desk {
   border: 0;
   height: auto;
 }
-.gi-cat-dropdown .gi-cat-tab .tab-content .tab-list li a:hover {
+.gi-cat-dropdown .gi-cat-tab .tab-content .tab-list li span:hover {
   color: #e91e63;
 }
 

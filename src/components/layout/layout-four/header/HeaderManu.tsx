@@ -4,14 +4,16 @@ import useSWR from "swr";
 import fetcher from "@/components/fetcher-api/Fetcher";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { Fade } from "react-awesome-reveal";
+import { useRouter } from "next/navigation";
 
 const HeaderManu = ({
   onSuccess = () => {},
   onError = () => {},
 }: any) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const router = useRouter();
 
-    const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
+  const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
     onSuccess,
     onError,
   });
@@ -31,6 +33,16 @@ const HeaderManu = ({
 
   const handleProductClick = (index: number) => {
     setSelectedIndex(index);
+  };
+
+  const handleCategoryClick = (categorySlug: string) => {
+    // Navigate to /shop-categories with the selected category as a query parameter
+    router.push(`/categorias/?category=${categorySlug}`);
+  };
+
+  const handleSubCategoryClick = (subcategorySlug: string) => {
+    // Navigate to /shop-categories with the selected subcategory as a query parameter
+    router.push(`/categorias/?subcategory=${subcategorySlug}`);
   };
 
   return (
@@ -84,7 +96,7 @@ const HeaderManu = ({
                                 marginBottom: "10px",
                               }}
                             >
-                              <i className="fi fi-rr-folder"></i> {group.name}
+                              <i className={group.icon}></i> {group.name}
                             </button>
                           </Tab>
                         ))}
@@ -106,20 +118,45 @@ const HeaderManu = ({
                             aria-labelledby={`v-pills-${group.name}-tab`}
                           >
                             <div className="tab-list row">
-                              <div className="col">
-                                <h6 className="gi-col-title">{group.name}</h6>
-                                <ul className="cat-list">
-                                  {group.categories?.map(
-                                    (category: any, catIndex: number) => (
-                                      <li key={catIndex}>
-                                        <a href={`/category/${category.slug}`}>
-                                          {category.name}
-                                        </a>
-                                      </li>
-                                    )
-                                  )}
-                                </ul>
-                              </div>
+                              {group.categories?.map((categoryName: string, catIndex: number) => {
+                                // Find the category object by name
+                                const category = categories.find(
+                                  (cat: any) => cat.name === categoryName
+                                );
+
+                                if (!category) return null;
+
+                                return (
+                                  <div className="col" key={catIndex}>
+                                    <span
+                                      onClick={() => handleCategoryClick(category.name)}
+                                      className="gi-col-title"
+                                    >
+                                      {category.name}
+                                    </span>
+                                    <ul className="cat-list">
+                                      {subcategories
+                                        .filter(
+                                          (sub: any) => sub.category === category.name
+                                        )
+                                        .map((sub: any, subIndex: number) => (
+                                          <li key={subIndex}>
+                                            <span
+                                              onClick={() => handleSubCategoryClick(sub.name)}
+                                              style={{
+                                                cursor: "pointer",
+                                                color: "#555",
+                                                textDecoration: "none",
+                                              }}
+                                            >
+                                              {sub.name}
+                                            </span>
+                                          </li>
+                                        ))}
+                                    </ul>
+                                  </div>
+                                );
+                              })}
                             </div>
                           </TabPanel>
                         ))}
