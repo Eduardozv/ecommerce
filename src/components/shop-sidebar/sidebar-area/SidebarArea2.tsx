@@ -25,24 +25,6 @@ const SidebarArea = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const allCategories = searchParams.getAll("category");
-    const allSubcategories = searchParams.getAll("subcategory");
-  
-    allCategories.forEach((cat) => {
-      if (!selectedCategory.includes(cat)) {
-        handleCategoryChange(cat);
-        toggleDropdown(cat);
-      }
-    });
-  
-    allSubcategories.forEach((sub) => {
-      if (!selectedSubCategory.includes(sub)) {
-        handleSubCategoryChange(sub);
-      }
-    });
-  }, [searchParams]);
-
   const { data: categories, error: categoriesError } = useSWR(`/api/categories`, fetcher, {
     onSuccess,
     onError,
@@ -95,44 +77,55 @@ const SidebarArea = ({
   };
 
   const handleCategoryClick = (categoryName: string) => {
-    handleCategoryChange(categoryName);
-    toggleDropdown(categoryName);
-  
     const params = new URLSearchParams(searchParams.toString());
-    const existingCategories = params.getAll("category");
   
     if (selectedCategory.includes(categoryName)) {
       // It's already selected → unselect it
       params.delete("category");
-      existingCategories
-        .filter((cat) => cat !== categoryName)
-        .forEach((cat) => params.append("category", cat));
+      if (selectedSubCategory.length > 0) handleSubCategoryChange(selectedSubCategory[0]);
+      params.delete("subcategory");
+
     } else {
       // Add to selected
+      if (selectedCategory.length > 0){
+
+        if (selectedSubCategory.length > 0) {
+          params.delete("subcategory");
+          handleSubCategoryChange(selectedSubCategory[0]);
+        }
+          
+        toggleDropdown(selectedCategory);
+      } 
+
+      params.delete("category");
       params.append("category", categoryName);
     }
   
-    router.replace(`/categorias/?${params.toString()}`);
+    handleCategoryChange(categoryName);
+    toggleDropdown(categoryName);
+    router.replace(`/categorias/?${params.toString()}`, { scroll: false });
   };
   
   const handleSubCategoryClick = (subcategoryName: string) => {
-    handleSubCategoryChange(subcategoryName);
-  
     const params = new URLSearchParams(searchParams.toString());
-    const existingSubCategories = params.getAll("subcategory");
   
     if (selectedSubCategory.includes(subcategoryName)) {
-      // Unselect
+      // If the subcategory is already selected, unselect it
       params.delete("subcategory");
-      existingSubCategories
-        .filter((sub) => sub !== subcategoryName)
-        .forEach((sub) => params.append("subcategory", sub));
+      handleSubCategoryChange(subcategoryName); // Clear the selected subcategory
     } else {
+      // If a different subcategory is selected, replace the current one
+      params.delete("subcategory");
       params.append("subcategory", subcategoryName);
+      handleSubCategoryChange(subcategoryName); // Set the new subcategory
     }
   
-    router.replace(`/categorias/?${params.toString()}`);
+    // Update the URL
+    router.replace(`/categorias/?${params.toString()}`, { scroll: false });
   };
+
+  // console.log('selectedCategory', selectedCategory);
+  // console.log('selectedSubCategory', selectedSubCategory);
 
   return (
     <>
@@ -170,14 +163,14 @@ const SidebarArea = ({
                               onChange={() => handleCategoryClick(category.name)}
                               type="checkbox"
                             />
-                            <Link href="/">
+                            <a>
                               <span>
                                 <i
                                   className={`${renderIcon(category.name)}`}
                                 ></i>
                                 {category.name}
                               </span>
-                            </Link>
+                            </a>
                             <span className="checked"></span>
                           </div>
                           <div
@@ -201,19 +194,17 @@ const SidebarArea = ({
                                   <div className="gi-sidebar-block-item" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                     <div style={{ display: "flex", alignItems: "center" }}>
                                       <input
-                                        checked={selectedSubCategory?.includes(
-                                          subcategory.name
-                                        )}
+                                        checked={selectedSubCategory?.includes(subcategory.name)}
                                         onChange={() =>
                                           handleSubCategoryClick(subcategory.name)
                                         }
                                         type="checkbox"
                                       />
-                                      <Link href="/">
+                                      <a>
                                         <span>
                                           {subcategory.name}
                                         </span>
-                                      </Link>
+                                      </a>
                                       <span className="checked"></span>
 
                                     </div>

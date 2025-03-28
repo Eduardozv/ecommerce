@@ -67,6 +67,7 @@ const Shop = ({
     ]
   );
 
+
   const [isOpen, setIsOpen] = useState({});
 
   const toggleDropdown = (section) => {
@@ -75,6 +76,26 @@ const Shop = ({
       [section]: !prevState[section],
     }));
   };
+
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+  
+  //   const categoriesFromURL = params.getAll("category");
+  //   const subcategoriesFromURL = params.getAll("subcategory");
+  //   console.log('categoriesFromURL', categoriesFromURL);
+  //   console.log('subcategoriesFromURL', subcategoriesFromURL);
+  
+  //   if (categoriesFromURL.length > 0) {
+  //     dispatch(setSelectedCategory(categoriesFromURL));
+  //   }
+  
+  //   if (subcategoriesFromURL.length > 0) {
+  //     dispatch(setSelectedSubCategory(subcategoriesFromURL));
+  //   }
+  
+  //   setCurrentPage(1);
+  // }, [dispatch]);
+
 
   const { data, error } = useSWR(
     ["/api/products", postData],
@@ -100,16 +121,16 @@ const Shop = ({
 
   const handleCategoryChange = (category) => {
     const updatedCategory = selectedCategory.includes(category)
-      ? selectedCategory.filter((cat) => cat !== category)
-      : [...selectedCategory, category];
+      ? []
+      : [category];
     dispatch(setSelectedCategory(updatedCategory));
     setCurrentPage(1);
   };
 
   const handleSubCategoryChange = (subcategory) => {
     const updatedSubCategory = selectedSubCategory.includes(subcategory)
-      ? selectedSubCategory.filter((cat) => cat !== subcategory)
-      : [...selectedSubCategory, subcategory];
+      ? []
+      : [subcategory];
     dispatch(setSelectedSubCategory(updatedSubCategory));
     setCurrentPage(1);
   };
@@ -201,7 +222,7 @@ const Shop = ({
                   style={{ textAlign: "center" }}
                   className="gi-pro-content cart-pro-title"
                 >
-                  Products is not found.
+                  Producto no encontrado.
                 </div>
               ) : (
                 <div className="gi-pro-pagination">

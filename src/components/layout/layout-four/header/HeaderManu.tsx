@@ -40,9 +40,9 @@ const HeaderManu = ({
     router.push(`/categorias/?category=${categorySlug}`);
   };
 
-  const handleSubCategoryClick = (subcategorySlug: string) => {
+  const handleSubCategoryClick = (subcategorySlug: string, category: string) => {
     // Navigate to /shop-categories with the selected subcategory as a query parameter
-    router.push(`/categorias/?subcategory=${subcategorySlug}`);
+    router.push(`/categorias/?category=${category}&subcategory=${subcategorySlug}`);
   };
 
   return (
@@ -142,7 +142,7 @@ const HeaderManu = ({
                                         .map((sub: any, subIndex: number) => (
                                           <li key={subIndex}>
                                             <span
-                                              onClick={() => handleSubCategoryClick(sub.name)}
+                                              onClick={() => handleSubCategoryClick(sub.name, sub.category)}
                                               style={{
                                                 cursor: "pointer",
                                                 color: "#555",
