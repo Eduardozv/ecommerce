@@ -3571,10 +3571,6 @@ body.gi-menu-open:before {
   .gi-category-menu .gi-category-toggle {
     width: auto;
   }
-  .gi-category-menu .gi-category-toggle span,
-  .gi-category-menu .gi-category-toggle .gi-angle {
-    display: none;
-  }
   .gi-main-menu ul li {
     margin: 0 15px;
   }

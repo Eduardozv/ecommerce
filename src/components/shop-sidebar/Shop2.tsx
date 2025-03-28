@@ -6,6 +6,7 @@ import SidebarArea from "./sidebar-area/SidebarArea2";
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
 import Spinner from "../button/Spinner";
+import SidebarFilter from "../model/SidebarFilter2";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
 import {
@@ -30,6 +31,7 @@ const Shop = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isGridView, setIsGridView] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const dispatch = useDispatch();
   const {
     selectedCategory,
@@ -67,35 +69,40 @@ const Shop = ({
     ]
   );
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 991);
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const openFilter = () => {
+    setIsFilterOpen(true);
+  };
+
+  const closeFilter = () => {
+    setIsFilterOpen(false);
+  };
 
   const [isOpen, setIsOpen] = useState({});
 
-  const toggleDropdown = (section) => {
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
+  const toggleDropdown = (section: string) => {
+    setIsOpen(section ? {
+      [section]: true, // Solo mantiene abierta la sección seleccionada
+    } : {});
   };
-
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-  
-  //   const categoriesFromURL = params.getAll("category");
-  //   const subcategoriesFromURL = params.getAll("subcategory");
-  //   console.log('categoriesFromURL', categoriesFromURL);
-  //   console.log('subcategoriesFromURL', subcategoriesFromURL);
-  
-  //   if (categoriesFromURL.length > 0) {
-  //     dispatch(setSelectedCategory(categoriesFromURL));
-  //   }
-  
-  //   if (subcategoriesFromURL.length > 0) {
-  //     dispatch(setSelectedSubCategory(subcategoriesFromURL));
-  //   }
-  
-  //   setCurrentPage(1);
-  // }, [dispatch]);
-
 
   const { data, error } = useSWR(
     ["/api/products", postData],
@@ -120,17 +127,17 @@ const Shop = ({
   );
 
   const handleCategoryChange = (category) => {
-    const updatedCategory = selectedCategory.includes(category)
-      ? []
-      : [category];
+    const updatedCategory = category
+      ? [category]
+      : [];
     dispatch(setSelectedCategory(updatedCategory));
     setCurrentPage(1);
   };
 
   const handleSubCategoryChange = (subcategory) => {
-    const updatedSubCategory = selectedSubCategory.includes(subcategory)
-      ? []
-      : [subcategory];
+    const updatedSubCategory = subcategory
+      ? [subcategory]
+      : [];
     dispatch(setSelectedSubCategory(updatedSubCategory));
     setCurrentPage(1);
   };
@@ -153,6 +160,13 @@ const Shop = ({
           <div className="gi-pro-list-top d-flex">
             <div className="col-md-6 gi-grid-list">
               <div className="gi-gl-btn">
+                {isMobile && <button
+                  onClick={openFilter}
+                  className="grid-btn gi-filter-btn d-flex gap-2"
+                >
+                  <span>Filtrar</span>
+                  <i className="fi fi-rr-filter"></i>
+                </button>}
                 <button
                   className={`grid-btn btn-grid-50 ${
                     !isGridView ? "active" : ""
@@ -247,7 +261,18 @@ const Shop = ({
           {/* <!--Shop content End --> */}
         </Col>
         {/* <!-- Sidebar Area Start --> */}
-
+        {isMobile ? (
+        <SidebarFilter
+        handleCategoryChange={handleCategoryChange}
+        handleSubCategoryChange={handleSubCategoryChange}
+        selectedCategory={selectedCategory}
+        selectedSubCategory={selectedSubCategory}
+        isFilterOpen={isFilterOpen}
+        closeFilter={closeFilter}
+        isOpen={isOpen}
+        toggleDropdown={toggleDropdown}
+      />
+      ) : (
         <SidebarArea
           handleCategoryChange={handleCategoryChange}
           handleSubCategoryChange={handleSubCategoryChange}
@@ -257,6 +282,8 @@ const Shop = ({
           isOpen={isOpen}
           toggleDropdown={toggleDropdown}
         />
+      )}
+        
       </Row>
     </>
   );

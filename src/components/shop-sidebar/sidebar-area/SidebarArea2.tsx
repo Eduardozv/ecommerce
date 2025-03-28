@@ -35,6 +35,23 @@ const SidebarArea = ({
     onError,
   });
 
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    const categoryFromParams = params.get("category");
+    const subcategoryFromParams = params.get("subcategory");
+
+    console.log('categoryFromParams', categoryFromParams);
+    console.log('subcategoryFromParams', subcategoryFromParams);
+
+    // Update the selected category
+    handleCategoryChange(categoryFromParams);
+    toggleDropdown(categoryFromParams);
+
+    handleSubCategoryChange(subcategoryFromParams);
+
+  }, [searchParams]);
+
   if (categoriesError || subcategoriesError) return <div>Failed to load data</div>;
   if (!categories || !subcategories) return <div></div>;
 
@@ -80,29 +97,15 @@ const SidebarArea = ({
     const params = new URLSearchParams(searchParams.toString());
   
     if (selectedCategory.includes(categoryName)) {
-      // It's already selected → unselect it
+      // Remove the category
       params.delete("category");
-      if (selectedSubCategory.length > 0) handleSubCategoryChange(selectedSubCategory[0]);
-      params.delete("subcategory");
-
+      params.delete("subcategory"); // Clear subcategories when category is deselected
     } else {
-      // Add to selected
-      if (selectedCategory.length > 0){
-
-        if (selectedSubCategory.length > 0) {
-          params.delete("subcategory");
-          handleSubCategoryChange(selectedSubCategory[0]);
-        }
-          
-        toggleDropdown(selectedCategory);
-      } 
-
-      params.delete("category");
-      params.append("category", categoryName);
+      // Add the category
+      params.set("category", categoryName);
     }
   
-    handleCategoryChange(categoryName);
-    toggleDropdown(categoryName);
+    // Update the URL
     router.replace(`/categorias/?${params.toString()}`, { scroll: false });
   };
   
@@ -110,22 +113,20 @@ const SidebarArea = ({
     const params = new URLSearchParams(searchParams.toString());
   
     if (selectedSubCategory.includes(subcategoryName)) {
-      // If the subcategory is already selected, unselect it
+      // Remove the subcategory
       params.delete("subcategory");
-      handleSubCategoryChange(subcategoryName); // Clear the selected subcategory
     } else {
-      // If a different subcategory is selected, replace the current one
-      params.delete("subcategory");
-      params.append("subcategory", subcategoryName);
-      handleSubCategoryChange(subcategoryName); // Set the new subcategory
+      // Add the subcategory
+      params.set("subcategory", subcategoryName);
     }
   
     // Update the URL
     router.replace(`/categorias/?${params.toString()}`, { scroll: false });
   };
 
-  // console.log('selectedCategory', selectedCategory);
-  // console.log('selectedSubCategory', selectedSubCategory);
+  console.log('selectedCategory', selectedCategory);
+  console.log('selectedSubCategory', selectedSubCategory);
+  console.log('isOpen', isOpen);
 
   return (
     <>
