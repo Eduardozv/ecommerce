@@ -63,20 +63,10 @@ collections:
         value_field: "name"
         display_fields: ["name"]
         required: false
-        options_function: |
-          async ({ entry }) => {
-            const selectedCategory = entry.get("category");
-            if (!selectedCategory) return [];
-
-            // Fetch subcategories dynamically
-            const response = await fetch("/api/subcategories.json");
-            const subcategories = await response.json();
-
-            // Filter based on the selected category
-            return subcategories
-              .filter(sub => sub.category === selectedCategory)
-              .map(sub => ({ label: sub.name, value: sub.name }));
-          }
+        filter:
+          field: "category"
+          operator: "equals"
+          value: "{{category}}"
       - { label: "Description", name: "description", widget: "markdown" } # Rich text content
       - { label: "Body", name: "body", widget: "markdown" } # Rich text content
       - 
@@ -90,7 +80,7 @@ collections:
       - { label: "Old Price", name: "oldPrice", widget: "number" }
       - { label: "New Price", name: "newPrice", widget: "number" }
       - { label: "Brand", name: "brand", widget: "string" }
-      - { label: "Status", name: "status", widget: "select", options: ["Available", "Sold"] }
+      - { label: "Status", name: "status", widget: "select", options: ["Available", "Soldout"], default: "Available" }
       - { label: "Date Added", name: "dateAdded", widget: "datetime", required: true, default: "" }
 
   - name: "groups"
