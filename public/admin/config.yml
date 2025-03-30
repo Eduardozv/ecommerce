@@ -43,7 +43,7 @@ collections:
     format: "json"
     extension: "json"
     fields:
-      - { label: "ID", name: "id", widget: "uuid", prefix: 'prod', required: true }
+      - { label: "ID", name: "id", widget: "uuid", prefix: 'prod' }
       - { label: "Title", name: "title", widget: "string" }
       - { 
           label: "Category", 
@@ -76,7 +76,7 @@ collections:
       - { label: "Old Price", name: "oldPrice", widget: "number" }
       - { label: "New Price", name: "newPrice", widget: "number" }
       - { label: "Brand", name: "brand", widget: "string" }
-      - { label: "Status", name: "status", widget: "select", options: ["Available", "Soldout"], default: "Available" }
+      - { label: "Status", name: "status", widget: "select", options: ["Available", "Soldout", "On Sale"], default: "Available" }
       - { label: "Date Added", name: "dateAdded", widget: "datetime", required: true, default: '{{now}}' }
 
   - name: "groups"
