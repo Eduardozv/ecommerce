@@ -43,7 +43,7 @@ collections:
     format: "json"
     extension: "json"
     fields:
-      - { label: "ID", name: "id", widget: "uuid", required: true }
+      - { label: "ID", name: "id", widget: "uuid", prefix: 'prod', required: true }
       - { label: "Title", name: "title", widget: "string" }
       - { 
           label: "Category", 
@@ -63,10 +63,6 @@ collections:
         value_field: "name"
         display_fields: ["name"]
         required: false
-        filter:
-          field: "category"
-          operator: "equals"
-          value: "{{category}}"
       - { label: "Description", name: "description", widget: "markdown" } # Rich text content
       - { label: "Body", name: "body", widget: "markdown" } # Rich text content
       - 
