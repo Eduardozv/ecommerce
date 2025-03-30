@@ -3,7 +3,8 @@
   "oldPrice": 1500,
   "brand": "RODI",
   "newPrice": 1500,
-  "status": "Disponible",
+  "dateAdded": "2025-03-30T00:12:00.000Z",
+  "status": "En Oferta",
   "title": "Cortadora RODI TVN350-390 Fiambre",
   "images": [
     "/assets/uploads/rodi-carne-tcn.jpg",
