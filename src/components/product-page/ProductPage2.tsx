@@ -30,9 +30,8 @@ const ProductPage = ({
   onError = () => {},
 }) => {
   const dispatch = useDispatch();
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const titleSlug = searchParams.get('titleSlug');
+  const titleSlug = searchParams.get('nombre');
 
   const {
     selectedCategory,

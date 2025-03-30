@@ -51,7 +51,7 @@ const ItemCard = ({ data }: any) => {
   const handleProductClick = () => {
     const titleSlug = data.title.toLowerCase().replace(/ /g, '-');
     dispatch(setSelectedProduct(data)); // Save product data in Redux
-    router.push(`/producto?titleSlug=${titleSlug}`);
+    router.push(`/producto?nombre=${titleSlug}`);
   };
 
   const handleCategoryClick = (categorySlug: string) => {
@@ -70,7 +70,7 @@ const ItemCard = ({ data }: any) => {
         <div className={` gi-product-inner`}>
           <div className="gi-pro-image-outer">
             <div className="gi-pro-image">
-              <Link onClick={handleSubmit} href="/" className="image">
+              <a onClick={handleProductClick} className="image">
                 <span className="label veg">
                   <span className="dot"></span>
                 </span>
@@ -80,7 +80,7 @@ const ItemCard = ({ data }: any) => {
                   src={data.images[1]}
                   alt="Product"
                 />}
-              </Link>
+              </a>
               <span className="flags">
                 {data.status && (
                   <span className={data.status === "Disponible" ? "sale" : "new"}>
