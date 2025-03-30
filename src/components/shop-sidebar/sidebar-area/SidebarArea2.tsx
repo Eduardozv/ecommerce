@@ -38,11 +38,8 @@ const SidebarArea = ({
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
 
-    const categoryFromParams = params.get("category");
-    const subcategoryFromParams = params.get("subcategory");
-
-    console.log('categoryFromParams', categoryFromParams);
-    console.log('subcategoryFromParams', subcategoryFromParams);
+    const categoryFromParams = params.get("categoria");
+    const subcategoryFromParams = params.get("subcategoria");
 
     // Update the selected category
     handleCategoryChange(categoryFromParams);
@@ -98,15 +95,15 @@ const SidebarArea = ({
   
     if (selectedCategory.includes(categoryName)) {
       // Remove the category
-      params.delete("category");
-      params.delete("subcategory"); // Clear subcategories when category is deselected
+      params.delete("categoria");
+      params.delete("subcategoria"); // Clear subcategories when category is deselected
     } else {
       // Add the category
-      params.set("category", categoryName);
+      params.set("categoria", categoryName);
     }
   
     // Update the URL
-    router.replace(`/categorias/?${params.toString()}`, { scroll: false });
+    router.replace(`/tienda/?${params.toString()}`, { scroll: false });
   };
   
   const handleSubCategoryClick = (subcategoryName: string) => {
@@ -114,14 +111,14 @@ const SidebarArea = ({
   
     if (selectedSubCategory.includes(subcategoryName)) {
       // Remove the subcategory
-      params.delete("subcategory");
+      params.delete("subcategoria");
     } else {
       // Add the subcategory
-      params.set("subcategory", subcategoryName);
+      params.set("subcategoria", subcategoryName);
     }
   
     // Update the URL
-    router.replace(`/categorias/?${params.toString()}`, { scroll: false });
+    router.replace(`/tienda/?${params.toString()}`, { scroll: false });
   };
 
   console.log('selectedCategory', selectedCategory);

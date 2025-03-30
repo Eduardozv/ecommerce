@@ -37,12 +37,12 @@ const HeaderManu = ({
 
   const handleCategoryClick = (categorySlug: string) => {
     // Navigate to /shop-categories with the selected category as a query parameter
-    router.push(`/categorias/?category=${categorySlug}`);
+    router.push(`/tienda/?categoria=${categorySlug}`);
   };
 
-  const handleSubCategoryClick = (subcategorySlug: string, category: string) => {
+  const handleSubCategoryClick = (subcategorySlug: string, categorySlug: string) => {
     // Navigate to /shop-categories with the selected subcategory as a query parameter
-    router.push(`/categorias/?category=${category}&subcategory=${subcategorySlug}`);
+    router.push(`/tienda/?categoria=${categorySlug}&subcategoria=${subcategorySlug}`);
   };
 
   return (

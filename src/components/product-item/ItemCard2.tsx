@@ -54,6 +54,16 @@ const ItemCard = ({ data }: any) => {
     router.push(`/producto?titleSlug=${titleSlug}`);
   };
 
+  const handleCategoryClick = (categorySlug: string) => {
+    // Navigate to /shop-categories with the selected category as a query parameter
+    router.replace(`/tienda/?categoria=${categorySlug}`, { scroll: false });
+  };
+
+  const handleSubCategoryClick = (subcategorySlug: string, categorySlug: string) => {
+    // Navigate to /shop-categories with the selected subcategory as a query parameter
+    router.replace(`/tienda/?categoria=${categorySlug}&subcategoria=${subcategorySlug}`, { scroll: false });
+  };
+
   return (
     <>
       <div className="gi-product-content">
@@ -73,7 +83,7 @@ const ItemCard = ({ data }: any) => {
               </Link>
               <span className="flags">
                 {data.status && (
-                  <span className={data.status === "Available" ? "sale" : "new"}>
+                  <span className={data.status === "Disponible" ? "sale" : "new"}>
                     {data.status}
                   </span>
                 )}
@@ -82,12 +92,12 @@ const ItemCard = ({ data }: any) => {
           </div>
           <div className="gi-pro-content">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Link href="/shop-left-sidebar-col-3">
+              <a onClick={() => handleCategoryClick(data.category)}>
                 <h6 className="gi-pro-stitle">{data.category}</h6>
-              </Link>
-              <Link href="/shop-left-sidebar-col-3">
+              </a>
+              <a onClick={() => handleSubCategoryClick(data.subcategory, data.category)}>
                 <h6 className="gi-pro-stitle">{data.subcategory}</h6>
-              </Link>
+              </a>
             </div>
             
             <h5 className="gi-pro-title">
