@@ -77,7 +77,7 @@ collections:
       - { label: "New Price", name: "newPrice", widget: "number" }
       - { label: "Brand", name: "brand", widget: "string" }
       - { label: "Status", name: "status", widget: "select", options: ["Available", "Soldout"], default: "Available" }
-      - { label: "Date Added", name: "dateAdded", widget: "datetime", required: true, default: "" }
+      - { label: "Date Added", name: "dateAdded", widget: "datetime", required: true, default: '{{now}}' }
 
   - name: "groups"
     label: "Groups"
