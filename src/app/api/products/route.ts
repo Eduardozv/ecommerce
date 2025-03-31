@@ -34,7 +34,16 @@ function sortData(filteredData: any[], sortOption: string) {
 
 export async function POST(req: NextRequest) {
 
-  const { searchTerm = '', sortOption = '1', page = 1, limit = 10, selectedCategory = [], selectedSubCategory = [] } = await req.json();
+  const {
+    searchTerm = '',
+    sortOption = '1',
+    page = 1,
+    limit = 10,
+    selectedCategory = [],
+    selectedSubCategory = [],
+    status = '',
+    titleSlug = '',
+  } = await req.json();
 
   const currentPage = parseInt(page as string, 10);
   const itemsPerPage = parseInt(limit as string, 10);
@@ -46,7 +55,13 @@ export async function POST(req: NextRequest) {
   const products = files.map((file) => {
     const filePath = path.join(productsDir, file);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(fileContent);
+    const data = JSON.parse(fileContent);
+
+    // Add titleSlug to each product
+    return {
+      ...data,
+      titleSlug: data.title.toLowerCase().replace(/ /g, '-'),
+    };
   });
 
   let filteredData = products.filter(item =>
@@ -64,6 +79,17 @@ export async function POST(req: NextRequest) {
       selectedSubCategory.includes(item.subcategory)
     );
   }
+
+  // Filtrar por status si está presente
+  if (status) {
+    filteredData = filteredData.filter((item) => item.status === status);
+  }
+
+  // Filtrar por titleSlug si está presente
+  if (titleSlug) {
+    filteredData = filteredData.filter((item) => item.titleSlug === titleSlug);
+  }
+
 
   const sortedData = sortData(filteredData, sortOption);
 
