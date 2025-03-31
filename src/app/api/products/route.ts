@@ -9,8 +9,8 @@ function sortData(filteredData: any[], sortOption: string) {
       // Sort by Position (implement custom logic if necessary)
       return filteredData;
     case "2":
-      // Sort by Relevance (implement custom logic if necessary)
-      return filteredData;
+      // Sort by Date, Newest to Oldest
+      return [...filteredData].sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
     case "3":
       // Sort by Name, A to Z
       return [...filteredData].sort((a, b) =>
@@ -89,7 +89,6 @@ export async function POST(req: NextRequest) {
   if (titleSlug) {
     filteredData = filteredData.filter((item) => item.titleSlug === titleSlug);
   }
-
 
   const sortedData = sortData(filteredData, sortOption);
 

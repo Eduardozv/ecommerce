@@ -22,7 +22,7 @@ const Deal = ({
     ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
   );
-
+  
   if (error) return <div>Fallo en cargar productos</div>;
   if (!data)
     return (
@@ -30,6 +30,8 @@ const Deal = ({
         <Spinner />
       </div>
     );
+
+  if (data.data.length < 5) return null;
 
   const getData = () => {
     return data.data;

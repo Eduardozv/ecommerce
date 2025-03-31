@@ -197,7 +197,7 @@ const Shop = ({
                     Ordenar
                   </option>
                   <option value="1">Posición</option>
-                  <option value="2">Relevancia</option>
+                  <option value="2">Fecha ⬆</option>
                   <option value="3">A to Z</option>
                   <option value="4">Z to A</option>
                   <option value="5">Precio ⬇</option>

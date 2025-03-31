@@ -7,7 +7,7 @@ import Deal from "@/components/deal/Deal2";
 import HeroSlider from "@/components/hero/HeroSlider2";
 import Services from "@/components/service/Services";
 import Trending from "@/components/trending/Trending";
-import GroceryArrials from "@/components/arrivals/GroceryArrials";
+import NewArrivals from "@/components/arrivals/NewArrivals";
 import NewsletterModal from "@/components/model/NewsletterModal";
 
 const page = () => {
@@ -16,7 +16,7 @@ const page = () => {
             <HeroSlider />
             <Deal />
             <Banner />
-            <GroceryArrials />
+            <NewArrivals />
             <OfferBanners />
             <Services />
             <Trending />

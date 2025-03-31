@@ -1,5 +1,14 @@
 "use client";
 import React, { useState } from "react";
+import home from "../../../../utility/header/home";
+import classic from "../../../../utility/header/classic";
+import banner from "../../../../utility/header/benner";
+import column from "../../../../utility/header/columns";
+import list from "../../../../utility/header/list";
+import blog from "../../../../utility/header/blog";
+import pages from "../../../../utility/header/pages";
+import Link from "next/link";
+import productpage from "../../../../utility/header/productpage";
 import useSWR from "swr";
 import fetcher from "@/components/fetcher-api/Fetcher";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -166,6 +175,49 @@ const HeaderManu = ({
                 </div>
               </div>
             </Tabs>
+
+            {/* <!-- Main Menu Start --> */}
+            <div
+              id="gi-main-menu-desk"
+              className="d-none d-lg-block sticky-nav"
+            >
+              <div className="nav-desk">
+                <div className="row">
+                  <div className="col-md-12 align-self-center">
+                    <div className="gi-main-menu">
+                      <ul>
+                        <li className="non-drop">
+                          <Link href="/ga">
+                            Home
+                          </Link>
+                        </li>
+                        <li className="non-drop">
+                          <Link href="/tienda" className="dropdown-arrow">
+                            Tienda
+                          </Link>
+                        </li>
+                        <li className="non-drop">
+                          <Link href="/">
+                            Empresa
+                          </Link>
+                        </li>
+                        <li className="non-drop">
+                          <Link href="" className="dropdown-arrow">
+                            Noticias
+                          </Link>
+                        </li>
+                        <li className="non-drop">
+                          <Link href="/">
+                            Contactános
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <!-- Main Menu End --> */}
           </div>
         </div>
       </div>
