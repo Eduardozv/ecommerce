@@ -5520,7 +5520,7 @@ i.gicon.gi-star.fill {
   margin-bottom: 30px;
   font-size: 55px;
   line-height: 68px;
-  color: #fff;
+  color: #4b5966;
   letter-spacing: 0.05rem;
   font-weight: 700;
   position: relative;
@@ -5553,7 +5553,7 @@ i.gicon.gi-star.fill {
   background-size: cover;
 }
 .gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-1 {
-  background-image: url(../img/hero-bg-4/1.jpeg);
+  background-image: url(../img/hero-bg-4/1.png);
   background-position: center;
 }
 .gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-2 {
@@ -5562,6 +5562,14 @@ i.gicon.gi-star.fill {
 }
 .gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-3 {
   background-image: url(../img/hero-bg-4/3.png);
+  background-position: center;
+}
+.gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-4 {
+  background-image: url(../img/hero-bg-4/4.png);
+  background-position: center;
+}
+.gi-hero .gi-main-content .gi-slider-content .gi-main-slider .slide-5 {
+  background-image: url(../img/hero-bg-4/5.png);
   background-position: center;
 }
 .gi-hero .swiper-buttons {

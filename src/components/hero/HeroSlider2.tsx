@@ -37,7 +37,7 @@ function HeroSlider() {
                           Renueva tu equipo, impulsa tu negocio
                         </h1>
                         <div className="gi-slide-btn">
-                          <a href="#" className="gi-btn-1">
+                          <a href="/tienda" className="gi-btn-1">
                             Ver Productos{" "}
                             <i
                               className="fi-rr-angle-double-small-right"
@@ -56,7 +56,7 @@ function HeroSlider() {
                           Descubre las mejores soluciones comerciales
                         </h1>
                         <div className="gi-slide-btn">
-                          <a href="/" className="gi-btn-1">
+                          <a href="/tienda" className="gi-btn-1">
                             Ver Productos{" "}
                             <i
                               className="fi-rr-angle-double-small-right"
@@ -66,7 +66,7 @@ function HeroSlider() {
                         </div>
                       </div>
                     </SwiperSlide>
-                    <SwiperSlide className="gi-slide-item swiper-slide d-flex slide-3">
+                    <SwiperSlide className="gi-slide-item swiper-slide d-flex slide-4">
                       <div className="gi-slide-content slider-animation">
                         <p>
                           Explora nuestros productos
@@ -75,7 +75,26 @@ function HeroSlider() {
                           Transforma tu comercio con lo mejor
                         </h1>
                         <div className="gi-slide-btn">
-                          <a href="/" className="gi-btn-1">
+                          <a href="/tienda" className="gi-btn-1">
+                            Ver Productos{" "}
+                            <i
+                              className="fi-rr-angle-double-small-right"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="gi-slide-item swiper-slide d-flex slide-5">
+                      <div className="gi-slide-content slider-animation">
+                        <p>
+                          Explora nuestros productos
+                        </p>
+                        <h1 className="gi-slide-title">
+                          Transforma tu comercio con lo mejor
+                        </h1>
+                        <div className="gi-slide-btn">
+                          <a href="/tienda" className="gi-btn-1">
                             Ver Productos{" "}
                             <i
                               className="fi-rr-angle-double-small-right"

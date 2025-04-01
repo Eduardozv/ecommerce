@@ -197,7 +197,7 @@ const HeaderManu = ({
                           </Link>
                         </li>
                         <li className="non-drop">
-                          <Link href="/">
+                          <Link href="/quienes-somos">
                             Empresa
                           </Link>
                         </li>

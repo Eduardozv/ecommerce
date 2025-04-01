@@ -24,7 +24,7 @@
 							margin-bottom: 30px;
 							font-size: 55px;
 							line-height: 68px;
-							color: $white;
+							color: $main-secondary-color;
 							letter-spacing: 0.05rem;
 							font-weight: 700;
 							position: relative;
@@ -72,6 +72,16 @@
 
 				.slide-3 {
 					background-image: url(../img/hero-bg-4/3.png);
+					background-position: center;
+				}
+
+				.slide-4 {
+					background-image: url(../img/hero-bg-4/4.png);
+					background-position: center;
+				}
+
+				.slide-5 {
+					background-image: url(../img/hero-bg-4/5.png);
 					background-position: center;
 				}
 			}
