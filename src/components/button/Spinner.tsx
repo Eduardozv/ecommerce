@@ -15,7 +15,7 @@ const Spinner = () => {
       >
         <FadeLoader
           cssOverride={{ display: "block", margin: "2px" }}
-          color="#198754"
+          color="#e91e63"
           aria-label="Loading Spinner"
           data-testid="loader"
         />

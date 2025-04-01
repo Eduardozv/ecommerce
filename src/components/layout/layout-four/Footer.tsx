@@ -61,37 +61,15 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                       <img
                         src={
                           process.env.NEXT_PUBLIC_URL +
-                          "/assets/img/logo/logo.png"
+                          "/assets/img/logo/logo-ga.png"
                         }
                         className="gi-footer-logo"
                         alt="footer logo"
                       />
                       <p className="gi-footer-detail">
-                        Grabit is the biggest market of grocery products. Get
-                        your daily needs from our store.
+                        GA Instalaciones comerciales, es una empresa que lleva 14 años
+                        comercializando equipos gastronómicos y de supermercados en todo el país.
                       </p>
-                      <div className="gi-app-store">
-                        <a href="#" className="app-img">
-                          <img
-                            src={
-                              process.env.NEXT_PUBLIC_URL +
-                              "/assets/img/app/android.png"
-                            }
-                            className="adroid"
-                            alt="apple"
-                          />
-                        </a>
-                        <a href="#" className="app-img">
-                          <img
-                            src={
-                              process.env.NEXT_PUBLIC_URL +
-                              "/assets/img/app/apple.png"
-                            }
-                            className="apple"
-                            alt="apple"
-                          />
-                        </a>
-                      </div>
                     </div>
                   </Fade>
                 </Col>
@@ -263,7 +241,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                           onClick={() => toggleDropdown("contact")}
                           className="gi-footer-heading"
                         >
-                          Contact
+                          Contacto
                           <div className="gi-heading-res">
                             <i
                               className="fi-rr-angle-small-down"
@@ -293,22 +271,21 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                                 <i className="fi fi-rr-marker location svg_img foo_svg"></i>
                               </span>
                               <p>
-                                2548 Broaddus Maple Court, Madisonville KY 4783,
-                                USA.
+                                Dr. Salvador Ferrer Serra 2125.
                               </p>
                             </li>
                             <li className="gi-footer-link gi-foo-call">
                               <span>
                                 <i className="fi fi-brands-whatsapp svg_img foo_svg"></i>
                               </span>
-                              <a href="tel:+009876543210">+00 9876543210</a>
+                              <a href="https://wa.me/+59898331926">+598 98331926</a>
                             </li>
                             <li className="gi-footer-link gi-foo-mail">
                               <span>
                                 <i className="fi fi-rr-envelope"></i>
                               </span>
-                              <a href="mailto:example@email.com">
-                                example@email.com
+                              <a href="mailto:ventas@lcainstalacionescomerciales.com.uy">
+                                ventas@lcainstalacionescomerciales.com.uy
                               </a>
                             </li>
                           </ul>
@@ -333,7 +310,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                         >
                           <ul className="align-itegi-center">
                             <li className="gi-footer-link">
-                              <a href="#">
+                              <a href="https://www.facebook.com/p/LCA-instalaciones-comerciales-100075777861077/?locale=es_LA">
                                 <i
                                   className="gicon gi-facebook"
                                   aria-hidden="true"
@@ -341,15 +318,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                               </a>
                             </li>
                             <li className="gi-footer-link">
-                              <a href="#">
-                                <i
-                                  className="gicon gi-twitter"
-                                  aria-hidden="true"
-                                ></i>
-                              </a>
-                            </li>
-                            <li className="gi-footer-link">
-                              <a href="#">
+                              <a href="https://www.linkedin.com/in/ga-lca-7b051b2a2/">
                                 <i
                                   className="gicon gi-linkedin"
                                   aria-hidden="true"
@@ -357,7 +326,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                               </a>
                             </li>
                             <li className="gi-footer-link">
-                              <a href="#">
+                              <a href="https://www.instagram.com/ga_instalaciones_comerciales/">
                                 <i
                                   className="gicon gi-instagram"
                                   aria-hidden="true"
@@ -381,30 +350,13 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                   <div className="footer-copy">
                     <div className="footer-bottom-copy ">
                       <div className="gi-copy">
-                        Copyright ©{" "}
+                        Powered by{"  "}
                         <a className="site-name" href="/">
-                          Grabit{" "}
+                          WaveTech SAS
                         </a>
-                        all rights reserved. Powered by Grabit.
                       </div>
                     </div>
                   </div>
-                  {/* <!-- Footer Copyright End -->
-                            <!-- Footer payment --> */}
-                  <div className="footer-bottom-right">
-                    <div className="footer-bottom-payment d-flex justify-content-center">
-                      <div className="payment-link">
-                        <img
-                          src={
-                            process.env.NEXT_PUBLIC_URL +
-                            "/assets/img/hero-bg/payment.png"
-                          }
-                          alt="payment"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  {/* <!-- Footer payment --> */}
                 </div>
               </div>
             </div>
