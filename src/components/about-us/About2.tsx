@@ -38,7 +38,7 @@ const About = () => {
               <div className="gi-about-detail">
                 <div className="section-title">
                   <h2>
-                    Quinés <span>Somos?</span>
+                    Quienés <span>Somos?</span>
                   </h2>
                   <p>
                   G.A Instalaciones comerciales, es una empresa que lleva 14 años comercializando equipos gastronómicos y de supermercados en todo el país.

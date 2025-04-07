@@ -169,6 +169,7 @@
 	}
 
 	.single-pro-content {
+
 		.gi-single-title {
 			color: $title-color;
 			font-size: 22px;
@@ -188,10 +189,18 @@
 			margin: 0 0 12px;
 			font-weight: 400;
 
-
 			span {
 				font-weight: 400;
 			}
+		}
+
+		code {
+			font-family: $font-family-text;
+			font-size: 14px;
+			color: $title-color;
+			margin: 0 0 12px;
+			font-weight: 400;
+			white-space: pre-wrap;
 		}
 
 		.single-para {
@@ -241,7 +250,6 @@
 			color: $text-color;
 			font-size: 14px;
 			letter-spacing: 0;
-			word-break: break-all;
 			line-height: 26px;
 			font-family: $font-family-text;
 		}
