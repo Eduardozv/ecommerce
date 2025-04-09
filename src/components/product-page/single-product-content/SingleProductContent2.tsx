@@ -113,9 +113,12 @@ const SingleProductContent = ({ product }) => {
 
               <div className="gi-single-price-stoke">
                 <div className="gi-single-price">
-                  <div className="final-price">
-                    ${product.newPrice}{!!discount && <span className="price-des">-{discount}%</span>}
-                  </div>
+                  {product.newPrice && (
+                    <div className="final-price">
+                      ${product.newPrice}{!!discount && <span className="price-des">-{discount}%</span>}
+                    </div>
+                  )}
+                  
                   {product.oldPrice && product.oldPrice !== product.newPrice && (
                     <div className="mrp">
                       <span>${product.oldPrice}</span>
