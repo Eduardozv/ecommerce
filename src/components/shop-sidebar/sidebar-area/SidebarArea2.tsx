@@ -126,11 +126,6 @@ const SidebarArea = ({
     router.replace(`/tienda/?${params.toString()}`, { scroll: false });
   };
 
-  console.log(selectedCategory);
-  console.log('isGroupOpen', isGroupOpen);
-  console.log('isOpen', isOpen);
-  console.log(groups);
-
   return (
     <>
       {isFilterOpen && (
