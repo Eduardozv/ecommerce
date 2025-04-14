@@ -39,11 +39,25 @@ export async function POST(req: NextRequest) {
     sortOption = '1',
     page = 1,
     limit = 10,
+    selectedGroup = [],
     selectedCategory = [],
     selectedSubCategory = [],
     status = '',
     titleSlug = '',
   } = await req.json();
+
+  // Log all the parameters received
+  console.log('Received parameters:', {
+    searchTerm, 
+    sortOption,
+    page,
+    limit,
+    selectedGroup,
+    selectedCategory,
+    selectedSubCategory,
+    status,
+    titleSlug
+  });
 
   const currentPage = parseInt(page as string, 10);
   const itemsPerPage = parseInt(limit as string, 10);

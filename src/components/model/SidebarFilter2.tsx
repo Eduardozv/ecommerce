@@ -1,16 +1,19 @@
 "use client";
-import { useState, useEffect } from "react";
 import SidebarArea from "../shop-sidebar/sidebar-area/SidebarArea2";
 
 const SidebarFilter = ({
+  handleGroupChange,
   handleCategoryChange,
   handleSubCategoryChange,
   closeFilter,
   isFilterOpen,
+  selectedGroup,
   selectedCategory,
   selectedSubCategory,
   isOpen,
   toggleDropdown,
+  isGroupOpen,
+  toggleGroupDropdown,
 }) => {
 
   return (
@@ -34,12 +37,16 @@ const SidebarFilter = ({
           </a>
         </div>
         <SidebarArea
+          handleGroupChange={handleGroupChange}
           handleCategoryChange={handleCategoryChange}
           handleSubCategoryChange={handleSubCategoryChange}
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
           isOpen={isOpen}
           toggleDropdown={toggleDropdown}
+          isGroupOpen={isGroupOpen}
+          toggleGroupDropdown={toggleGroupDropdown}
+          selectedGroup={selectedGroup}
         />
       </div>
     </>

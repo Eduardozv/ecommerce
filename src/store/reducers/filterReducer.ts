@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CounterState {
+  selectedGroup: string[];
   selectedCategory: string[];
   selectedSubCategory: string[];
   selectedWeight: string[];
@@ -18,6 +19,7 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
+  selectedGroup: [],
   selectedCategory: [],
   selectedSubCategory: [],
   selectedWeight: [],
@@ -37,6 +39,9 @@ export const filterReducer = createSlice({
   name: "filter",
   initialState,
   reducers: {
+    setSelectedGroup: (state, action: PayloadAction<string[]>) => {
+      state.selectedGroup = action.payload;
+    },
     setSelectedCategory: (state, action: PayloadAction<string[]>) => {
       state.selectedCategory = action.payload;
     },
@@ -81,6 +86,7 @@ export const filterReducer = createSlice({
 });
 
 export const {
+  setSelectedGroup,
   setSelectedCategory,
   setSelectedSubCategory,
   setSelectedBrands,

@@ -18,6 +18,7 @@ import {
   setSelectedTags,
   setSelectedWeight,
   setSortOption,
+  setSelectedGroup,
 } from "@/store/reducers/filterReducer";
 import Paginantion from "../paginantion/Paginantion";
 
@@ -34,6 +35,7 @@ const Shop = ({
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const dispatch = useDispatch();
   const {
+    selectedGroup,
     selectedCategory,
     selectedSubCategory,
     sortOption,
@@ -50,6 +52,7 @@ const Shop = ({
       page: currentPage,
       limit: itemsPerPage,
       sortOption,
+      selectedGroup,
       selectedCategory,
       selectedSubCategory,
       minPrice,
@@ -61,6 +64,7 @@ const Shop = ({
       currentPage,
       itemsPerPage,
       sortOption,
+      selectedGroup,
       selectedCategory,
       selectedSubCategory,
       minPrice,
@@ -97,11 +101,18 @@ const Shop = ({
   };
 
   const [isOpen, setIsOpen] = useState({});
+  const [isGroupOpen, setIsGroupOpen] = useState({}); // State for groups
 
   const toggleDropdown = (section: string) => {
     setIsOpen(section ? {
       [section]: true, // Solo mantiene abierta la sección seleccionada
     } : {});
+  };
+
+  const toggleGroupDropdown = (group: string) => {
+    setIsGroupOpen(group ?{
+      [group]: true, // Toggle the specific group
+     } : {});
   };
 
   const { data, error } = useSWR(
@@ -126,18 +137,20 @@ const Shop = ({
     [dispatch]
   );
 
+  const handleGroupChange = (group) => {
+    const updatedGroup = group ? [group] : [];
+    dispatch(setSelectedGroup(updatedGroup));
+    setCurrentPage(1);
+  };
+
   const handleCategoryChange = (category) => {
-    const updatedCategory = category
-      ? [category]
-      : [];
+    const updatedCategory = category ? [category] : [];
     dispatch(setSelectedCategory(updatedCategory));
     setCurrentPage(1);
   };
 
   const handleSubCategoryChange = (subcategory) => {
-    const updatedSubCategory = subcategory
-      ? [subcategory]
-      : [];
+    const updatedSubCategory = subcategory ? [subcategory] : [];
     dispatch(setSelectedSubCategory(updatedSubCategory));
     setCurrentPage(1);
   };
@@ -265,22 +278,30 @@ const Shop = ({
         <SidebarFilter
         handleCategoryChange={handleCategoryChange}
         handleSubCategoryChange={handleSubCategoryChange}
+        handleGroupChange={handleGroupChange} 
         selectedCategory={selectedCategory}
         selectedSubCategory={selectedSubCategory}
+        selectedGroup={selectedGroup}
         isFilterOpen={isFilterOpen}
         closeFilter={closeFilter}
         isOpen={isOpen}
         toggleDropdown={toggleDropdown}
+        isGroupOpen={isGroupOpen} // Pass group state
+        toggleGroupDropdown={toggleGroupDropdown} // Pass group toggle function
       />
       ) : (
         <SidebarArea
           handleCategoryChange={handleCategoryChange}
           handleSubCategoryChange={handleSubCategoryChange}
+          handleGroupChange={handleGroupChange}
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
+          selectedGroup={selectedGroup}
           order={order}
           isOpen={isOpen}
           toggleDropdown={toggleDropdown}
+          isGroupOpen={isGroupOpen} // Pass group state
+          toggleGroupDropdown={toggleGroupDropdown} // Pass group toggle function
         />
       )}
         
