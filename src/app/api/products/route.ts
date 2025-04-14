@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from 'fs';
 import path from 'path';
+import useSWR from "swr";
+import fetcher from "@/components/fetcher-api/Fetcher";
 
 // Function to sort the data based on the sort option
 function sortData(filteredData: any[], sortOption: string) {
@@ -81,6 +83,25 @@ export async function POST(req: NextRequest) {
   let filteredData = products.filter(item =>
     item.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (selectedGroup.length > 0) {
+    
+    // Get groups from the JSON file
+    const groupsDir = path.join(process.cwd(), 'src/data/groups');
+    const files = fs.readdirSync(groupsDir).filter(file => file.endsWith('.json'));
+
+    const groups = files.map((file) => {
+      const filePath = path.join(groupsDir, file);
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      return JSON.parse(fileContent);
+    });
+
+    const groupCategories = groups.filter(group => selectedGroup.includes(group.name))[0].categories;
+
+    filteredData = filteredData.filter((item) =>
+      groupCategories.includes(item.category)
+    );
+  }
 
   if (selectedCategory.length > 0) {
     filteredData = filteredData.filter((item) =>

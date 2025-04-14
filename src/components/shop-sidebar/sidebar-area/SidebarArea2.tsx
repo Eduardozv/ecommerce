@@ -54,6 +54,7 @@ const SidebarArea = ({
     handleGroupChange(groupFromParams);
     toggleGroupDropdown(groupFromParams);
 
+    console.log('categoryFromParams', categoryFromParams);
     handleCategoryChange(categoryFromParams);
     toggleDropdown(categoryFromParams);
 
@@ -62,40 +63,6 @@ const SidebarArea = ({
 
   if (categoriesError || subcategoriesError || groupsError) return <div>Failed to load data</div>;
   if (!categories || !subcategories || !groups) return <div></div>;
-
-  const getData = () => {
-    if (hasPaginate) return categories.data;
-    else return categories;
-  };
-
-  const categoryData = getData();
-
-  const renderIcon = (category: string) => {
-    switch (category) {
-      case "Dried Fruit":
-        return "fi fi-rs-grape";
-      case "Fresh Fruit":
-        return "fi fi-rs-apple-whole";
-      case "Snacks":
-        return "fi fi-rs-popcorn";
-      case "Cookies":
-        return "fi fi-rs-cookie";
-      case "Foods":
-        return "fi fi-rs-hamburger";
-      case "Tuber root":
-        return "fi fi-rs-corn";
-      case "Vegetables":
-        return "fi fi-rs-tomato";
-      case "Clothes":
-        return "fi-rr-shop";
-      case "jewellery":
-        return "fi fi-rs-gem";
-      case "unisex":
-        return "fi fi-rs-portrait";
-      default:
-        return null;
-    }
-  };
 
   const getSubcategories = (categoryName: string) => {
     return subcategories.filter((sub: any) => sub.category === categoryName);
@@ -159,8 +126,9 @@ const SidebarArea = ({
     router.replace(`/tienda/?${params.toString()}`, { scroll: false });
   };
 
-  console.log(categories);
-  console.log(isGroupOpen);
+  console.log(selectedCategory);
+  console.log('isGroupOpen', isGroupOpen);
+  console.log('isOpen', isOpen);
   console.log(groups);
 
   return (
@@ -227,7 +195,6 @@ const SidebarArea = ({
                                       />
                                       <a>
                                         <span>
-                                          <i className={`${renderIcon(category.name)}`}></i>
                                           {category.name}
                                         </span>
                                       </a>
