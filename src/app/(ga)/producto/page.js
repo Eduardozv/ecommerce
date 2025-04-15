@@ -11,8 +11,6 @@ export const metadata = {
 const page = () => {
     return (
         <>
-
-
             <Breadcrumb title={"Producto"} />
             <section className="gi-single-product padding-tb-40">
                 <div className="container">

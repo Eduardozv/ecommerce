@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import SidebarCart from "../../../model/SidebarCart";
-import MobileManuSidebar from "../../../model/MobileManuSidebar";
+import MobileManuSidebar from "../../../model/MobileManuSidebar2";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/store";

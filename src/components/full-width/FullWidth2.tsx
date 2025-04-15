@@ -242,7 +242,7 @@ const toggleDropdown = (section) => {
               ) : (
                 <div className="gi-pro-pagination">
                   <span>
-                    Showing {(currentPage - 1) * itemsPerPage + 1}-
+                    Mostrando {(currentPage - 1) * itemsPerPage + 1}-
                     {Math.min(currentPage * itemsPerPage, data.totalItems)} of{" "}
                     {data.totalItems} item(s)
                   </span>

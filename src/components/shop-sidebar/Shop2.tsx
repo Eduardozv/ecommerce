@@ -20,7 +20,7 @@ import {
   setSortOption,
   setSelectedGroup,
 } from "@/store/reducers/filterReducer";
-import Paginantion from "../paginantion/Paginantion";
+import Paginantion from "../paginantion/Paginantion2";
 
 const Shop = ({
   xl = 4,
@@ -254,9 +254,9 @@ const Shop = ({
               ) : (
                 <div className="gi-pro-pagination">
                   <span>
-                    Showing {(currentPage - 1) * itemsPerPage + 1}-
-                    {Math.min(currentPage * itemsPerPage, data.totalItems)} of{" "}
-                    {data.totalItems} item(s)
+                    Mostrando {(currentPage - 1) * itemsPerPage + 1}-
+                    {Math.min(currentPage * itemsPerPage, data.totalItems)} en {" "}
+                    {data.totalItems} producto(s)
                   </span>
 
                   <Paginantion
