@@ -10,6 +10,7 @@ const SidebarFilter = ({
   selectedGroup,
   selectedCategory,
   selectedSubCategory,
+  groups,
   isOpen,
   toggleDropdown,
   isGroupOpen,
@@ -42,6 +43,7 @@ const SidebarFilter = ({
           handleSubCategoryChange={handleSubCategoryChange}
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
+          groups={groups}
           isOpen={isOpen}
           toggleDropdown={toggleDropdown}
           isGroupOpen={isGroupOpen}

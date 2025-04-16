@@ -27,7 +27,7 @@ interface Item {
   quantity: number;
   titleSlug: string;
 }
-const ItemCard = ({ data }: any) => {
+const ItemCard = ({ data, groups }: any) => {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -54,14 +54,23 @@ const ItemCard = ({ data }: any) => {
     router.push(`/producto?nombre=${titleSlug}`);
   };
 
+  // Function that finds the group that contains the selected category
+  const getUrlGroupByCategory = (category: string) => {
+    console.log('categorySlug', category);
+    const group = groups.find((group: any) => group.categories.includes(category));
+    return group ? "grupo=" + group.name + "&" : "";
+  };
+
   const handleCategoryClick = (categorySlug: string) => {
+    const urlGroup = getUrlGroupByCategory(categorySlug);
     // Navigate to /shop-categories with the selected category as a query parameter
-    router.replace(`/tienda/?categoria=${categorySlug}`, { scroll: false });
+    router.replace(`/tienda/?${urlGroup}categoria=${categorySlug}`, { scroll: false });
   };
 
   const handleSubCategoryClick = (subcategorySlug: string, categorySlug: string) => {
+    const urlGroup = getUrlGroupByCategory(categorySlug);
     // Navigate to /shop-categories with the selected subcategory as a query parameter
-    router.replace(`/tienda/?categoria=${categorySlug}&subcategoria=${subcategorySlug}`, { scroll: false });
+    router.replace(`/tienda/?${urlGroup}categoria=${categorySlug}&subcategoria=${subcategorySlug}`, { scroll: false });
   };
 
   return (

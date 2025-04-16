@@ -13,6 +13,7 @@ const SidebarArea = ({
   selectedCategory,
   selectedSubCategory,
   selectedGroup,
+  groups,
   closeFilter,
   isFilterOpen,
   onSuccess = () => {},
@@ -38,11 +39,6 @@ const SidebarArea = ({
     onError,
   });
 
-  const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
-    onSuccess,
-    onError,
-  });
-
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -61,7 +57,7 @@ const SidebarArea = ({
     handleSubCategoryChange(subcategoryFromParams);
   }, [searchParams]);
 
-  if (categoriesError || subcategoriesError || groupsError) return <div>Failed to load data</div>;
+  if (categoriesError || subcategoriesError) return <div>Failed to load data</div>;
   if (!categories || !subcategories || !groups) return <div></div>;
 
   const getSubcategories = (categoryName: string) => {

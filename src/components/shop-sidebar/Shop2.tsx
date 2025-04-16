@@ -120,6 +120,11 @@ const Shop = ({
     ([url, postData]) => fetcher(url, postData)
   );
 
+  const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
+    onSuccess: () => console.log("Groups data fetched successfully"),
+    onError: () => console.log("Error fetching groups data"),
+  });
+
   const toggleView = (isGrid: any) => {
     setIsGridView(isGrid);
   };
@@ -239,6 +244,7 @@ const Shop = ({
                       data={item}
                       key={index}
                       isList={isList}
+                      groups={groups}
                     />
                   ))}
                 </Row>
@@ -282,6 +288,7 @@ const Shop = ({
         selectedCategory={selectedCategory}
         selectedSubCategory={selectedSubCategory}
         selectedGroup={selectedGroup}
+        groups={groups}
         isFilterOpen={isFilterOpen}
         closeFilter={closeFilter}
         isOpen={isOpen}
@@ -297,6 +304,7 @@ const Shop = ({
           selectedCategory={selectedCategory}
           selectedSubCategory={selectedSubCategory}
           selectedGroup={selectedGroup}
+          groups={groups}
           order={order}
           isOpen={isOpen}
           toggleDropdown={toggleDropdown}

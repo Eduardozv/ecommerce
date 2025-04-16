@@ -44,14 +44,23 @@ const HeaderManu = ({
     setSelectedIndex(index);
   };
 
+  // Function that finds the group that contains the selected category
+  const getUrlGroupByCategory = (category: string) => {
+    console.log('categorySlug', category);
+    const group = groups.find((group: any) => group.categories.includes(category));
+    return group ? "grupo=" + group.name + "&" : "";
+  };
+
   const handleCategoryClick = (categorySlug: string) => {
+    const urlGroup = getUrlGroupByCategory(categorySlug);
     // Navigate to /shop-categories with the selected category as a query parameter
-    router.push(`/tienda/?categoria=${categorySlug}`);
+    router.push(`/tienda/?${urlGroup}categoria=${categorySlug}`);
   };
 
   const handleSubCategoryClick = (subcategorySlug: string, categorySlug: string) => {
+    const urlGroup = getUrlGroupByCategory(categorySlug);
     // Navigate to /shop-categories with the selected subcategory as a query parameter
-    router.push(`/tienda/?categoria=${categorySlug}&subcategoria=${subcategorySlug}`);
+    router.push(`/tienda/?${urlGroup}categoria=${categorySlug}&subcategoria=${subcategorySlug}`);
   };
 
   return (
