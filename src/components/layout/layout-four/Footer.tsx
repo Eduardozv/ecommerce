@@ -352,7 +352,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                     <div className="footer-bottom-copy ">
                       <div className="gi-copy">
                         Powered by{"  "}
-                        <a className="site-name" href="/">
+                        <a className="site-name" href={constants.portfolioUrl}>
                           WaveTech SAS
                         </a>
                       </div>
