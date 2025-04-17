@@ -6,7 +6,7 @@ const page = () => {
 
   return (
     <>
-      <Breadcrumb title={"Productos"} />
+      <Breadcrumb title={"Tienda"} />
       <section className="gi-shop">
         <div className="container">
           <>

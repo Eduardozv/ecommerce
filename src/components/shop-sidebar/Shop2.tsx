@@ -180,9 +180,9 @@ const Shop = ({
               <div className="gi-gl-btn">
                 {isMobile && <button
                   onClick={openFilter}
-                  className="grid-btn gi-filter-btn d-flex gap-2"
+                  className="gi-filter-btn d-flex gap-2"
                 >
-                  <span>Filtrar</span>
+                  <span>Categorías</span>
                   <i className="fi fi-rr-filter"></i>
                 </button>}
                 <button

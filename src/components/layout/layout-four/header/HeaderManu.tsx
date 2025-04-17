@@ -1,14 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import home from "../../../../utility/header/home";
-import classic from "../../../../utility/header/classic";
-import banner from "../../../../utility/header/benner";
-import column from "../../../../utility/header/columns";
-import list from "../../../../utility/header/list";
-import blog from "../../../../utility/header/blog";
-import pages from "../../../../utility/header/pages";
 import Link from "next/link";
-import productpage from "../../../../utility/header/productpage";
 import useSWR from "swr";
 import fetcher from "@/components/fetcher-api/Fetcher";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -161,11 +153,6 @@ const HeaderManu = ({
                                           <li key={subIndex}>
                                             <span
                                               onClick={() => handleSubCategoryClick(sub.name, sub.category)}
-                                              style={{
-                                                cursor: "pointer",
-                                                color: "#555",
-                                                textDecoration: "none",
-                                              }}
                                             >
                                               {sub.name}
                                             </span>

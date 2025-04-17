@@ -78,8 +78,8 @@ const ItemCard = ({ data, groups }: any) => {
       <div className="gi-product-content">
         <div className={` gi-product-inner`}>
           <div className="gi-pro-image-outer">
-            <div className="gi-pro-image">
-              <a onClick={handleProductClick} className="image">
+            <div onClick={handleProductClick} className="gi-pro-image">
+              <a className="image">
                 <span className="label veg">
                   <span className="dot"></span>
                 </span>
@@ -105,17 +105,17 @@ const ItemCard = ({ data, groups }: any) => {
                 <h6 className="gi-pro-stitle">{data.category}</h6>
               </a>
               <a onClick={() => handleSubCategoryClick(data.subcategory, data.category)}>
-                <h6 className="gi-pro-stitle">{data.subcategory}</h6>
+                <h6 style={{ textAlign: "right", marginLeft: '5px' }}className="gi-pro-stitle">{data.subcategory}</h6>
               </a>
             </div>
             
             <h5 className="gi-pro-title">
               <a onClick={handleProductClick}>{data.title}</a>
             </h5>
-            {data.description && (<p className="gi-info">
+            {data.description && (<p onClick={handleProductClick} className="gi-info">
               {data.description}
             </p>)}
-            <div className="gi-pro-rat-price">
+            <div onClick={handleProductClick} className="gi-pro-rat-price">
               <span className="gi-price">
                 <span className="new-price">${data.newPrice}.00</span>
                 {data.oldPrice !== data.newPrice && <span className="old-price">${data.oldPrice}.00</span> }

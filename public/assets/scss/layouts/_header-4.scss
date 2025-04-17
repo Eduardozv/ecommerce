@@ -1012,10 +1012,10 @@ div#gi-main-menu-desk {
       @include ease3;
       width: 100%;
       .gi-col-title {
-        color: $main-primary-color;
+        color: $text-color;
         font-size: 15px;
-        font-weight: 400;
         line-height: 30px;
+        font-weight: 500;
         text-transform: capitalize;
         font-family: $font-family-text;
         display: block;
@@ -1024,9 +1024,9 @@ div#gi-main-menu-desk {
         margin-bottom: 10px;
         padding-bottom: 5px;
         &:hover {
-          font-weight: "bold";
           cursor: pointer;
           font-size: 16px;
+          color: $main-primary-color;
         }
         height: auto;
       }
@@ -1045,6 +1045,7 @@ div#gi-main-menu-desk {
             height: auto;
             &:hover {
               color: $main-primary-color;
+              cursor: pointer;
             }
           }
         }

@@ -17,14 +17,33 @@ function ProductAll({
   const handleClick = () => {
     setSelected(!selected);
   };
+
+  // Define limit as if screen width is higher than 768px is 10, otherwise if is higher than 420px is 6, otherwise is 4
+  const limit = useMemo(() => {
+    if (window.innerWidth > 1200) {
+      return 10;
+    } else if (window.innerWidth > 768) {
+      return 6;
+    } else if (window.innerWidth > 420) {
+      return 4;
+    } else {
+      return 3;
+    }
+  }, []);
+  
   // Define el postData con el filtro de status
-  const postData = useMemo(() => ({ selectedCategory: category == "" ? [] : [category], sortOption: "2" }), []);
+  const postData = useMemo(() => ({ selectedCategory: category == "" ? [] : [category], sortOption: "2", limit: limit }), []);
 
   // Llamado a la API con el filtro
   const { data, error } = useSWR(
     ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
   );
+
+  const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
+    onSuccess: () => console.log("Groups data fetched successfully"),
+    onError: () => console.log("Error fetching groups data"),
+  });
 
   if (error) return <div>Fallo en cargar productos</div>;
   if (!data)
@@ -49,7 +68,7 @@ function ProductAll({
           }`}
           onClick={handleClick}
         >
-          <ItemCard data={item} />
+          <ItemCard data={item} groups={groups} />
         </Col>
       ))}
     </>

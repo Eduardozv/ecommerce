@@ -2,6 +2,7 @@
 import { Col, Row } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Pagination, Autoplay } from "swiper/modules";
 import ItemCard from "../product-item/ItemCard2";
 import { Fade } from "react-awesome-reveal";
 import useSWR from "swr";
@@ -22,6 +23,11 @@ const Deal = ({
     ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
   );
+
+  const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
+    onSuccess: () => console.log("Groups data fetched successfully"),
+    onError: () => console.log("Error fetching groups data"),
+  });
   
   if (error) return <div>Fallo en cargar productos</div>;
   if (!data)
@@ -74,7 +80,11 @@ const Deal = ({
                     <div className="slick-list draggable">
                       <Swiper
                         loop={true}
-                        autoplay={{ delay: 1000 }}
+                        autoplay={{
+                          delay: 2000,
+                          pauseOnMouseEnter: true,
+                        }}
+                        modules={[Pagination, Autoplay]}
                         slidesPerView={5}
                         breakpoints={{
                           0: {
@@ -106,7 +116,7 @@ const Deal = ({
                       >
                         {getData()?.map((item: any, index: number) => (
                           <SwiperSlide key={index} className="slick-slide">
-                            <ItemCard data={item} />
+                            <ItemCard data={item} groups={groups} />
                           </SwiperSlide>
                         ))}
                       </Swiper>

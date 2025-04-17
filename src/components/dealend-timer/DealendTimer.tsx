@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 
 const DealendTimer = () => {
-  // Set the future date 30 days from now only once
+  // Set the future date, persisting it in localStorage
   const [futureDate] = useState(() => {
+    const storedDate = localStorage.getItem("futureDate");
+    if (storedDate) {
+      return parseInt(storedDate, 10);
+    }
     const now = new Date().getTime();
-    return new Date(now + 26 * 24 * 60 * 60 * 1000).getTime();
+    const newFutureDate = new Date(now + 7 * 24 * 60 * 60 * 1000).getTime();
+    localStorage.setItem("futureDate", newFutureDate.toString());
+    return newFutureDate;
   });
 
   // Function to calculate the time left until the future date

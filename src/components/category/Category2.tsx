@@ -2,6 +2,7 @@
 import { Col, Row } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Pagination, Autoplay } from "swiper/modules";
 import CategoryItem from "../product-item/CategoryItem2";
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
@@ -33,7 +34,12 @@ const Category = ({
           <Col xl={12}>
             <Swiper
               loop={true}
-              autoplay={{ delay: 1000 }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              modules={[Pagination, Autoplay]}
               slidesPerView={5}
               spaceBetween={20}
               breakpoints={{
@@ -41,7 +47,7 @@ const Category = ({
                   slidesPerView: 1,
                 },
                 320: {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                 },
                 425: {
                   slidesPerView: 2,

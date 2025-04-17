@@ -58,7 +58,10 @@
           text-align: center;
           .gi-cat-title {
             margin: 0;
-            font-size: 15px;
+            font-size: 14px;
+            @media (max-width: 768px) {
+              font-size: 13px;
+            }
             line-height: 22px;
             font-weight: 600;
             color: $main-secondary-color;

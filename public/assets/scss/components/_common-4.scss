@@ -535,7 +535,7 @@ section {
     border-top: 6px dotted transparent;
     border-right: 6px dotted transparent;
     border-bottom: 6px dotted transparent;
-    border-left: 6px dotted $main-secondary-color;
+    border-left: 6px dotted rgb(254, 76, 76);
     transform: translateZ(0);
     animation: load8 1.1s infinite linear;
   }
