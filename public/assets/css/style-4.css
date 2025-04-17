@@ -4022,6 +4022,26 @@ i.gicon.gi-star.fill {
   color: #fff;
 }
 
+.whatsapp-button {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 9999;
+  background-color: #25D366;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+
 /** End Contact Section **/
 /* catalog-single-vendor */
 .gi-single-vendor .gi-vendor-dashboard-sort-card {
@@ -8097,8 +8117,8 @@ i.gicon.gi-star.fill {
   text-align: center;
   border-radius: 4px;
   position: fixed;
-  bottom: 15px;
-  right: 15px;
+  bottom: 70px;
+  right: 18px;
   transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
   opacity: 0;
   visibility: hidden;
