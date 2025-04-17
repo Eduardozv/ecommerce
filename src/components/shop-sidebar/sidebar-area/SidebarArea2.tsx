@@ -155,15 +155,18 @@ const SidebarArea = ({
                               type="checkbox"
                             />
                             <a>
-                              <span>{group.name}</span>
+                              <span>
+                                <i className={group.icon} />
+                                {group.name}
+                              </span>
                             </a>
                             <span className="checked"></span>
                           </div>
-                          <div
-                            style={{ cursor: "pointer" }}
-                          >
-                            <GoChevronDown />
-                          </div>
+                          {getCategoriesByGroup(group.name).length > 0 && (
+                            <div style={{ cursor: "pointer" }}>
+                              <GoChevronDown />
+                            </div>
+                          )}
                         </div>
                         {/* Render categories */}
                         <SmoothCollapse
@@ -191,9 +194,11 @@ const SidebarArea = ({
                                       </a>
                                       <span className="checked"></span>
                                     </div>
-                                    <div style={{ cursor: "pointer" }}>
-                                      <GoChevronDown />
-                                    </div>
+                                    {getSubcategories(category.name).length > 0 && (
+                                      <div style={{ cursor: "pointer" }}>
+                                        <GoChevronDown />
+                                      </div>
+                                    )}
                                   </div>
                                   {/* Render subcategories */}
                                   <SmoothCollapse
@@ -229,7 +234,7 @@ const SidebarArea = ({
                               ))}
                             </ul>
                           </div>
-                          </SmoothCollapse>
+                        </SmoothCollapse>
                       </li>
                     ))}
                   </ul>

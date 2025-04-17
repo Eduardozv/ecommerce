@@ -45,18 +45,18 @@ function HeroSlider() {
       image: "slide-2",
     },
     {
-      title: "Transforma tu comercio con lo mejor",
-      description: "Explora nuestros productos",
-      link: "/tienda",
-      buttonText: "Ver Productos",
-      image: "slide-4",
+      title: "Heladeras y Freezers",
+      description: "Excelente productos de refrigeración",
+      link: "/tienda?grupo=Refrigeración",
+      buttonText: "Ver Refrigeración",
+      image: "slide-5",
     },
     {
       title: "Transforma tu comercio con lo mejor",
       description: "Explora nuestros productos",
       link: "/tienda",
       buttonText: "Ver Productos",
-      image: "slide-5",
+      image: "slide-4",
     },
     // Add more slides as needed
   ];
