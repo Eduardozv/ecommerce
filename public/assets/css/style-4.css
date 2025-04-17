@@ -2936,12 +2936,14 @@ i.gicon.gi-star.fill {
   max-width: 200px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   position: absolute;
   top: 50%;
   right: 50px;
   transform: translateY(-50%);
+  z-index: 2;
+  text-align: right;
 }
 .gi-ofr-banners .gi-bnr-body .gi-bnr-detail h5 {
   color: #4b5966;
@@ -11418,12 +11420,14 @@ body.gi-menu-open:before {
   max-width: 200px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   position: absolute;
   top: 50%;
   right: 50px;
   transform: translateY(-50%);
+  z-index: 2;
+  text-align: right;
 }
 .gi-ofr-banners .gi-bnr-body .gi-bnr-detail h5 {
   color: #4b5966;
@@ -12290,6 +12294,7 @@ body.gi-menu-open:before {
   align-items: flex-end;
   text-align: right;
   position: relative;
+  z-index: 2;
 }
 .gi-animated-banner .gi-bnr-detail h2 {
   font-size: 50px;

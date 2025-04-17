@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { Fade } from "react-awesome-reveal";
 import { Col, Row } from "react-bootstrap";
+import GradientOverlay from "./GradientOverlay";
 
 const Banner = () => {
   return (
@@ -20,6 +21,7 @@ const Banner = () => {
                 data-aos-duration="2000"
                 data-aos-delay="200"
               >
+                <GradientOverlay direction="left" />
                 <h2 className="d-none">Offers</h2>
                 <div className="gi-bnr-detail">
                   <div className="gi-bnr-info">
@@ -27,7 +29,7 @@ const Banner = () => {
                       Todo lo que <br></br>necesitas para tu cocinas
                     </h2>
                     <h3>
-                      30% off <span>Apurate!!!</span>
+                      hasta 30% off <span>No te lo pierdas!!!</span>
                     </h3>
                     <Link href="/tienda/?grupo=Cocina" className="gi-btn-2">
                       Comprar
