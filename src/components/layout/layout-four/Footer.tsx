@@ -11,6 +11,7 @@ import { setSelectedCategory } from "@/store/reducers/filterReducer";
 import { useState } from "react";
 import { slice } from "lodash";
 import { motion } from "framer-motion";
+import constants from "@/utility/constants";
 
 function Footer({ onSuccess = () => {}, onError = () => {} }) {
   const router = useRouter();
@@ -310,7 +311,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                         >
                           <ul className="align-itegi-center">
                             <li className="gi-footer-link">
-                              <a href="https://www.facebook.com/p/LCA-instalaciones-comerciales-100075777861077/?locale=es_LA">
+                              <a href={constants.facebookUrl}>
                                 <i
                                   className="gicon gi-facebook"
                                   aria-hidden="true"
@@ -318,7 +319,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                               </a>
                             </li>
                             <li className="gi-footer-link">
-                              <a href="https://www.linkedin.com/in/ga-lca-7b051b2a2/">
+                              <a href={constants.linkedinUrl}>
                                 <i
                                   className="gicon gi-linkedin"
                                   aria-hidden="true"
@@ -326,7 +327,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                               </a>
                             </li>
                             <li className="gi-footer-link">
-                              <a href="https://www.instagram.com/ga_instalaciones_comerciales/">
+                              <a href={constants.instagramUrl}>
                                 <i
                                   className="gicon gi-instagram"
                                   aria-hidden="true"

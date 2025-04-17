@@ -25,6 +25,7 @@ function HeaderTwo({ cartItems, wishlistItems }) {
 
   const toggleMainMenu = (menuKey: any) => {
     setActiveMainMenu((prevMenu) => (prevMenu === menuKey ? null : menuKey));
+    closeMobileManu();
   };
 
   const openMobileManu = () => {
