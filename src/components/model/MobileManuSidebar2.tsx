@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import constants from "@/utility/constants";
+import links from '@/utility/links';
 
 const MobileManuSidebar = ({ isMobileMenuOpen, closeMobileManu, toggleMainMenu, activeMainMenu }) => {
   const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
@@ -27,30 +28,17 @@ const MobileManuSidebar = ({ isMobileMenuOpen, closeMobileManu, toggleMainMenu, 
           <div className="gi-menu-inner">
             <div className="gi-menu-content">
               <ul>
-                <li className={`dropdown drop-list ${activeMainMenu ? "active" : ""}`}>
-                  <Link
-                    href="/ga"
-                    onClick={() => toggleMainMenu('home')}
-                    className="dropdown-arrow"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/tienda" onClick={() => toggleMainMenu('Tienda')}>
-                    Tienda
-                  </Link>
-                </li>
-                <li className="dropdown">
-                  <Link href="blogs" onClick={() => toggleMainMenu("blog")} >
-                    Noticias
-                  </Link>
-                </li>
-                <li className="dropdown">
-                  <Link href="/quienes-somos" onClick={() => toggleMainMenu("pages")} >
-                    Empresa
-                  </Link>
-                </li>
+                {links.map(link => (
+                  <li className="non-drop">
+                    <Link
+                      href={link.href}
+                      onClick={() => toggleMainMenu(link.name)}
+                      className="dropdown-arrow"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                    ))}
               </ul>
             </div>
             <div className="header-res-lan-curr">

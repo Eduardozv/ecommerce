@@ -814,6 +814,14 @@ i.gicon.gi-star.fill {
   }
 }
 
+.contact-link {
+    font-size: 14px;
+    color: $text-color;
+    &:hover {
+      color: $main-primary-color;
+    }
+}
+
 /**  Responsive  **/
 @media only screen and (max-width: 991px) {
   .m-b-991 {

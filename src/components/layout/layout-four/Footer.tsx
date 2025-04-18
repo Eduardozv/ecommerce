@@ -14,16 +14,14 @@ import { motion } from "framer-motion";
 import constants from "@/utility/constants";
 
 function Footer({ onSuccess = () => {}, onError = () => {} }) {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const [dropdownState, setDropdownState] = useState(null);
-  const { selectedCategory } = useSelector((state: RootState) => state.filter);
-  const { data, error } = useSWR(`/api/shopcategory`, fetcher, {
+  const [dropdownState, setDropdownState] = useState("contact");
+
+  const { data, error } = useSWR(`/api/categories`, fetcher, {
     onSuccess,
     onError,
   });
 
-  if (error) return <div>Failed to load products</div>;
+  if (error) return <div>Fallo al cargar categorías</div>;
   if (!data) return <div></div>;
 
   const getData = () => {
@@ -32,16 +30,6 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
 
   const toggleDropdown = (dropdown: any) => {
     setDropdownState((menu) => (menu === dropdown ? null : dropdown));
-  };
-
-  const CategoryData = getData();
-
-  const handleCategoryChange = (category) => {
-    const updatedCategory = selectedCategory.includes(category)
-      ? selectedCategory.filter((cat) => cat !== category)
-      : [...selectedCategory, category];
-    dispatch(setSelectedCategory(updatedCategory));
-    router.push("/shop-left-sidebar-col-3");
   };
 
   return (
@@ -74,55 +62,9 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                     </div>
                   </Fade>
                 </Col>
-                <Col sm={12} lg={2} className="gi-footer-info">
-                  <>
-                    <div className="gi-footer-widget">
-                      <h4
-                        onClick={() => toggleDropdown("category")}
-                        className="gi-footer-heading"
-                      >
-                        Category
-                        <div className="gi-heading-res">
-                          <i
-                            className="fi-rr-angle-small-down"
-                            aria-hidden="true"
-                          ></i>
-                        </div>
-                      </h4>
-                      <motion.div
-                        className="gi-footer-links gi-footer-dropdown"
-                        initial={{ height: 0, opacity: 0, translateY: -20 }}
-                        animate={{
-                          height: dropdownState === "category" ? "auto" : 0,
-                          opacity: dropdownState === "category" ? 1 : 0,
-                          translateY: dropdownState === "category" ? 0 : -20,
-                        }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        style={{
-                          overflow: "hidden",
-                          display: "block",
-                          paddingBottom:
-                            dropdownState === "category" ? "20px" : "0px",
-                        }}
-                      >
-                        <ul className="align-itegi-center">
-                          {CategoryData.map((data, index) => (
-                            <li key={index} className="gi-footer-link">
-                              <a
-                                style={{ textTransform: "capitalize" }}
-                                href="#"
-                                onClick={() =>
-                                  handleCategoryChange(data.category)
-                                }
-                              >
-                                {data.category}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    </div>
-                  </>
+                <Col sm={12} lg={2} className="gi-footer-service" >
+                </Col>
+                <Col sm={12} lg={2} className="gi-footer-service" >
                 </Col>
                 <Col sm={12} lg={2} className="gi-footer-account">
                   <>
@@ -131,7 +73,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                         onClick={() => toggleDropdown("company")}
                         className="gi-footer-heading"
                       >
-                        Company
+                        Empresa
                         <div className="gi-heading-res">
                           <i
                             className="fi-rr-angle-small-down"
@@ -157,77 +99,19 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                       >
                         <ul className="align-itegi-center">
                           <li className="gi-footer-link">
-                            <a href="/about-us">About us</a>
+                            <a href="/quienes-somos">Quiénes Somos</a>
                           </li>
-                          <li className="gi-footer-link">
-                            <a href="/track-order">Delivery</a>
-                          </li>
-                          <li className="gi-footer-link">
+                          {/* <li className="gi-footer-link">
                             <a href="/privacy-policy">Legal Notice</a>
                           </li>
                           <li className="gi-footer-link">
                             <a href="/terms-condition">Terms & conditions</a>
+                          </li> */}
+                          <li className="gi-footer-link">
+                            <a href="/contacto">Contacto</a>
                           </li>
                           <li className="gi-footer-link">
-                            <a href="/checkout">Secure payment</a>
-                          </li>
-                          <li className="gi-footer-link">
-                            <a href="/contact-us">Contact us</a>
-                          </li>
-                        </ul>
-                      </motion.div>
-                    </div>
-                  </>
-                </Col>
-                <Col sm={12} lg={2} className="gi-footer-service">
-                  <>
-                    <div className="gi-footer-widget">
-                      <h4
-                        onClick={() => toggleDropdown("account")}
-                        className="gi-footer-heading"
-                      >
-                        Account
-                        <div className="gi-heading-res">
-                          <i
-                            className="fi-rr-angle-small-down"
-                            aria-hidden="true"
-                          ></i>
-                        </div>
-                      </h4>
-                      <motion.div
-                        className="gi-footer-links gi-footer-dropdown"
-                        initial={{ height: 0, opacity: 0, translateY: -20 }}
-                        animate={{
-                          height: dropdownState === "account" ? "auto" : 0,
-                          opacity: dropdownState === "account" ? 1 : 0,
-                          translateY: dropdownState === "account" ? 0 : -20,
-                        }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        style={{
-                          overflow: "hidden",
-                          display: "block",
-                          paddingBottom:
-                            dropdownState === "account" ? "20px" : "0px",
-                        }}
-                      >
-                        <ul className="align-itegi-center">
-                          <li className="gi-footer-link">
-                            <a href="/register">Sign In</a>
-                          </li>
-                          <li className="gi-footer-link">
-                            <a href="/cart">View Cart</a>
-                          </li>
-                          <li className="gi-footer-link">
-                            <a href="/privacy-policy">Return Policy</a>
-                          </li>
-                          <li className="gi-footer-link">
-                            <a href="#">Become a Vendor</a>
-                          </li>
-                          <li className="gi-footer-link">
-                            <a href="#">Affiliate Program</a>
-                          </li>
-                          <li className="gi-footer-link">
-                            <a href="/checkout">Payments</a>
+                            <a href="/noticias">Noticias</a>
                           </li>
                         </ul>
                       </motion.div>
@@ -272,21 +156,21 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                                 <i className="fi fi-rr-marker location svg_img foo_svg"></i>
                               </span>
                               <p>
-                                Dr. Salvador Ferrer Serra 2125.
+                                {constants.address}
                               </p>
                             </li>
                             <li className="gi-footer-link gi-foo-call">
                               <span>
                                 <i className="fi fi-brands-whatsapp svg_img foo_svg"></i>
                               </span>
-                              <a href="https://wa.me/+59898331926">+598 98331926</a>
+                              <a href={constants.whatsapp}>{constants.phone}</a>
                             </li>
                             <li className="gi-footer-link gi-foo-mail">
                               <span>
                                 <i className="fi fi-rr-envelope"></i>
                               </span>
-                              <a href="mailto:ventas@lcainstalacionescomerciales.com.uy">
-                                ventas@lcainstalacionescomerciales.com.uy
+                              <a href={"mailto:"+constants.mail}>
+                                {constants.mail}
                               </a>
                             </li>
                           </ul>

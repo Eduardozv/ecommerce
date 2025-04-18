@@ -1000,6 +1000,14 @@ i.gicon.gi-star.fill {
   padding: 8px 10px;
 }
 
+.contact-link {
+  font-size: 14px;
+  color: #777;
+}
+.contact-link:hover {
+  color: #e91e63;
+}
+
 /**  Responsive  **/
 @media only screen and (max-width: 991px) {
   .m-b-991 {
@@ -4566,6 +4574,7 @@ body.gi-menu-open:before {
   height: 20px;
   margin-right: 7px;
   font-size: 17px;
+  align-self: center;
 }
 .gi-shop-sidebar .gi-sidebar-block .gi-sidebar-block-item a .products,
 .gi-shop-sidebar-2 .gi-sidebar-block .gi-sidebar-block-item a .products {

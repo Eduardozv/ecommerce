@@ -6,6 +6,7 @@ import fetcher from "@/components/fetcher-api/Fetcher";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { Fade } from "react-awesome-reveal";
 import { useRouter } from "next/navigation";
+import links from '@/utility/links';
 
 const HeaderManu = ({
   onSuccess = () => {},
@@ -182,31 +183,11 @@ const HeaderManu = ({
                   <div className="col-md-12 align-self-center">
                     <div className="gi-main-menu">
                       <ul>
-                        <li className="non-drop">
-                          <Link href="/ga">
-                            Home
+                        {links.map(link => (<li className="non-drop">
+                          <Link href={link.href}>
+                            {link.name}
                           </Link>
-                        </li>
-                        <li className="non-drop">
-                          <Link href="/tienda" className="dropdown-arrow">
-                            Tienda
-                          </Link>
-                        </li>
-                        <li className="non-drop">
-                          <Link href="/quienes-somos">
-                            Empresa
-                          </Link>
-                        </li>
-                        <li className="non-drop">
-                          <Link href="" className="dropdown-arrow">
-                            Noticias
-                          </Link>
-                        </li>
-                        <li className="non-drop">
-                          <Link href="/">
-                            Contactános
-                          </Link>
-                        </li>
+                        </li>))}
                       </ul>
                     </div>
                   </div>
