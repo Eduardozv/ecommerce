@@ -67,7 +67,15 @@ const Contact = () => {
                       <i className="fa fa-mobile" aria-hidden="true">
                         <FaMobileAlt />
                       </i>{" "}
-                      &nbsp; <a className="contact-link" href={constants.whatsapp}>{constants.phone}</a>
+                      &nbsp; 
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer" 
+                        className="contact-link"
+                        href={constants.whatsapp}
+                      >
+                        {constants.phone}
+                      </a>
                     </p>
                   </div>
                 </div>

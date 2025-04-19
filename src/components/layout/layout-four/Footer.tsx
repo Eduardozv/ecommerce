@@ -2,31 +2,13 @@
 import { Fade } from "react-awesome-reveal";
 import { Col, Row } from "react-bootstrap";
 import ScrollButton from "../../button/ScrollButton";
-import useSWR from "swr";
-import fetcher from "@/components/fetcher-api/Fetcher";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store";
-import { useRouter } from "next/navigation";
-import { setSelectedCategory } from "@/store/reducers/filterReducer";
 import { useState } from "react";
-import { slice } from "lodash";
 import { motion } from "framer-motion";
 import constants from "@/utility/constants";
 
-function Footer({ onSuccess = () => {}, onError = () => {} }) {
+function Footer() {
   const [dropdownState, setDropdownState] = useState("contact");
 
-  const { data, error } = useSWR(`/api/categories`, fetcher, {
-    onSuccess,
-    onError,
-  });
-
-  if (error) return <div>Fallo al cargar categorías</div>;
-  if (!data) return <div></div>;
-
-  const getData = () => {
-    return data.length > 6 ? slice(data, 0, 6) : data;
-  };
 
   const toggleDropdown = (dropdown: any) => {
     setDropdownState((menu) => (menu === dropdown ? null : dropdown));
@@ -57,7 +39,7 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                       />
                       <p className="gi-footer-detail">
                         GA Instalaciones comerciales, es una empresa que lleva 14 años
-                        comercializando equipos gastronómicos y de supermercados en todo el país.
+                        comercializando equipos gastronómicos y de supermercados en Uruguay. Llevando su experiencia al mercado Latinoamericano.
                       </p>
                     </div>
                   </Fade>
@@ -163,7 +145,13 @@ function Footer({ onSuccess = () => {}, onError = () => {} }) {
                               <span>
                                 <i className="fi fi-brands-whatsapp svg_img foo_svg"></i>
                               </span>
-                              <a href={constants.whatsapp}>{constants.phone}</a>
+                              <a 
+                                href={constants.whatsapp}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {constants.phone}
+                              </a>
                             </li>
                             <li className="gi-footer-link gi-foo-mail">
                               <span>
