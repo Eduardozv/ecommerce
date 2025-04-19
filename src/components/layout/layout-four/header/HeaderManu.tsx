@@ -183,11 +183,13 @@ const HeaderManu = ({
                   <div className="col-md-12 align-self-center">
                     <div className="gi-main-menu">
                       <ul>
-                        {links.map(link => (<li className="non-drop">
-                          <Link href={link.href}>
+                        {links.map((link, index) => (
+                        <li key={index} className="non-drop">
+                          <Link  href={link.href}>
                             {link.name}
                           </Link>
-                        </li>))}
+                        </li>
+                      ))}
                       </ul>
                     </div>
                   </div>

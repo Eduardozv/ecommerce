@@ -29,7 +29,7 @@ const SingleProductContent = ({ product }) => {
   };
 
   const slider2Settings = {
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     asNavFor: slider1.current,
     dots: false,
@@ -70,38 +70,45 @@ const SingleProductContent = ({ product }) => {
           {isSliderInitialized && (
             <Col className="single-pro-img">
               <div className="single-product-scroll">
-                <Slider
-                  {...slider1Settings}
-                  ref={(slider) => (slider1.current = slider)}
-                  className="single-product-cover"
-                >
-                  {product.images.map((image: string, index: any) => (
-                    <div
-                      key={index}
-                      className="single-slide zoom-image-hover"
-                      onClick={() => handleSlider1Click(index)}
+                {product.images.length > 1 ? (
+                  <>
+                    <Slider
+                      {...slider1Settings}
+                      ref={(slider) => (slider1.current = slider)}
+                      className="single-product-cover"
                     >
-                      <ZoomImage
-                        src={image}
-                        alt={product.title} />
-                    </div>
-                  ))}
-                </Slider>
-                <Slider
-                  {...slider2Settings}
-                  ref={(slider) => (slider2.current = slider)}
-                  className="single-nav-thumb"
-                >
-                  {product.images.map((image: string, index: number) => (
-                    <div
-                      key={index}
-                      className="single-slide"
-                      onClick={() => handleSlider2Click(index)}
+                      {product.images.map((image: string, index: any) => (
+                        <div
+                          key={index}
+                          className="single-slide zoom-image-hover"
+                          onClick={() => handleSlider1Click(index)}
+                        >
+                          <ZoomImage src={image} alt={product.title} />
+                        </div>
+                      ))}
+                    </Slider>
+                    <Slider
+                      {...slider2Settings}
+                      ref={(slider) => (slider2.current = slider)}
+                      className="single-nav-thumb"
                     >
-                      <img className="img-responsive" src={image} alt={product.title} />
-                    </div>
-                  ))}
-                </Slider>
+                      {product.images.map((image: string, index: number) => (
+                        <div
+                          key={index}
+                          className="single-slide"
+                          onClick={() => handleSlider2Click(index)}
+                        >
+                          <img className="img-responsive" src={image} alt={product.title} />
+                        </div>
+                      ))}
+                    </Slider>
+                  </>
+                ) : (
+                  // Mostrar una sola imagen sin slider
+                  <div className="single-slide zoom-image-hover">
+                    <ZoomImage src={product.images[0]} alt={product.title} />
+                  </div>
+                )}
               </div>
             </Col>
           )}
@@ -136,7 +143,7 @@ const SingleProductContent = ({ product }) => {
               {product.body && (
                 <Row style={{ width: "100%", marginTop: "20px" }}>
                   <Col>
-                    <div style={{ width: "100%" }}>
+                    <div className="product-body" style={{ width: "100%" }}>
                       <ReactMarkdown>{product.body}</ReactMarkdown>
                     </div>
                   </Col>

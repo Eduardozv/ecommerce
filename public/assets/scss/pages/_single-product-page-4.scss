@@ -209,6 +209,12 @@
 			line-height: 26px;
 		}
 
+		.product-body {
+			img {
+				max-width: 100%;
+			}
+		}
+
 		.gi-single-rating-wrap {
 			i.ecicon {
 				margin-right: 2px;

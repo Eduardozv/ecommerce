@@ -13402,6 +13402,9 @@ body.gi-menu-open:before {
   color: #4b5966;
   line-height: 26px;
 }
+.gi-single-product .single-pro-content .product-body img {
+  max-width: 100%;
+}
 .gi-single-product .single-pro-content .gi-single-rating-wrap {
   display: flex;
   margin-bottom: 14px;

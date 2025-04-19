@@ -19,11 +19,10 @@ const page = () => {
                             none={'none'}
                             lg={12}
                         />
-
                     </Row>
                 </div>
             </section>
-            <RelatedProduct />
+            {/* <RelatedProduct /> */}
 
         </>
     )
