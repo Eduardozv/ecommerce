@@ -50,7 +50,6 @@ const SidebarArea = ({
     handleGroupChange(groupFromParams);
     toggleGroupDropdown(groupFromParams);
 
-    console.log('categoryFromParams', categoryFromParams);
     handleCategoryChange(categoryFromParams);
     toggleDropdown(categoryFromParams);
 
