@@ -1,0 +1,17 @@
+{
+  "title": "Amasadora Classic Line 30 kg Modelo SUN30 CL",
+  "brand": "Sunmix",
+  "category": "Panadería",
+  "subcategory": "",
+  "description": "La amasadora Classic Line está pensada para pizzerías y panaderías con producción media/alta, equipada con 2 velocidades y 2 temporizadores.",
+  "images": [
+    "/assets/uploads/CLASSIC LINE_bianca.png",
+    "/assets/uploads/CLASSIC LINE_nera.png",
+    "/assets/uploads/CLASSIC LINE_rubino.png"
+  ],
+  "oldPrice": 0,
+  "newPrice": 0,
+  "status": "En Oferta",
+  "dateAdded": "2025-04-20T01:23:47.570632",
+  "body": "- Panel de control manual\n- Velocidad espiral: 1ra 105 rpm / 2da 210 rpm\n- Velocidad cuva: 14 rpm\n- Inversión de cuva\n- 2 temporizadores\n- Ruedas retráctiles\n- 2 motores, voltaje 400V/50-60Hz/3ph\n- Opcionales: luces LED, sensor de temperatura, protección cerrada, kit rinvio, tensión especial"
+}

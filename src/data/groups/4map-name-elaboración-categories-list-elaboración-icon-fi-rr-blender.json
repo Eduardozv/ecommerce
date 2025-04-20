@@ -1,7 +1,8 @@
 {
   "name": "Elaboración y Panadería",
   "categories": [
-    "Elaboración"
+    "Elaboración",
+    "Panadería"
   ],
   "icon": "fi-tr-bread"
 }
