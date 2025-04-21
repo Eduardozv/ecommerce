@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ReactMarkdown from "react-markdown";
 import Spinner from "@/components/button/Spinner";
 import ZoomImage from "@/components/zoom-image/ZoomImage";
+import constants from "@/utility/constants";
 
 const calculateDiscount = (oldPrice: number, newPrice: number): number => {
   if (!oldPrice || !newPrice || oldPrice <= newPrice) return 0;
@@ -119,19 +120,21 @@ const SingleProductContent = ({ product }) => {
               </h5>
 
               <div className="gi-single-price-stoke">
-                <div className="gi-single-price">
-                  {product.newPrice && (
-                    <div className="final-price">
-                      ${product.newPrice}{!!discount && <span className="price-des">-{discount}%</span>}
-                    </div>
-                  )}
-                  
-                  {product.oldPrice && product.oldPrice !== product.newPrice && (
-                    <div className="mrp">
-                      <span>${product.oldPrice}</span>
-                    </div>
-                  )}
-                </div>
+                {constants.showPrice && (
+                  <div className="gi-single-price">
+                    {product.newPrice && (
+                      <div className="final-price">
+                        ${product.newPrice}{!!discount && <span className="price-des">-{discount}%</span>}
+                      </div>
+                    )}
+                    
+                    {product.oldPrice && product.oldPrice !== product.newPrice && (
+                      <div className="mrp">
+                        <span>${product.oldPrice}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div className="gi-single-stoke">
                   {/* <span className="gi-single-sku">SKU#: {product.id}</span> */}
                   <span className="gi-single-ps-title">{product.status}</span>

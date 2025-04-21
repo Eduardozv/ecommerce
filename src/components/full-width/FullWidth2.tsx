@@ -262,16 +262,6 @@ const toggleDropdown = (section) => {
           {/* <!--Shop content End --> */}
         </Col>
         {/* <!-- Sidebar Area Start --> */}
-        <SidebarFilter
-          handleCategoryChange={handleCategoryChange}
-          handleSubCategoryChange={handleSubCategoryChange}
-          selectedCategory={selectedCategory}
-          selectedSubCategory={selectedSubCategory}
-          isFilterOpen={isFilterOpen}
-          closeFilter={closeFilter}
-          isOpen={isOpen}
-          toggleDropdown={toggleDropdown}
-        />
       </Row>
     </LoadRowOrContainer>
   );

@@ -10,6 +10,7 @@ const mail = process.env.NEXT_PUBLIC_MAIL || 'ventas@lcainstalacionescomerciales
 const phone = process.env.NEXT_PUBLIC_PHONE || '(+598) 98331926';
 const phone2 = process.env.NEXT_PUBLIC_PHONE2 || '(+598) 98331926';
 const address = process.env.NEXT_PUBLIC_ADDRESS || 'Dr. Salvador Ferrer Serra 2125. Montevideo, Uruguay';
+const showPrice = false;
 
 const constants = {
     API_URL,
@@ -22,6 +23,7 @@ const constants = {
     phone,
     phone2,
     address,
+    showPrice,
   // Add other constants here
 }
 
