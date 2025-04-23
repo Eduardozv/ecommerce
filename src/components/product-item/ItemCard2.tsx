@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import {
   setItems,
 } from "../../store/reducers/cartSlice";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setSelectedProduct } from "@/store/reducers/productSlice";
+import constants from "@/utility/constants";
 
 interface Item {
   id: number;
@@ -115,12 +115,13 @@ const ItemCard = ({ data, groups }: any) => {
             {data.description && (<p onClick={handleProductClick} className="gi-info">
               {data.description}
             </p>)}
-            <div onClick={handleProductClick} className="gi-pro-rat-price">
+            {constants.showPrice && (<div onClick={handleProductClick} className="gi-pro-rat-price">
               <span className="gi-price">
-                <span className="new-price">${data.newPrice}.00</span>
+                <span className="new-price">${data.newPrice}</span>
                 {data.oldPrice !== data.newPrice && <span className="old-price">${data.oldPrice}.00</span> }
               </span>
             </div>
+            )}
           </div>
         </div>
         <QuickViewModal data={data} handleClose={handleClose} show={show} />

@@ -35,6 +35,13 @@ function HeroSlider() {
       description: "Explora nuestros productos",
       link: "/tienda",
       buttonText: "Ver Productos",
+      image: "slide-1",
+    },
+    {
+      title: "Renueva tu Cocina",
+      description: "Excelentes productos de cocina",
+      link: "/tienda?grupo=Cocina",
+      buttonText: "Ver Productos",
       image: "slide-7",
     },
     {

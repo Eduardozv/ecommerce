@@ -7,6 +7,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import constants from "@/utility/constants";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const [validated, setValidated] = useState(false);
@@ -14,12 +15,66 @@ const Contact = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+
     if (form.checkValidity() === false) {
       event.stopPropagation();
+    } else {
+      const formData = {
+        fname: form.fname.value,
+        umail: form.umail.value,
+        phone: form.phone.value,
+        message: form.exampleFormControlTextarea1.value,
+      };
+
+      // Enviar correo al administrador
+      emailjs
+        .send(
+          "YOUR_SERVICE_ID", // Reemplaza con tu Service ID
+          "ADMIN_TEMPLATE_ID", // Reemplaza con tu Template ID para el administrador
+          {
+            from_name: formData.fname,
+            from_email: formData.umail,
+            phone: formData.phone,
+            message: formData.message,
+            to_email: constants.mail, // Correo del administrador
+            title: "Consulta de " + formData.fname,
+          },
+          "YOUR_USER_ID" // Reemplaza con tu User ID
+        )
+        .then(
+          (result) => {
+            console.log("Correo al administrador enviado correctamente.");
+          },
+          (error) => {
+            console.error("Error al enviar el correo al administrador:", error.text);
+          }
+        );
+
+      // Enviar correo de confirmación al usuario
+      emailjs
+        .send(
+          "YOUR_SERVICE_ID", // Reemplaza con tu Service ID
+          String(process.env.REACT_APP_EMAILJS_EMAIL_TO_USER_AUTOREPLAY_TEMPLATE_ID), // Reemplaza con tu Template ID para el usuario
+          {
+            to_name: formData.fname,
+            to_email: formData.umail,
+            message: "Gracias por contactarnos. Hemos recibido tu consulta y te responderemos a la brevedad.",
+          },
+          "YOUR_USER_ID" // Reemplaza con tu User ID
+        )
+        .then(
+          (result) => {
+            alert("Correo de confirmación enviado al usuario.");
+          },
+          (error) => {
+            console.error("Error al enviar el correo de confirmación:", error.text);
+          }
+        );
     }
 
     setValidated(true);
   };
+
   return (
     <>
       <section className="gi-contact padding-tb-40">

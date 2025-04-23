@@ -86,7 +86,10 @@ function HeaderTwo({ cartItems, wishlistItems }) {
                 <div className="header-logo">
                   <Link href="/ga">
                     <img
-                      src="/assets/img/logo/logo-blanco.png"
+                      src={
+                        process.env.NEXT_PUBLIC_URL +
+                        "/assets/img/logo/logo-blanco.png"
+                      }
                       alt="Site Logo"
                     />
                   </Link>
