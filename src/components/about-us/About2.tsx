@@ -41,17 +41,20 @@ const About = () => {
                     Quienés <span>Somos?</span>
                   </h2>
                   <p>
-                  G.A Instalaciones comerciales, es una empresa que lleva 14 años comercializando equipos gastronómicos y de supermercados en todo el país.
+                  Somos GA Instalaciones Comerciales, una empresa con más de 17 años de trayectoria en Uruguay y presencia internacional a través de nuestra base operativa en Panamá.                  
                   </p>
                 </div>
                 <p>
-                  Actualmente se encuentra inmersa en grandes proyectos y desafíos relacionados con la tecnología de vanguardia. Es con esta tecnología que se busca liderar en el mercado, así como también desarrollar y cuidar grandes y pequeñas inversiones.
+                  Brindamos soluciones integrales en equipamiento industrial para panaderías, gastronomía, supermercados, cámaras de frío, góndolas, fabricadoras de hielo y más.
                 </p>
                 <p>
-                  El objetivo es mejorar la productividad y funcionamiento laboral de cada empresa que deposita su confianza. Para lograr esto, el equipo técnico y humano se encuentra en constante crecimiento y capacitación.
+                  Nos especializamos en la representación directa de fábrica y en la distribución de marcas blancas, adaptadas a las necesidades específicas de cada cliente y mercado. Ofrecemos una respuesta personalizada y contamos con capacidad de entrega a nivel global.
                 </p>
                 <p>
-                  Soy Gustavo Álvarez, creador y director de G.A y L.C.A Instalaciones comerciales.
+                  Disponemos de showrooms en Uruguay y Panamá, donde nuestros equipos pueden verse en funcionamiento y nuestros asesores técnicos brindan acompañamiento profesional.
+                </p>
+                <p>
+                  Actualmente, estamos ampliando nuestra red internacional de distribuidores e importadores, trabajando para acercar nuestras soluciones a nuevos mercados.
                 </p>
               </div>
             </Col>
