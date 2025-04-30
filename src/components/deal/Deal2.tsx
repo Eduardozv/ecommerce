@@ -67,7 +67,6 @@ const Deal = ({
                       <p>Aprovecha la baja en los precios</p>
                     </div>
                   </Fade>
-                  <DealendTimer />
                 </div>
                 <Fade
                   triggerOnce
