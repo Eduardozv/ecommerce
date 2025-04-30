@@ -16,7 +16,7 @@ const Breadcrumb = ({ title }) => {
                   {/* <!-- gi-breadcrumb-list start --> */}
                   <ul className="gi-breadcrumb-list">
                     <li className="gi-breadcrumb-item">
-                      <a href="/ga">Home</a>
+                      <a href="/inicio">Inicio</a>
                     </li>
                     <li className="gi-breadcrumb-item active">{title}</li>
                   </ul>

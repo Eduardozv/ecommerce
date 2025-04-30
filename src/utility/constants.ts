@@ -7,6 +7,7 @@ const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedi
 const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL || 'https://eduardozv.github.io/portafolio/';
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP || 'https://wa.me/+59898331926';
 const mail = process.env.NEXT_PUBLIC_MAIL || 'ventas@lcainstalacionescomerciales.com.uy';
+const mail2 = process.env.NEXT_PUBLIC_MAIL || 'gainstalacioncomercial.latam@gmail.com';
 const phone = process.env.NEXT_PUBLIC_PHONE || '(+598) 98331926';
 const phone2 = process.env.NEXT_PUBLIC_PHONE2 || '(+598) 98331926';
 const address = process.env.NEXT_PUBLIC_ADDRESS || 'Dr. Salvador Ferrer Serra 2125. Montevideo, Uruguay';
@@ -20,6 +21,7 @@ const constants = {
     portfolioUrl,
     whatsapp,
     mail,
+    mail2,
     phone,
     phone2,
     address,

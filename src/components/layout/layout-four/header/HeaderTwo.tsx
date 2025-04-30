@@ -84,7 +84,7 @@ function HeaderTwo({ cartItems, wishlistItems }) {
               {/* <!-- Header Logo Start --> */}
               <div className="align-self-center gi-header-logo">
                 <div className="header-logo">
-                  <Link href="/ga">
+                  <Link href="/inicio">
                     <img
                       src={
                         process.env.NEXT_PUBLIC_URL +

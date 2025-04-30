@@ -71,7 +71,22 @@
 		}
 	}
   }
+  .gi-contact-form-confirmation {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+		align-items: center;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .gi-contact-form-confirmation {
+      height: 450px;
+    }
+  }
 }
+
 .whatsapp-button {
   position: fixed;
   bottom: 15px;
