@@ -703,6 +703,7 @@ i.gicon.gi-star.fill {
       display: inline-block;
       float: left;
       &:not(:last-child) {
+        margin-bottom: 5px;
         margin-right: 5px;
       }
       span {

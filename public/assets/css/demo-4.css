@@ -898,6 +898,7 @@ i.gicon.gi-star.fill {
   float: left;
 }
 .gi-pro-pagination ul li:not(:last-child) {
+  margin-bottom: 5px;
   margin-right: 5px;
 }
 .gi-pro-pagination ul li span {
