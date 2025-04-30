@@ -8122,6 +8122,13 @@ i.gicon.gi-star.fill {
   background-color: #e91e63;
 }
 
+.gi-pro-pagination-top {
+  border-top: 0px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 24px;
+}
+
 /** Back to top button **/
 .gi-back-to-top {
   display: inline-block;

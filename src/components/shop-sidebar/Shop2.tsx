@@ -162,6 +162,12 @@ const Shop = ({
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+
+    // Desplazar al inicio de la tienda
+    const tiendaElement = document.getElementById("shop");
+    if (tiendaElement) {
+      tiendaElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   if (error) return <div>Failed to load products</div>;
@@ -175,7 +181,7 @@ const Shop = ({
           className={`margin-b-30 gi-shop-rightside ${order}`}
         >
           {/* <!-- Shop Top Start --> */}
-          <div className="gi-pro-list-top d-flex">
+          <div id="shop" className="gi-pro-list-top d-flex">
             <div className="col-md-6 gi-grid-list">
               <div className="gi-gl-btn">
                 {isMobile && <button
@@ -235,20 +241,6 @@ const Shop = ({
             <div
               className={`shop-pro-content ${isGridView ? "list-view-50" : ""}`}
             >
-              <div className={`shop-pro-inner ${list}`}>
-                <Row>
-                  {data?.data.map((item: any, index: any) => (
-                    <ShopProductItem
-                      isGridView={isGridView}
-                      xl={xl}
-                      data={item}
-                      key={index}
-                      isList={isList}
-                      groups={groups}
-                    />
-                  ))}
-                </Row>
-              </div>
               {/* <!-- Pagination Start --> */}
               {!data.data.length ? (
                 <div
@@ -258,19 +250,49 @@ const Shop = ({
                   Producto no encontrado.
                 </div>
               ) : (
-                <div className="gi-pro-pagination">
-                  <span>
-                    Mostrando {(currentPage - 1) * itemsPerPage + 1}-
-                    {Math.min(currentPage * itemsPerPage, data.totalItems)} en {" "}
-                    {data.totalItems} producto(s)
-                  </span>
+                <>
+                  <div className="gi-pro-pagination gi-pro-pagination-top">
+                    <span>
+                      Mostrando {(currentPage - 1) * itemsPerPage + 1}-
+                      {Math.min(currentPage * itemsPerPage, data.totalItems)} en {" "}
+                      {data.totalItems} producto(s)
+                    </span>
 
-                  <Paginantion
-                    currentPage={currentPage}
-                    totalPages={data.totalPages}
-                    onPageChange={handlePageChange}
-                  />
-                </div>
+                    <Paginantion
+                      currentPage={currentPage}
+                      totalPages={data.totalPages}
+                      onPageChange={handlePageChange}
+                    />
+                  </div>
+                  <div className={`shop-pro-inner ${list}`}>
+                    <Row>
+                      {data?.data.map((item: any, index: any) => (
+                        <ShopProductItem
+                          isGridView={isGridView}
+                          xl={xl}
+                          data={item}
+                          key={index}
+                          isList={isList}
+                          groups={groups}
+                        />
+                      ))}
+                    </Row>
+                  </div>
+                  <div className="gi-pro-pagination">
+                    <span>
+                      Mostrando {(currentPage - 1) * itemsPerPage + 1}-
+                      {Math.min(currentPage * itemsPerPage, data.totalItems)} en {" "}
+                      {data.totalItems} producto(s)
+                    </span>
+
+                    <Paginantion
+                      currentPage={currentPage}
+                      totalPages={data.totalPages}
+                      onPageChange={handlePageChange}
+                    />
+                  </div>
+                </>
+                
               )}
 
               {/* <!-- Pagination End --> */}

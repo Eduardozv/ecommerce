@@ -760,6 +760,13 @@ i.gicon.gi-star.fill {
   }
 }
 
+.gi-pro-pagination-top {
+  border-top: 0px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $border-color-grey;
+  margin-bottom: 24px;
+}
+
 /** Back to top button **/
 .gi-back-to-top {
   display: inline-block;
