@@ -128,6 +128,27 @@ const Contact = () => {
                 <div className="space"></div>
               </div>
             </Col>
+            <Col sm={6} lg={4} className="p-tp-12 m-auto">
+              <div className="gi-box">
+                <div className="detail">
+                  <div className="icon">
+                    <i className="fa fa-map-marker" aria-hidden="true">
+                      <FaMapMarkerAlt />
+                    </i>
+                  </div>
+                  <div className="info">
+                    <h3 className="title">Dirección</h3>
+                    <p>
+                      <i className="fa fa-map-marker" aria-hidden="true">
+                        <FaMapMarkerAlt />
+                      </i>{" "}
+                      &nbsp; {constants.address}
+                    </p>
+                  </div>
+                </div>
+                <div className="space"></div>
+              </div>
+            </Col>
           </Row>
           <Row className="p-t-80">
             <Col md={6}>
