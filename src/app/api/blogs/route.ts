@@ -36,87 +36,45 @@ export async function POST(req: NextRequest) {
 
   const {
     searchTerm = '',
-    sortOption = '1',
+    sortOption = '3',
     page = 1,
     limit = 10,
-    selectedGroup = [],
-    selectedCategory = [],
-    selectedSubCategory = [],
-    status = '',
     titleSlug = '',
   } = await req.json();
 
   // Log all the parameters received
-  console.log('Received parameters:', {
+  console.log('Blogs - Received parameters:', {
     searchTerm, 
     sortOption,
     page,
     limit,
-    selectedGroup,
-    selectedCategory,
-    selectedSubCategory,
-    status,
     titleSlug
   });
 
   const currentPage = parseInt(page as string, 10);
   const itemsPerPage = parseInt(limit as string, 10);
 
-  // Read and parse the JSON files from the products directory
-  const productsDir = path.join(process.cwd(), 'src/data/products');
-  const files = fs.readdirSync(productsDir).filter(file => file.endsWith('.json'));
+  // Read and parse the JSON files from the blogs directory
+  const blogsDir = path.join(process.cwd(), 'src/data/blogs');
+  const files = fs.readdirSync(blogsDir).filter(file => file.endsWith('.json'));
 
-  const products = files.map((file) => {
-    const filePath = path.join(productsDir, file);
+  const blogs = files.map((file) => {
+    const filePath = path.join(blogsDir, file);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(fileContent);
 
-    // Add titleSlug to each product
+    // Add titleSlug to each blog
     return {
       ...data,
       titleSlug: data.title.toLowerCase().replace(/ /g, '-'),
     };
   });
 
-  let filteredData = products.filter(item =>
-    item.category.toLowerCase().includes(searchTerm.toLowerCase())
+  let filteredData = blogs.filter(item =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (selectedGroup.length > 0) {
-    
-    // Get groups from the JSON file
-    const groupsDir = path.join(process.cwd(), 'src/data/groups');
-    const files = fs.readdirSync(groupsDir).filter(file => file.endsWith('.json'));
-
-    const groups = files.map((file) => {
-      const filePath = path.join(groupsDir, file);
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      return JSON.parse(fileContent);
-    });
-
-    const groupCategories = groups.filter(group => selectedGroup.includes(group.name))[0].categories;
-
-    filteredData = filteredData.filter((item) =>
-      groupCategories.includes(item.category)
-    );
-  }
-
-  if (selectedCategory.length > 0) {
-    filteredData = filteredData.filter((item) =>
-      selectedCategory.includes(item.category)
-    );
-  }
-
-  if (selectedSubCategory.length > 0) {
-    filteredData = filteredData.filter((item) =>
-      selectedSubCategory.includes(item.subcategory)
-    );
-  }
-
-  // Filtrar por status si está presente
-  if (status) {
-    filteredData = filteredData.filter((item) => item.status === status);
-  }
+  
 
   // Filtrar por titleSlug si está presente
   if (titleSlug) {

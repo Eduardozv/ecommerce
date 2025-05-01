@@ -170,7 +170,8 @@ const Shop = ({
     }
   };
 
-  if (error) return <div>Failed to load products</div>;
+  if (error) return <div>Fallo cargando productos</div>;
+  if (groupsError) return <div>Fallo cargando grupos</div>;
 
   return (
     <>

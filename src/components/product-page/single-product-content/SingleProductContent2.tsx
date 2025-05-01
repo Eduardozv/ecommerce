@@ -14,7 +14,6 @@ const calculateDiscount = (oldPrice: number, newPrice: number): number => {
 };
 
 const SingleProductContent = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
   const [isSliderInitialized, setIsSliderInitialized] = useState(false);
   const initialRef: any = null;
   const slider1 = useRef<Slider | null>(initialRef);

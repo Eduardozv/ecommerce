@@ -1,35 +1,40 @@
+import utils from "@/utility/utils";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 function BlogItem({ data }) {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const router = useRouter();
+
+  const handleBlogClick = () => {
+    const titleSlug = data.title.toLowerCase().replace(/ /g, '-');
+    router.push(`/noticia?nombre=${titleSlug}`);
   };
 
   return (
     <>
       <figure className="blog-img">
-        <Link onClick={handleSubmit} href="#">
+        <a onClick={handleBlogClick}>
           <img src={data.image} alt="news imag" />
-        </Link>
+        </a>
       </figure>
       <div className="detail">
         <label>
-          {data.date} -{" "}
-          <Link onClick={handleSubmit} href="#">
+          {utils.formatDate(data.dateAdded)}
+          <a onClick={handleBlogClick}>
             {data.name}
-          </Link>
+          </a>
         </label>
         <h3>
-          <Link onClick={handleSubmit} href="#">
+          <a onClick={handleBlogClick}>
             {data.title}
-          </Link>
+          </a>
         </h3>
         <div className="more-info">
-          <Link href="/blog-detail-left-sidebar">
-            Read More
+          <a onClick={handleBlogClick}>
+            Leer Más
             <i className="fi-rr-angle-double-small-right"></i>
-          </Link>
+          </a>
         </div>
       </div>
     </>

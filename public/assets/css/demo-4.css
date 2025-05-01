@@ -3936,6 +3936,10 @@ body.gi-menu-open:before {
   font-weight: 500;
   line-height: 22px;
 }
+.gi-blog .blog-info .detail h3 a:hover,
+.gi-blog-section .blog-info .detail h3 a:hover {
+  color: #e91e63;
+}
 .gi-blog .blog-info .detail p,
 .gi-blog-section .blog-info .detail p {
   font-size: 14px;

@@ -1,6 +1,6 @@
 "use client"
 import React, { useMemo, useState } from "react";
-import BlogContent from "./blog-content/BlogContent";
+import BlogCard from "./blog-content/BlogCard";
 import { Col } from "react-bootstrap";
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
@@ -20,11 +20,11 @@ const BlogFullwidth = ({ order = "", lg, md, }: any) => {
   );
 
   const { data, error } = useSWR(
-    ["/api/blogcontent", postData],
+    ["/api/blogs", postData],
     ([url, postData]) => fetcher(url, postData)
   );
 
-  if (error) return <div>Fallo en cargas noticia</div>;
+  if (error) return <div>Fallo en cargar noticias</div>;
 
   const { data: posts = [], totalPages = 0 } = data || {};
 
@@ -44,7 +44,7 @@ const BlogFullwidth = ({ order = "", lg, md, }: any) => {
           <div className="gi-blogs-inner">
             <div className="row">
             {getPageData().map((item: any, index: number) => (
-                <BlogContent data={item} lg={lg} key={index} md={md} />
+                <BlogCard data={item} lg={lg} key={index} md={md} />
               ))}
             </div>
           </div>

@@ -5,7 +5,6 @@ import SingleProductContent from "./single-product-content/SingleProductContent2
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
 import Spinner from "../button/Spinner";
-import { useDispatch } from "react-redux";
 
 import { useSearchParams } from "next/navigation"; // Import useRouter and useSearchParams
 
@@ -17,38 +16,8 @@ const ProductPage = ({
   hasPaginate = false,
   onError = () => {},
 }) => {
-  const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const titleSlug = searchParams.get('nombre');
-
-  // const {
-  //   selectedCategory,
-  //   selectedWeight,
-  //   minPrice,
-  //   maxPrice,
-  //   selectedColor,
-  //   selectedTags,
-  // } = useSelector((state: RootState) => state.filter);
-
-  // const { selectedProduct } = useSelector((state: RootState) => state.product); // Get selectedProduct from productReducer
-
-  // useEffect(() => {
-  //   if (!selectedProduct && titleSlug) {
-  //     // Fetch product data from API if not available in Redux
-  //     fetch(`/api/product?titleSlug=${titleSlug}`, {
-  //       method: 'POST',
-  //     })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         if (data.error) {
-  //           console.error(data.error);
-  //         } else {
-  //           dispatch(setSelectedProduct(data));
-  //         }
-  //       })
-  //       .catch(error => console.error('Error fetching product:', error));
-  //   }
-  // }, [selectedProduct, titleSlug, dispatch]);
 
   const postData = useMemo(() => ({ titleSlug: titleSlug }), [titleSlug]);
 
