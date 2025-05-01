@@ -118,3 +118,18 @@ collections:
           - { label: "Shopping Cart", value: "fi-rr-shopping-cart" }
           - { label: "Heart", value: "fi-rr-heart" }
           - { label: "Check", value: "fi-rr-check" }
+
+  - name: "blogs"
+    label: "Noticias"
+    folder: "src/data/blogs"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    extension: "json"
+    fields:
+      - { label: "ID", name: "id", widget: "uuid", prefix: 'blog' }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "markdown" } # Rich text content
+      - { label: "Contenido", name: "body", widget: "markdown" } # Rich text content
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Fecha Agregado", name: "dateAdded", widget: "datetime", required: true, default: '{{now}}' }

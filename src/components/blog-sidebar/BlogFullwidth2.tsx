@@ -4,7 +4,7 @@ import BlogContent from "./blog-content/BlogContent";
 import { Col } from "react-bootstrap";
 import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
-import Paginantion from "../paginantion/Paginantion";
+import Paginantion from "../paginantion/Paginantion2";
 
 const BlogFullwidth = ({ order = "", lg, md, }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,9 +54,9 @@ const BlogFullwidth = ({ order = "", lg, md, }: any) => {
         {/* <!-- Pagination Start --> */}
         <div className="gi-pro-pagination">
           <span>
-            Showing {(currentPage - 1) * itemsPerPage + 1}-
-            {Math.min(currentPage * itemsPerPage, posts.length)} of{" "}
-            {posts.length} item(s)
+            Mostrando {(currentPage - 1) * itemsPerPage + 1}-
+            {Math.min(currentPage * itemsPerPage, posts.length)} de{" "}
+            {posts.length} noticia(s)
           </span>
           <Paginantion
             currentPage={currentPage}
