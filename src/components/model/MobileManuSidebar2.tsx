@@ -28,8 +28,8 @@ const MobileManuSidebar = ({ isMobileMenuOpen, closeMobileManu, toggleMainMenu, 
           <div className="gi-menu-inner">
             <div className="gi-menu-content">
               <ul>
-                {links.map(link => (
-                  <li className="non-drop">
+                {links.map(( link, index ) => (
+                  <li key={index} className="non-drop">
                     <Link
                       href={link.href}
                       onClick={() => toggleMainMenu(link.name)}

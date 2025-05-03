@@ -9,7 +9,7 @@ import utils from "@/utility/utils";
 import ReactMarkdown from "react-markdown";
 
 
-const BlogDetailFullwidth = ({ order = "" }: any) => {
+const SingleCatalog = ({ order = "" }: any) => {
 
   const searchParams = useSearchParams();
   const titleSlug = searchParams.get("nombre");
@@ -17,11 +17,11 @@ const BlogDetailFullwidth = ({ order = "" }: any) => {
   const postData = useMemo(() => ({ titleSlug: titleSlug }), [titleSlug]);
 
   const { data, error } = useSWR(
-      ["/api/blogs", postData],
+      ["/api/catalogs", postData],
       ([url, postData]) => fetcher(url, postData)
     );
   
-    if (error) return <div>Fallo en cargar noticia</div>;
+    if (error) return <div>Fallo en cargar catálogo</div>;
     if (!data)
       return (
         <div>
@@ -29,7 +29,7 @@ const BlogDetailFullwidth = ({ order = "" }: any) => {
         </div>
       );
   
-    const selectedBlog = data.data[0];
+    const selectedCatalog = data.data[0];
 
   return (
     <>
@@ -43,22 +43,19 @@ const BlogDetailFullwidth = ({ order = "" }: any) => {
                   <a>
                     <img
                       src={
-                        process.env.NEXT_PUBLIC_URL + selectedBlog.image
+                        process.env.NEXT_PUBLIC_URL + selectedCatalog.image
                       }
-                      alt="news imag"
+                      alt="catalog imag"
                     />
                   </a>
                 </figure>
                 <div className="single-blog-detail">
                   <label>
-                    {utils.formatDate(selectedBlog.dateAdded)}
+                    {utils.formatDate(selectedCatalog.dateAdded)}
                   </label>
-                  <h3>{selectedBlog.title}</h3>
-                  <p className="gi-text">
-                    {selectedBlog.description}
-                  </p>
+                  <h3>{selectedCatalog.title}</h3>
                   <div>
-                    <ReactMarkdown>{selectedBlog.body}</ReactMarkdown>
+                    <ReactMarkdown>{selectedCatalog.body}</ReactMarkdown>
                   </div>
                 </div>
               </div>
@@ -71,4 +68,4 @@ const BlogDetailFullwidth = ({ order = "" }: any) => {
   );
 };
 
-export default BlogDetailFullwidth;
+export default SingleCatalog;
