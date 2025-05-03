@@ -51,8 +51,8 @@ const LatestBlog = ({
                  <p>Abordamos temas interesantes en {new Date().getFullYear()}</p>
               </div>
               <span className="title-link">
-                <a href="/blog-left-sidebar">
-                  Ver todas<i className="fi-rr-angle-double-small-right"></i>
+                <a href="/noticias">
+                  Ver Más<i className="fi-rr-angle-double-small-right"></i>
                 </a>
               </span>
             </div>
