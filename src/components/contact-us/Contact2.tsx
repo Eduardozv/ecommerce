@@ -43,6 +43,7 @@ const Contact = () => {
             to_email: constants.mail2,
             title: formData.fname,
             name: formData.fname,
+            email: formData.umail,
           },
           process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "" // User ID
         )

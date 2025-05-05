@@ -151,5 +151,5 @@ collections:
         name: "pdf_file"
         widget: "file"
         media_library:
-          config:
-            multiple: true
+          allow_multiple: false
+            
