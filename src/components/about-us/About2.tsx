@@ -48,6 +48,9 @@ const About = () => {
                   Brindamos soluciones integrales en equipamiento industrial para panaderías, gastronomía, supermercados, cámaras de frío, góndolas, fabricadoras de hielo y más.
                 </p>
                 <p>
+                  Desarrollamos proyectos completos, desde el diseño inicial hasta la instalación. Nos encargamos de cada etapa del proceso para garantizar una solución funcional y eficiente, adaptada a las necesidades de cada cliente.
+                </p>
+                <p>
                   Nos especializamos en la representación directa de fábrica y en la distribución de marcas blancas, adaptadas a las necesidades específicas de cada cliente y mercado. Ofrecemos una respuesta personalizada y contamos con capacidad de entrega a nivel global.
                 </p>
                 <p>

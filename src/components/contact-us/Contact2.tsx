@@ -43,7 +43,6 @@ const Contact = () => {
             to_email: constants.mail2,
             title: formData.fname,
             name: formData.fname,
-            email: formData.umail,
           },
           process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "" // User ID
         )
@@ -153,7 +152,7 @@ const Contact = () => {
           </Row>
           <Row className="p-t-80">
             <Col md={6}>
-              <iframe src="//maps.google.com/maps?q=-34.89487750313468, -56.17222910674555&z=13&output=embed"></iframe>
+              <iframe src="//maps.google.com/maps?q=9.35486125372281, -79.89655136093558&z=13&t=k&output=embed"></iframe>
             </Col>
             <Col md={6}>
               {isSubmitted ? ( // Mostrar mensaje de éxito

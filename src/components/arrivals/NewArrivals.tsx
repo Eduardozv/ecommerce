@@ -79,7 +79,7 @@ const NewArrivals = () => {
                       data-bs-toggle="tab"
                       onClick={() => handleProductClick(2)}
                     >
-                      Hornos
+                      Cocción
                     </a>
                   </Tab>
                   <Tab
@@ -141,7 +141,7 @@ const NewArrivals = () => {
                       }`}
                     >
                       <Row>
-                        <ProductAll category="Hornos" />
+                        <ProductAll category="Cocción" />
                       </Row>
                     </Fade>
                   </TabPanel>
