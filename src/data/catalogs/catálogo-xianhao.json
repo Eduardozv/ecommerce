@@ -1,9 +1,0 @@
-{
-  "dateAdded": "2025-05-02T22:47:00.000Z",
-  "title": "Catálogo Xianhao",
-  "body": "[/assets/uploads/commercial-kitchen-equipment-catalogue.pdf](/assets/uploads/commercial-kitchen-equipment-catalogue.pdf)\n\niframe pelado\n\n<iframe src=\"/assets/uploads/commercial-kitchen-equipment-catalogue.pdf\" width=\"100%\" height=\"600px\" style=\"border: none;\">\n\n  Este navegador no puede mostrar el PDF. \n\n  <a href=\"/assets/uploads/commercial-kitchen-equipment-catalogue.pdf\">Descargar PDF</a>\n\n</iframe>\n\ncódigo bloque\n\n```\n<iframe src=\"/assets/uploads/commercial-kitchen-equipment-catalogue.pdf\" width=\"100%\" height=\"600px\" style=\"border: none;\">\n  Este navegador no puede mostrar el PDF. \n  <a href=\"/assets/uploads/commercial-kitchen-equipment-catalogue.pdf\">Descargar PDF</a>\n</iframe>\n\n```",
-  "pdf_file": [
-    "/assets/uploads/commercial-kitchen-equipment-catalogue.pdf"
-  ],
-  "image": "/assets/uploads/2-tier-Work-Table-1.jpg"
-}

@@ -7,8 +7,10 @@ const CatalogCard = ({md, data, lg}: any) => {
   const router = useRouter();
 
   const handleCatalogClick = () => {
-    const titleSlug = data.title.toLowerCase().replace(/ /g, '-');
-    router.push(`/catalogo?nombre=${titleSlug}`);
+    const fullUrl = `${window.location.origin}${data.pdf_file}`;
+  
+    // Usar router para redirigir al PDF
+    router.push(fullUrl);
   };
 
   return (

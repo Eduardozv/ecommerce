@@ -75,7 +75,14 @@ collections:
           widget: "image"
       - { label: "Precio Viejo", name: "oldPrice", widget: "number" }
       - { label: "Precio Nuevo", name: "newPrice", widget: "number" }
-      - { label: "Marca", name: "brand", widget: "string" }
+      - 
+        label: "Marca"
+        name: "brands"
+        widget: "relation"
+        collection: "brands"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
       - { label: "Estado", name: "status", widget: "select", options: ["Disponible", "Agotado", "En Oferta"], default: "Available" }
       - { label: "Fecha Agregado", name: "dateAdded", widget: "datetime", required: true, default: '{{now}}' }
 
@@ -144,12 +151,28 @@ collections:
     fields:
       - { label: "ID", name: "id", widget: "uuid", prefix: 'catalog' }
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Contenido", name: "body", widget: "markdown" } # Rich text content
+      - 
+        label: "Marca"
+        name: "brands"
+        widget: "relation"
+        collection: "brands"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
       - { label: "Imagen", name: "image", widget: "image" }
-      - { label: "Fecha Agregado", name: "dateAdded", widget: "datetime", required: true, default: '{{now}}' }
       - label: "Archivo PDF"
         name: "pdf_file"
         widget: "file"
         media_library:
           allow_multiple: false
-            
+      - { label: "Fecha Agregado", name: "dateAdded", widget: "datetime", required: true, default: '{{now}}' }
+
+  - name: "brands"
+    label: "Marcas"
+    folder: "src/data/brands"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    extension: "json"
+    fields:
+      - { label: "Nombre", name: "name", widget: "string" }
