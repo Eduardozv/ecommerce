@@ -908,6 +908,12 @@ div#gi-main-menu-desk {
       z-index: 16;
     }
   }
+  .gi-cat-dropdown.hidden {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
 }
 .gi-category-menu {
   position: relative;

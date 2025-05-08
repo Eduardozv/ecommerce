@@ -6,13 +6,14 @@ import fetcher from "@/components/fetcher-api/Fetcher";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { Fade } from "react-awesome-reveal";
 import { useRouter } from "next/navigation";
-import links from '@/utility/links';
+import links from "@/utility/links";
 
 const HeaderManu = ({
-  onSuccess = () => {},
-  onError = () => {},
+onSuccess = () => {},
+onError = () => {},
 }: any) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isDropdownHidden, setIsDropdownHidden] = useState(false); // State to hide dropdown
   const router = useRouter();
 
   const { data: groups, error: groupsError } = useSWR(`/api/groups`, fetcher, {
@@ -37,23 +38,41 @@ const HeaderManu = ({
     setSelectedIndex(index);
   };
 
+  const scrollToShop = () => {
+    // Desplazar al inicio de la tienda
+    // Delay the scroll to ensure the DOM is updated
+    setTimeout(() => {
+      const tiendaElement = document.getElementById("shop");
+      if (tiendaElement) {
+        tiendaElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // Adjust the delay as needed
+  }
+
   // Function that finds the group that contains the selected category
   const getUrlGroupByCategory = (category: string) => {
-    console.log('categorySlug', category);
     const group = groups.find((group: any) => group.categories.includes(category));
     return group ? "grupo=" + group.name + "&" : "";
   };
 
-  const handleCategoryClick = (categorySlug: string) => {
+  const handleCategoryOrSubCategoryClick = (
+    categorySlug: string,
+    subcategorySlug?: string
+  ) => {
     const urlGroup = getUrlGroupByCategory(categorySlug);
-    // Navigate to /shop-categories with the selected category as a query parameter
-    router.push(`/tienda/?${urlGroup}categoria=${categorySlug}`);
+
+    // Construct the URL based on whether a subcategory is provided
+    const newUrl = subcategorySlug
+      ? `/tienda/?${urlGroup}categoria=${categorySlug}&subcategoria=${subcategorySlug}`
+      : `/tienda/?${urlGroup}categoria=${categorySlug}`;
+
+    router.push(newUrl); // Navigate to the constructed URL
+    setIsDropdownHidden(true); // Hide the dropdown menu
+    scrollToShop(); // Scroll to the shop section
   };
 
-  const handleSubCategoryClick = (subcategorySlug: string, categorySlug: string) => {
-    const urlGroup = getUrlGroupByCategory(categorySlug);
-    // Navigate to /shop-categories with the selected subcategory as a query parameter
-    router.push(`/tienda/?${urlGroup}categoria=${categorySlug}&subcategoria=${subcategorySlug}`);
+  const handleMouseEnter = () => {
+    setIsDropdownHidden(false); // Show the dropdown menu on hover
   };
 
   return (
@@ -61,11 +80,11 @@ const HeaderManu = ({
       <div className="gi-header-cat d-none d-lg-block">
         <div className="container position-relative">
           <div className="gi-nav-bar">
-            {/* <!-- Category Toggle --> */}
             <Tabs
               selectedIndex={selectedIndex}
               onSelect={(selectedIndex) => setSelectedIndex(selectedIndex)}
               className="gi-category-icon-block"
+              onMouseEnter={handleMouseEnter} // Show dropdown on hover
             >
               <div className="gi-category-menu">
                 <div className="gi-category-toggle">
@@ -77,7 +96,9 @@ const HeaderManu = ({
                   ></i>
                 </div>
               </div>
-              <div className="gi-cat-dropdown">
+              <div
+                className={`gi-cat-dropdown ${isDropdownHidden ? "hidden" : ""}`} // Conditionally add "hidden" class
+              >
                 <div className="gi-cat-block">
                   <div className="gi-cat-tab">
                     <TabList>
@@ -87,7 +108,6 @@ const HeaderManu = ({
                         role="tablist"
                         aria-orientation="vertical"
                       >
-                        {/* Dynamically render tabs based on groups */}
                         {groups.map((group: any, index: number) => (
                           <Tab key={group.name}>
                             <button
@@ -115,7 +135,6 @@ const HeaderManu = ({
                     </TabList>
                     <div className="tab-content" id="v-pills-tabContent">
                       <Fade duration={500} delay={200}>
-                        {/* Dynamically render TabPanels based on groups */}
                         {groups.map((group: any, index: number) => (
                           <TabPanel
                             key={group.name}
@@ -130,7 +149,6 @@ const HeaderManu = ({
                           >
                             <div className="tab-list row">
                               {group.categories?.map((categoryName: string, catIndex: number) => {
-                                // Find the category object by name
                                 const category = categories.find(
                                   (cat: any) => cat.name === categoryName
                                 );
@@ -140,7 +158,7 @@ const HeaderManu = ({
                                 return (
                                   <div className="col" key={catIndex}>
                                     <span
-                                      onClick={() => handleCategoryClick(category.name)}
+                                      onClick={() => handleCategoryOrSubCategoryClick(category.name)}
                                       className="gi-col-title"
                                     >
                                       {category.name}
@@ -153,7 +171,7 @@ const HeaderManu = ({
                                         .map((sub: any, subIndex: number) => (
                                           <li key={subIndex}>
                                             <span
-                                              onClick={() => handleSubCategoryClick(sub.name, sub.category)}
+                                              onClick={() => handleCategoryOrSubCategoryClick(sub.category, sub.name)}
                                             >
                                               {sub.name}
                                             </span>
