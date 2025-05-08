@@ -16,9 +16,9 @@ const service: Service[] = [
     title: "Siempre buscando lo que mejor se adecúe a la necesidad del cliente.",
   },
   {
-    icon: "fi fi-tr-phone-office",
-    name: "Servicio técnico",
-    title: "Contamos con técnicos e ingenieros altamente capacitados para brindar tranquilidad y perfección a la hora de instalar, reparar y realizar mantenimiento.",
+    icon: "fi fi-tr-boxes",
+    name: "Equipamiento de Calidad",
+    title: "Contamos con una amplia gama de productos confiables y modernos, pensados para adaptarse a las necesidades específicas de tu negocio.",
   },
   {
     icon: "fi fi-brands-substance-3d-painter",
