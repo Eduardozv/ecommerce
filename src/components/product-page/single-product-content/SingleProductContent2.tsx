@@ -22,7 +22,7 @@ const SingleProductContent = ({ product }) => {
   const slider1 = useRef<Slider | null>(initialRef);
   const slider2 = useRef<Slider | null>(initialRef);
   const router = useRouter();
-  
+
   const slider1Settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -182,7 +182,7 @@ const SingleProductContent = ({ product }) => {
                         {productCatalog.map((catalog: any, index: number) => (
                           <li key={index}>
                             <a onClick={() => handleCatalogClick(catalog)} target="_blank" rel="noopener noreferrer">
-                              <i className="fi-rr-angle-double-small-right"></i>&nbsp;Ver PDF&nbsp; {catalog.title} 
+                              <i className="fi-rr-angle-double-small-right"></i>&nbsp;Ver Catálogo en PDF&nbsp; {catalog.title} 
                             </a>
                           </li>
                         ))}

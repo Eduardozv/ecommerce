@@ -102,10 +102,16 @@
   }
   .catalog-card {
     .detail {
+      label {
+        font-size: 11px;
+        margin-top: 9px;
+      }
+
       h3 {
         margin: 0px 0px 15px 0px;
         a {
-          font-size: 15px;
+          font-size: 14px;
+          line-height: 1px;
         }
       }
     }
