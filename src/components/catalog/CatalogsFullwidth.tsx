@@ -6,9 +6,9 @@ import useSWR from "swr";
 import fetcher from "../fetcher-api/Fetcher";
 import Paginantion from "../paginantion/Paginantion2";
 
-const CatalogFullwidth = ({ order = "", lg, md, }: any) => {
+const CatalogFullwidth = ({ order = "", xl, lg, md, sm, xs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 20;
 
 
   const postData = useMemo(
@@ -44,7 +44,7 @@ const CatalogFullwidth = ({ order = "", lg, md, }: any) => {
           <div className="gi-blogs-inner">
             <div className="row">
             {getPageData().map((item: any, index: number) => (
-                <CatalogCard data={item} lg={lg} key={index} md={md} />
+                <CatalogCard data={item} xl={xl} lg={lg} key={index} md={md} sm={sm} xs={xs} />
               ))}
             </div>
           </div>

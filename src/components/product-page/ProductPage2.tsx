@@ -19,7 +19,7 @@ const ProductPage = ({
   const searchParams = useSearchParams();
   const titleSlug = searchParams.get('nombre');
 
-  const postData = useMemo(() => ({ titleSlug: titleSlug }), [titleSlug]);
+  const postData = useMemo(() => ({ titleSlug: titleSlug }), []);
 
   // Llamado a la API con el filtro
   const { data, error } = useSWR(
@@ -35,7 +35,7 @@ const ProductPage = ({
       </div>
     );
 
-  const selectedProduct = data.data[0];
+  const selectedProduct = data?.data[0];
 
   return (
     <>
@@ -44,12 +44,10 @@ const ProductPage = ({
         md={12}
         className={`gi-pro-rightside gi-common-rightside ${order}`}
       >
-        {/* <!-- Single product content Start --> */}
         <div className="single-pro-block">
           <SingleProductContent product={selectedProduct} />
         </div>       
       </Col>
-      {/* <!-- Sidebar Area Start --> */}
     </>
   );
 };

@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
     page = 1,
     limit = 10,
     titleSlug = '',
+    brand = '',
   } = await req.json();
 
   // Log all the parameters received
@@ -48,7 +49,8 @@ export async function POST(req: NextRequest) {
     sortOption,
     page,
     limit,
-    titleSlug
+    titleSlug,
+    brand
   });
 
   const currentPage = parseInt(page as string, 10);
@@ -74,11 +76,14 @@ export async function POST(req: NextRequest) {
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  
-
   // Filtrar por titleSlug si está presente
   if (titleSlug) {
     filteredData = filteredData.filter((item) => item.titleSlug === titleSlug);
+  }
+
+  // Filtrar por brand si está presente
+  if (brand) {
+    filteredData = filteredData.filter((item) => item.brand === brand);
   }
 
   const sortedData = sortData(filteredData, sortOption);

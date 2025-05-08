@@ -502,6 +502,34 @@
 				margin-right: 10px;
 			}
 		}
+
+		.product-catalog {
+			a {
+				@include ease3;
+				color: $text-color-999;
+				font-size: 15px;
+				text-decoration: none;
+				display: flex;
+				align-items: center;
+
+				&:hover {
+					background: $white;
+					color: $main-primary-color;
+
+					i {
+						color: $main-primary-color;
+					}
+				}
+
+				i {
+					@include ease3;
+					margin-left: 5px;
+					color: $main-secondary-color;
+					font-size: 13px;
+					display: flex;
+				}
+			}
+		}
 	}
 
 

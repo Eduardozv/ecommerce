@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import utils from "@/utility/utils";
 
-const CatalogCard = ({md, data, lg}: any) => {
+const CatalogCard = ({data, xs, sm, md, lg, xl}: any) => {
   const router = useRouter();
 
   const handleCatalogClick = () => {
@@ -15,9 +15,9 @@ const CatalogCard = ({md, data, lg}: any) => {
 
   return (
     <>
-        <Col md={md} sm={12} lg={lg} className="mb-6 gi-blog-block">
+        <Col xl={xl} lg={lg} md={md} sm={sm} xs={xs} className="mb-6 gi-blog-block">
           <div className="gi-blog-item">
-            <div className="blog-info">
+            <div className="blog-info catalog-card">
               <figure className="blog-img">
                 <a onClick={handleCatalogClick}>
                   <img src={data.image} alt="news imag" />
@@ -32,11 +32,6 @@ const CatalogCard = ({md, data, lg}: any) => {
                     {data.title}
                   </a>
                 </h3>
-                <div className="more-info">
-                  <a onClick={handleCatalogClick}>
-                    Ver <i className="gicon gi-angle-double-right"></i>
-                  </a>
-                </div>
               </div>
             </div>
           </div>

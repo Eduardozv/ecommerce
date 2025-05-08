@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { Col, Row } from "react-bootstrap";
+import useSWR from "swr";
+import fetcher from "@/components/fetcher-api/Fetcher";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import Spinner from "@/components/button/Spinner";
 import ZoomImage from "@/components/zoom-image/ZoomImage";
 import constants from "@/utility/constants";
+import { useRouter } from "next/navigation";
 
 const calculateDiscount = (oldPrice: number, newPrice: number): number => {
   if (!oldPrice || !newPrice || oldPrice <= newPrice) return 0;
@@ -18,7 +21,8 @@ const SingleProductContent = ({ product }) => {
   const initialRef: any = null;
   const slider1 = useRef<Slider | null>(initialRef);
   const slider2 = useRef<Slider | null>(initialRef);
-
+  const router = useRouter();
+  
   const slider1Settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -52,6 +56,25 @@ const SingleProductContent = ({ product }) => {
       slider1.current.slickGoTo(index);
     }
   };
+
+  const handleCatalogClick = (data) => {
+    const fullUrl = `${window.location.origin}${data.pdf_file}`;
+  
+    // Usar router para redirigir al PDF
+    router.push(fullUrl);
+  };
+
+  const productBrand = product?.brand;
+
+  const postDataCatalog = useMemo(() => ({ brand: productBrand }), []);
+
+  // Llamado a la API con el filtro
+  const { data: dataCatalog, error: errorCatalog } = useSWR(
+    ["/api/catalogs", postDataCatalog],
+    ([url, postDataCatalog]) => fetcher(url, postDataCatalog)
+  );
+
+  const productCatalog = errorCatalog ? null : dataCatalog?.data;
 
   if (!product) {
     return (
@@ -147,6 +170,23 @@ const SingleProductContent = ({ product }) => {
                   <Col>
                     <div className="product-body" style={{ width: "100%" }}>
                       <ReactMarkdown>{product.body}</ReactMarkdown>
+                    </div>
+                  </Col>
+                </Row>
+              )}
+              {productCatalog && productCatalog.length > 0 && (
+                <Row style={{ width: "100%", marginTop: "20px" }}>
+                  <Col>
+                    <div className="product-catalog">
+                      <ul>
+                        {productCatalog.map((catalog: any, index: number) => (
+                          <li key={index}>
+                            <a onClick={() => handleCatalogClick(catalog)} target="_blank" rel="noopener noreferrer">
+                              <i className="fi-rr-angle-double-small-right"></i>&nbsp;Ver PDF&nbsp; {catalog.title} 
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </Col>
                 </Row>

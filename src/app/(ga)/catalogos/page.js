@@ -5,15 +5,16 @@ import Breadcrumb from '@/components/breadcrumb/Breadcrumb'
 const page = () => {
     return (
         <>
-
-
             <Breadcrumb title={"Catálogos"} />
             <section className="gi-blog padding-tb-40">
                 <div className="container">
                     <Row>
                         <CatalogsFullwidth
-                            lg={4}
-                            md={6}
+                            xl={2}
+                            lg={3}
+                            md={4}
+                            sm={6}
+                            xs={12}
                         />
                     </Row>
                 </div>
