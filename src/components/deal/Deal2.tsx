@@ -64,7 +64,7 @@ const Deal = ({
                       <h2 className="gi-title">
                         Productos en <span>Oferta</span>
                       </h2>
-                      <p>Aprovecha la baja en los precios</p>
+                      <p>Aprovecha la baja de precios de este Mes</p>
                     </div>
                   </Fade>
                 </div>
