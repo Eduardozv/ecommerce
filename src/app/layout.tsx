@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body style={{ background: "none" }}>
         <Loader>
           <Providers>
