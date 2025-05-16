@@ -1,0 +1,17 @@
+{
+  "title": "Hornos para Pizza",
+  "brand": "HengXing",
+  "category": "Hornos",
+  "subcategory": "Hornos Pizzeros",
+  "description": "Línea profesional de hornos eléctricos y a gas para pizza, diseñados para entornos gastronómicos exigentes. Ofrecen amplio rango de capacidades, control de temperatura ajustable y superficies de cocción en piedra.",
+  "images": [
+    "/assets/uploads/hornos-para-pizza.png",
+    "/assets/uploads/hornos-para-pizza-2.png",
+    "/assets/uploads/hornos-para-pizza-3.png"
+  ],
+  "oldPrice": null,
+  "newPrice": null,
+  "status": "Disponible",
+  "dateAdded": "2025-05-16T23:20:28.578685",
+  "body": "• Hornos disponibles en versiones eléctricas (HEP) y a gas (HGP).\n\n• Control de temperatura ajustable hasta 350 °C.\n\n• Voltajes: 220–240V, 380V y modelos mixtos.\n\n• Superficie de cocción con piedra para distribución homogénea del calor.\n\n• Diseños de 1, 2 o más cámaras de cocción.\n\nMODELOS DESTACADOS:\n\nHEP-12 (eléctrico):\n\t◦ Dimensiones: 1100x570x360 mm\n\t◦ Potencia: 6.7 kW • Superficie: 350x1000 mm\n\nHGP-12 (gas):\n\t◦ Dimensiones: 1100x570x430 mm\n\t◦ Potencia: 6 kW/h + 0.1 kW auxiliar\n\t◦ Cámara: 600x600x150 mm\n\nHEP-18 / HGP-18:\n\t◦ Dimensiones: 1560x750x360/430 mm\n\t◦ Potencias: 10.3 kW (eléctrico), 15 kW/h (gas)\n\t◦ Superficie: 500x1450 mm\n\nHEP-01-1:\n\t◦ Dimensiones: 870x600x345 mm\n\t◦ Potencia: 4.2 kW • Piedra: 638x430 mm\n\nHEP-2PR / HEP-5T / HEP-25T:\n\t◦ Voltaje: 220–240V\n\t◦ Piedra: 400x400 mm (1 o 2 piezas)\n\t◦ Tamaños: desde 560x570x280 a 560x570x440 mm\n\nHEP-32 (eléctrico):\n\t◦ Dimensiones: 2500x1060x450 mm\n\t◦ Potencia: 25.5 kW • Superficie: 850x1800 mm\n\nHGP-32 (gas):\n\t◦ Dimensiones: 2200x1060x430 mm\n\t◦ Potencia: 30 kW/h + 0.2 kW auxiliar\n\t◦ Superficie de cocción: doble cámara\n\nTodos los modelos cuentan con construcción robusta y son ideales para cocción rápida y uniforme de pizzas en ambientes profesionales."
+}
