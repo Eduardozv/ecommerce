@@ -43,7 +43,6 @@ const ProductPage = ({
     <>
       <Col
         lg={lg}
-        md={12}
         className={`gi-pro-rightside gi-common-rightside ${order}`}
       >
         <div className="single-pro-block">

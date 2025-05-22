@@ -61,6 +61,14 @@
 	.single-pro-desc {
 		width: 52.7%;
 	}
+	@media screen and (max-width: 991px) {
+		.single-pro-desc {
+			width: 100%;
+		}
+		.single-pro-img {
+			width: 100%;
+		}
+	}
 	.single-pro-img-no-sidebar {
 		width: 40%;
 	}
@@ -938,4 +946,28 @@
 			}
 		}
 	}
+}
+
+.single-nav-thumb {
+  &.slick-slider {
+    .slick-list {
+      margin: 0 -5px;
+    }
+    
+    .slick-slide {
+      padding: 0 5px;
+      
+      &.slick-current {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Ajuste para cuando hay pocos slides
+  &.slick-slider:not(.slick-vertical) {
+    .slick-track {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

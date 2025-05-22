@@ -24,17 +24,17 @@ const SingleProductContent = ({ product }) => {
   const slider2 = useRef<Slider | null>(initialRef);
   const router = useRouter();
 
-  const slider1Settings = {
+   const slider1Settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    fade: false,
+    fade: true,          // Added to prevent cloning
     asNavFor: slider2.current,
     focusOnSelect: true,
   };
 
   const slider2Settings = {
-    slidesToShow: 3,
+    slidesToShow: product?.images?.length <= 4 ? product?.images?.length : 4,
     slidesToScroll: 1,
     asNavFor: slider1.current,
     dots: false,
@@ -111,9 +111,8 @@ const SingleProductContent = ({ product }) => {
       <div className="single-pro-inner">
         <Row>
           {isSliderInitialized && (
-            <Col className="single-pro-img">
+            <div className="single-pro-img">
               <div className="single-product-scroll">
-                {product.images.length > 1 ? (
                   <>
                     <Slider
                       {...slider1Settings}
@@ -130,32 +129,28 @@ const SingleProductContent = ({ product }) => {
                         </div>
                       ))}
                     </Slider>
-                    <Slider
-                      {...slider2Settings}
-                      ref={(slider) => (slider2.current = slider)}
-                      className="single-nav-thumb"
-                    >
-                      {product.images.map((image: string, index: number) => (
-                        <div
-                          key={index}
-                          className="single-slide"
-                          onClick={() => handleSlider2Click(index)}
-                        >
-                          <img className="img-responsive" src={image} alt={product.title} />
-                        </div>
-                      ))}
-                    </Slider>
+                    {product.images.length > 1 && (
+                      <Slider
+                        {...slider2Settings}
+                        ref={(slider) => (slider2.current = slider)}
+                        className="single-nav-thumb"
+                      >
+                        {product.images.map((image: string, index: number) => (
+                          <div
+                            key={index}
+                            className="single-slide"
+                            onClick={() => handleSlider2Click(index)}
+                          >
+                            <img className="img-responsive" src={image} alt={product.title} />
+                          </div>
+                        ))}
+                      </Slider>
+                    )}
                   </>
-                ) : (
-                  // Mostrar una sola imagen sin slider
-                  <div className="single-slide zoom-image-hover">
-                    <ZoomImage src={product.images[0]} alt={product.title} />
-                  </div>
-                )}
               </div>
-            </Col>
+            </div>
           )}
-          <Col className="single-pro-desc m-t-991">
+          <div className="single-pro-desc m-t-991">
             <div className="single-pro-content">
               <h5 className="gi-single-title">
                 {product.title}
@@ -212,7 +207,7 @@ const SingleProductContent = ({ product }) => {
                 </Row>
               )}
             </div>
-          </Col>
+          </div>
         </Row>
 
       </div>

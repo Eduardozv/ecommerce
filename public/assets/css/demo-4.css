@@ -6179,6 +6179,14 @@ body.gi-menu-open:before {
 .gi-single-product .single-pro-desc {
   width: 52.7%;
 }
+@media screen and (max-width: 991px) {
+  .gi-single-product .single-pro-desc {
+    width: 100%;
+  }
+  .gi-single-product .single-pro-img {
+    width: 100%;
+  }
+}
 .gi-single-product .single-pro-img-no-sidebar {
   width: 40%;
 }
