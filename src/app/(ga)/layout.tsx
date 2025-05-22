@@ -1,7 +1,8 @@
 "use client";
 
 import LayoutFour from "@/components/layout/layout-four";
-import WhatsAppButton from "@/components/WhatsAppButton"; // Import the WhatsAppButton component
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { ProductProvider } from "@/context/ProductContext";
 
 export default function MainLayout({
   children,
@@ -9,9 +10,9 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <ProductProvider>
       <LayoutFour>{children}</LayoutFour>
-      <WhatsAppButton /> 
-    </>
+      <WhatsAppButton />
+    </ProductProvider>
   );
 }

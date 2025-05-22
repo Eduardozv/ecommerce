@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { Col } from "react-bootstrap";
 import SingleProductContent from "./single-product-content/SingleProductContent2";
 import useSWR from "swr";
@@ -26,6 +26,8 @@ const ProductPage = ({
     ["/api/products", postData],
     ([url, postData]) => fetcher(url, postData)
   );
+
+
 
   if (error) return <div>Fallo en cargar producto</div>;
   if (!data)

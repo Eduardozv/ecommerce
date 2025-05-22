@@ -32,7 +32,7 @@ function Footer() {
                       <img
                         src={
                           process.env.NEXT_PUBLIC_URL +
-                          "/assets/img/logo/logo-ga.png"
+                          "/assets/img/logo/logo-ga-red.png"
                         }
                         className="gi-footer-logo"
                         alt="footer logo"

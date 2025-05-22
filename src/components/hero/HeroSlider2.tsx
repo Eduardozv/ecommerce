@@ -45,18 +45,18 @@ function HeroSlider() {
       image: "slide-7",
     },
     {
-      title: "Descubre las mejores soluciones comerciales",
-      description: "Explora nuestros productos",
-      link: "/tienda",
-      buttonText: "Ver Productos",
-      image: "slide-2",
-    },
-    {
       title: "Heladeras y Freezers",
       description: "Excelente productos de refrigeración",
       link: "/tienda?grupo=Refrigeración",
       buttonText: "Ver Refrigeración",
       image: "slide-5",
+    },
+    {
+      title: "Descubre las mejores soluciones comerciales",
+      description: "Explora nuestros productos",
+      link: "/tienda",
+      buttonText: "Ver Productos",
+      image: "slide-2",
     },
     // Add more slides as needed
   ];

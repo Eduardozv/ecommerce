@@ -10,6 +10,7 @@ import Spinner from "@/components/button/Spinner";
 import ZoomImage from "@/components/zoom-image/ZoomImage";
 import constants from "@/utility/constants";
 import { useRouter } from "next/navigation";
+import { useProduct } from "@/context/ProductContext";
 
 const calculateDiscount = (oldPrice: number, newPrice: number): number => {
   if (!oldPrice || !newPrice || oldPrice <= newPrice) return 0;
@@ -73,6 +74,25 @@ const SingleProductContent = ({ product }) => {
     ["/api/catalogs", postDataCatalog],
     ([url, postDataCatalog]) => fetcher(url, postDataCatalog)
   );
+
+  const { setProductInfo } = useProduct();
+
+
+  // Update the context when the product changes
+  useEffect(() => {
+    if (product) {
+      setProductInfo({
+        title: product.title,
+        pageUrl: window.location.href
+      });
+    }
+    
+    // Clean up when component unmounts
+    return () => {
+      setProductInfo(null);
+    };
+  }, [product, setProductInfo]);
+  
 
   const productCatalog = errorCatalog ? null : dataCatalog?.data;
 
