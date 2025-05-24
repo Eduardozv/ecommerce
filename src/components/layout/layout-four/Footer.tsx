@@ -38,7 +38,7 @@ function Footer() {
                         alt="footer logo"
                       />
                       <p className="gi-footer-detail">
-                        GA Instalaciones comerciales, es una empresa que lleva 14 años
+                        GA Instalaciones comerciales, es una empresa que lleva 17 años
                         comercializando equipos gastronómicos y de supermercados en Uruguay. Llevando su experiencia al mercado Latinoamericano.
                       </p>
                     </div>
